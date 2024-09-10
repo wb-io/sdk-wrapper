@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f88"
+    tools:context="io.whitebird.sdk.exchange.example.MainActivity">
+
+    <TextView
+        android:id="@+id/someText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#faa"
+        android:padding="16dp"
+        android:text="Some other APP components"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/btns1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fee"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/someText">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Tokens"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Del" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Loader"
+            android:textSize="16sp"
+            app:switchPadding="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btns2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fee"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/btns1">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/loginRequired"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Login required"
+            android:textSize="16sp"
+            app:switchPadding="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#fcc"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btns2">
+
+        <!--<view class="io.whitebird.sdk.exchange.WBExchangeView"-->
+        <io.whitebird.sdk.exchange.WBExchangeView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
