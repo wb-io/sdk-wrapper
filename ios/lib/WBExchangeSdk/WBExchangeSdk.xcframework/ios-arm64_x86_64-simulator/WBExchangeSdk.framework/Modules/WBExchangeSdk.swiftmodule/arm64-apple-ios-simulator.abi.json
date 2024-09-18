@@ -1,0 +1,102 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "WBExchangeSdk",
+    "printedName": "WBExchangeSdk",
+    "children": [
+      {
+        "kind": "TypeDecl",
+        "name": "WBExchangeSdk",
+        "printedName": "WBExchangeSdk",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "version",
+            "printedName": "version",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13WBExchangeSdkAAC7versionSSvpZ",
+            "mangledName": "$s13WBExchangeSdkAAC7versionSSvpZ",
+            "moduleName": "WBExchangeSdk",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdkAAC7versionSSvgZ",
+                "mangledName": "$s13WBExchangeSdkAAC7versionSSvgZ",
+                "moduleName": "WBExchangeSdk",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:13WBExchangeSdkAAC",
+        "mangledName": "$s13WBExchangeSdkAAC",
+        "moduleName": "WBExchangeSdk",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/max\/mintdata\/ios\/WBExchangeSdk\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 150,
+      "length": 8,
+      "value": "\"v0.1.0\""
+    }
+  ]
+}

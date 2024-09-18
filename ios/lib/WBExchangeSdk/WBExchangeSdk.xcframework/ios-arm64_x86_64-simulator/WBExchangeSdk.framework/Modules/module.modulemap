@@ -1,0 +1,6 @@
+framework module WBExchangeSdk {
+  umbrella header "WBExchangeSdk.h"
+  export *
+
+  module * { export * }
+}
