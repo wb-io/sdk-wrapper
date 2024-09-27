@@ -7,7 +7,7 @@ let package = Package(
     name: "WBExchangeSdk",
     
     platforms: [
-      .iOS(.v13)
+      .iOS(.v15)
     ],
     
     products: [

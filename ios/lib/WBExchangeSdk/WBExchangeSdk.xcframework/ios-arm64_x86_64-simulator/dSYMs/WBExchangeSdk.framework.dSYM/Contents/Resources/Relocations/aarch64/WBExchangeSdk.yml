@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/max/Library/Developer/Xcode/DerivedData/WBExchangeSdk-flrfmomsxwybeoabvyvnuleloltw/Build/Intermediates.noindex/ArchiveIntermediates/WBExchangeSdk/InstallationBuildProductsLocation/Library/Frameworks/WBExchangeSdk.framework/WBExchangeSdk'
+binary-path:     '/Users/max/Library/Developer/Xcode/DerivedData/WBExchangeSdk-dweyfyxhcpoyregiboqlttfnxzhc/Build/Intermediates.noindex/ArchiveIntermediates/WBExchangeSdk/InstallationBuildProductsLocation/Library/Frameworks/WBExchangeSdk.framework/WBExchangeSdk'
 relocations:     []
 ...
