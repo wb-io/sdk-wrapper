@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#faa"
-        android:padding="16dp"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
         android:text="Some other APP components"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,8 +23,10 @@
         android:id="@+id/btns1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:background="#fee"
-        android:paddingVertical="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="0dp"
         android:paddingHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@+id/someText">
 
@@ -47,29 +50,18 @@
             android:layout_height="wrap_content"
             android:text="Add" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/loader"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Loader"
-            android:textSize="16sp"
-            app:switchPadding="8dp" />
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/btns2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:background="#fee"
-        android:paddingVertical="8dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         android:paddingHorizontal="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@+id/btns1">
 
         <androidx.appcompat.widget.SwitchCompat
@@ -77,18 +69,68 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Login required"
+            android:checked="true"
+            android:textSize="16sp"
+            app:switchPadding="8dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Loader"
+            android:visibility="invisible"
+            android:checked="true"
             android:textSize="16sp"
             app:switchPadding="8dp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/showWebView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="#fee"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/btns2">
+
+        <Button
+            android:id="@+id/btnAddWebView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Add WebView" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnRemoveWebView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:text="Remove WebView" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wbWebViewWrapper"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#fcc"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btns2">
+        app:layout_constraintTop_toBottomOf="@+id/showWebView">
 
         <!--<view class="io.whitebird.sdk.exchange.WBExchangeView"-->
         <io.whitebird.sdk.exchange.WBExchangeView
