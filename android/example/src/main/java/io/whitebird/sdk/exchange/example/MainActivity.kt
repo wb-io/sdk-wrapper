@@ -37,25 +37,23 @@ class MainActivity : AppCompatActivity()
             insets
         }
 
+        // -----------------------------------------
+        // WBExchangeSKD:
+        // -----------------------------------------
         wbExchangeSdk.setup(
-            merchantId = "merchantId_TEST",     // required
+            merchantId = "merchantId_TEST",      // * required
+//            mode = WBExchangeSdkMode.[выбрать_нужный_режим], // * required
 
             // LoginMode
-//            mode = WBExchangeSdkMode.LoginMode, // required
+            mode = WBExchangeSdkMode.LoginMode,
 
             // TokensMode
 //            mode = WBExchangeSdkMode.TokensMode,
-//            accessToken = "",                     // default = ""
-//            refreshToken = "",                    // default = ""
-
-            // ??
-//            loginRequired = true,                   // default = false
-
-            // ??
-//            showLoaderIfNoToken = true,           // default = false
+//            accessToken = "...",                 // default = ""
+//            refreshToken = "...",                // default = ""
 
             // AuthMode
-            mode = WBExchangeSdkMode.AuthMode,
+//            mode = WBExchangeSdkMode.AuthMode,
             onLogin = { accessToken, isUserVerified ->
                 Log.d(
                     "-> MAIN_APP: onLogin",
@@ -63,62 +61,18 @@ class MainActivity : AppCompatActivity()
                 )
             },
 
-            showBackButtonOnHomePage = true,        // default = false
+            showBackButtonOnHomePage = true,     // default = false
             onExit = {
                 Log.d("-> MAIN_APP: onExit", "")
+
+                // android.view.ViewRootImpl$CalledFromWrongThreadException:
+                // Only the original thread that created a view hierarchy can touch its views.
+                // Expected: main Calling: JavaBridge
                 runOnUiThread { // <- !!!
                     exitSkd()
                 }
             }
         )
-
-        // -----------------------------------------
-        // WBExchangeSKD:
-        // подписываемся на получение токенов из WebView
-
-//        wbExchangeSdk.onChangeTokens { accessToken, refreshToken ->
-//            Log.d(
-//                "-> MAIN_APP: onChangeTokens",
-//                "${accessToken.takeLast(10)}, ${refreshToken.takeLast(10)}"
-//            )
-//        }
-
-        // подписываемся на событие выхода с Home Page
-//        wbExchangeSdk.onExit {
-//            Log.d("-> MAIN_APP: onExit", "")
-//            runOnUiThread { exitSkd() }
-//        }
-
-        // --------------
-//        wbExchangeSdk.setShowBackButtonOnHomePage(true) // default = false
-
-        // --------------
-        // work with loginRequired
-        // если выставить loginRequired лоадер игнорируется
-//        wbExchangeSdk.setLoginRequired(true) // default = false
-
-        // --------------
-        // work with tokens
-        // нужен ли лоадер если еще не передан токен
-//        wbExchangeSdk.setShowLoaderIfNoToken(true) // default = false
-//        wbExchangeSdk.setLoginRequired(false)
-//        setActualTokens()
-
-        // в примере ниже управляем лоадером при помощи переключателя
-        // -----------------------------------------
-
-//        val switchLoader = findViewById<SwitchCompat>(R.id.loader)
-//        switchLoader.setOnCheckedChangeListener { _, isChecked ->
-//            wbExchangeSdk.setShowLoaderIfNoToken(isChecked)
-//        }
-
-//        val loginRequired = findViewById<SwitchCompat>(R.id.loginRequired)
-//        loginRequired.setOnCheckedChangeListener { _, isChecked ->
-//            wbExchangeSdk.setLoginRequired(isChecked)
-//        }
-
-//        wbExchangeSdk.setShowLoaderIfNoToken(switchLoader.isChecked) // default = false
-//        wbExchangeSdk.setLoginRequired(loginRequired.isChecked) // default = false
 
         // -----------------------------------------
 
@@ -148,59 +102,7 @@ class MainActivity : AppCompatActivity()
 
             wbWebViewWrapper.removeAllViews()
         }
-
-        // -----------------------------------------
-
-        // кнопками ADD и DEL -> добавляем/удаляем токен из SDK
-//        val btnDel = findViewById<Button>(R.id.btnDel)
-//        val btnAdd = findViewById<Button>(R.id.btnAdd)
-
-        // уже есть токен - передаем его в wbExchange
-//        setActualTokens()
-//        btnDel.isEnabled = true
-//        btnAdd.isEnabled = false
-
-        // токен выставляем позже - в примере по кнопке ADD
-//        btnDel.isEnabled = false
-//        btnAdd.isEnabled = true
-//
-//        btnDel.setOnClickListener {
-//            Log.d("-> MAIN_APP: btnDel", "")
-//            wbExchangeSdk.setTokens(
-//                accessToken = "",
-//                refreshToken = ""
-//            )
-//            btnDel.isEnabled = false
-//            btnAdd.isEnabled = true
-//        }
-//        btnAdd.setOnClickListener {
-//            Log.d("-> MAIN_APP: btnAdd", "")
-//            setActualTokens()
-//            btnDel.isEnabled = true
-//            btnAdd.isEnabled = false
-//        }
     }
-
-//    private fun setActualTokens()
-//    {
-//        wbExchangeSdk.setTokens(
-//            // new user -> NO offer
-////            accessToken = "",
-////            refreshToken = ""
-//
-//            // with offer -> NOT verified
-////            accessToken = "",
-////            refreshToken = ""
-//
-//            // verified -> NO test
-////            accessToken = "",
-////            refreshToken = ""
-//
-//            // verified -> AND test
-//            accessToken = "",
-//            refreshToken = ""
-//        )
-//    }
 
     // -----------------------------------------
     // WBExchangeSKD:
@@ -233,33 +135,13 @@ class MainActivity : AppCompatActivity()
     {
         Log.d("-> MAIN_APP: exitSkd", "")
 
-//            val btnDel = findViewById<Button>(R.id.btnDel)
-//            val btnAdd = findViewById<Button>(R.id.btnAdd)
-//            btnDel.isEnabled = false
-//            btnAdd.isEnabled = true
-
-//            val loginRequired = findViewById<SwitchCompat>(R.id.loginRequired)
-//            loginRequired.isChecked = false
-
-//            val loginRequired = findViewById<SwitchCompat>(R.id.loginRequired)
-//            loginRequired.isChecked = false
-
         val btnShowWebView = findViewById<Button>(R.id.btnAddWebView)
-//            Log.d("-> MAIN_APP: btnShowWebView", "$btnShowWebView")
-
-        // android.view.ViewRootImpl$CalledFromWrongThreadException:
-        // Only the original thread that created a view hierarchy can touch its views.
-        // Expected: main Calling: JavaBridge
         btnShowWebView.isEnabled = true
 
         val btnHideWebView = findViewById<Button>(R.id.btnRemoveWebView)
         btnHideWebView.isEnabled = false
 
         val wbWebViewWrapper = findViewById<LinearLayout>(R.id.wbWebViewWrapper)
-//            wbWebViewWrapper.visibility = View.GONE
-//            val wbWebView = findViewById<View>(R.id.wbWebView)
-//            wbWebView.visibility = View.GONE
-//            wbWebViewWrapper.removeView(wbWebView)
         wbWebViewWrapper.removeAllViews()
     }
 

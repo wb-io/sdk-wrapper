@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "io.whitebird.sdk.exchange"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
@@ -22,7 +22,7 @@ android {
                 "proguard-rules.pro"
             )
             manifestPlaceholders["usesCleartextTraffic"] = false
-//            buildConfigField("String", "URL_EXCHANGE_SERVER", "\"https://sdk.dev.wbdevel.net/v2.0/\"")
+            buildConfigField("String", "URL_EXCHANGE_SERVER", "\"https://sdk.dev.wbdevel.net/v2.0/\"")
         }
         debug {
             // How to Resolve "Cleartext HTTP traffic not permitted"

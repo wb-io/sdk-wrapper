@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "io.whitebird.sdk.exchange.example"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "io.whitebird.sdk.exchange.example"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

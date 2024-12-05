@@ -6,33 +6,6 @@ import org.json.JSONObject
 
 // -----------------------------------------
 
-// TODO: ??
-//sealed class PostMessageData
-//{
-//    data class OnChangeTokens(
-//        val accessToken: String,
-//        val refreshToken: String,
-//    ) : PostMessageData()
-//
-//    data class UserLoaded(
-//        val userId: String,
-//    ) : PostMessageData()
-//
-//    data object SdkLoaded : PostMessageData()
-//}
-
-//enum class PostMessageType(val type: String)
-//{
-//    OnChangeTokens("OnChangeTokens"),
-//    UserLoaded("UserLoaded"),
-//    SdkLoaded("SdkLoaded");
-//
-//    companion object
-//    {
-//        val names by lazy { entries.map { it.type } }
-//    }
-//}
-
 enum class PostMessageType()
 {
     OnChangeTokens,
@@ -83,13 +56,6 @@ class WBExchangeJsApi
 
         if (type == PostMessageType.OnChangeTokens.name)
         {
-            // variant 1
-//            if (messageObj.isNull("data")) return false
-//            val dataObj = messageObj.getJSONObject("data")
-
-            // variant 2 !!
-//            val dataObj = messageObj.optJSONObject("data") ?: return false
-
             val accessToken = messageObj.optString("accessToken")
             val isUserVerified = messageObj.optBoolean("isUserVerified")
 

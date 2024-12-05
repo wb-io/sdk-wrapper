@@ -15,80 +15,9 @@
         android:background="#faa"
         android:paddingVertical="8dp"
         android:paddingHorizontal="16dp"
-        android:text="Some other APP components"
+        android:text="MAIN APP components"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/btns1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:background="#fee"
-        android:paddingTop="4dp"
-        android:paddingBottom="0dp"
-        android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/someText">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Tokens"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btnDel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Del" />
-
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btns2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:background="#fee"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:paddingHorizontal="16dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/btns1">
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/loginRequired"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Login required"
-            android:checked="true"
-            android:textSize="16sp"
-            app:switchPadding="8dp" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/loader"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Loader"
-            android:visibility="invisible"
-            android:checked="true"
-            android:textSize="16sp"
-            app:switchPadding="8dp" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/showWebView"
@@ -99,7 +28,7 @@
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
         android:paddingHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/btns2">
+        app:layout_constraintTop_toBottomOf="@+id/someText">
 
         <Button
             android:id="@+id/btnAddWebView"
@@ -127,6 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#fcc"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:paddingStart="16dp"
         android:paddingEnd="17dp"
         app:layout_constraintBottom_toBottomOf="parent"

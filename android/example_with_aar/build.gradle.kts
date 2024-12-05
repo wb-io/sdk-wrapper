@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "io.whitebird.sdk.example_with_aar"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "io.whitebird.sdk.example_with_aar"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -42,12 +42,13 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(project(":wbexchangesdk"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(files("libs/wbexchangesdk-0.1.0.aar"))
-    implementation("androidx.databinding:viewbinding:8.6.0")
-//    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.databinding:viewbinding:8.7.3")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }

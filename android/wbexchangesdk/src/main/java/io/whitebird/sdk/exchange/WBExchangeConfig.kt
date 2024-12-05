@@ -3,7 +3,7 @@ package io.whitebird.sdk.exchange
 import android.util.Log
 import io.whitebird.sdk.exchange.BuildConfig.URL_EXCHANGE_SERVER
 
-enum class WBExchangeSdkMode()
+enum class WBExchangeSdkMode
 {
     AuthMode,
     LoginMode,
@@ -16,9 +16,6 @@ class WBExchangeConfig
     {
         Log.d("-> WB/config: INIT", "")
     }
-
-    // TODO: ??
-//    var isInitialized = false
 
     // -----------------------------------------
 
@@ -40,8 +37,6 @@ class WBExchangeConfig
 
     // TokensMode
     var accessToken: String = ""
-
-    // ??
     var refreshToken: String = ""
 
     // -----------------------------------------
@@ -51,24 +46,15 @@ class WBExchangeConfig
 
     // -----------------------------------------
 
-    // ??
-//    var loginRequired: Boolean = false
-
-    // ??
-//    var showLoaderIfNoToken: Boolean = false
-
-    // -----------------------------------------
-
-    var updateUI: (() -> Unit)? = null
-    var updateWebViewUrl: (() -> Unit)? = null
     var goBack: (() -> Boolean)? = null
+
+    var updateWebViewUrl: (() -> Unit)? = null
+    var updateUI: (() -> Unit)? = null
 
     // -----------------------------------------
 
     fun getUrl(): String
     {
-//        val URL_EXCHANGE_SERVER = BuildConfig.URL_EXCHANGE_SERVER
-
         if (isModeNotSelected)
         {
             Log.d("-> getUrl", "isModeNotSelected")
