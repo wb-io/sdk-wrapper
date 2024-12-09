@@ -13,16 +13,390 @@
       },
       {
         "kind": "Import",
+        "name": "WebKit",
+        "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "WBExchangeSdk"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "WBExchangeSdk"
       },
       {
+        "kind": "Import",
+        "name": "OSLog",
+        "printedName": "OSLog",
+        "declKind": "Import",
+        "moduleName": "WBExchangeSdk"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "WBExchangeSdkMode",
+        "printedName": "WBExchangeSdkMode",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "AuthMode",
+            "printedName": "AuthMode",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBExchangeSdkMode.Type) -> WBExchangeSdk.WBExchangeSdkMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBExchangeSdkMode",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                    "usr": "s:13WBExchangeSdk0aB4ModeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBExchangeSdkMode",
+                        "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                        "usr": "s:13WBExchangeSdk0aB4ModeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk0aB4ModeO04AuthC0yA2CmF",
+            "mangledName": "$s13WBExchangeSdk0aB4ModeO04AuthC0yA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "LoginMode",
+            "printedName": "LoginMode",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBExchangeSdkMode.Type) -> WBExchangeSdk.WBExchangeSdkMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBExchangeSdkMode",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                    "usr": "s:13WBExchangeSdk0aB4ModeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBExchangeSdkMode",
+                        "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                        "usr": "s:13WBExchangeSdk0aB4ModeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk0aB4ModeO05LoginC0yA2CmF",
+            "mangledName": "$s13WBExchangeSdk0aB4ModeO05LoginC0yA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "TokensMode",
+            "printedName": "TokensMode",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBExchangeSdkMode.Type) -> WBExchangeSdk.WBExchangeSdkMode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBExchangeSdkMode",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                    "usr": "s:13WBExchangeSdk0aB4ModeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBExchangeSdkMode",
+                        "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                        "usr": "s:13WBExchangeSdk0aB4ModeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk0aB4ModeO06TokensC0yA2CmF",
+            "mangledName": "$s13WBExchangeSdk0aB4ModeO06TokensC0yA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "WBExchangeSdk.WBExchangeSdkMode?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBExchangeSdkMode",
+                    "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                    "usr": "s:13WBExchangeSdk0aB4ModeO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:13WBExchangeSdk0aB4ModeO8rawValueACSgSS_tcfc",
+            "mangledName": "$s13WBExchangeSdk0aB4ModeO8rawValueACSgSS_tcfc",
+            "moduleName": "WBExchangeSdk",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13WBExchangeSdk0aB4ModeO8rawValueSSvp",
+            "mangledName": "$s13WBExchangeSdk0aB4ModeO8rawValueSSvp",
+            "moduleName": "WBExchangeSdk",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk0aB4ModeO8rawValueSSvg",
+                "mangledName": "$s13WBExchangeSdk0aB4ModeO8rawValueSSvg",
+                "moduleName": "WBExchangeSdk",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:13WBExchangeSdk0aB4ModeO",
+        "mangledName": "$s13WBExchangeSdk0aB4ModeO",
+        "moduleName": "WBExchangeSdk",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "WBExchangeSdkConfig",
         "printedName": "WBExchangeSdkConfig",
         "children": [
+          {
+            "kind": "Var",
+            "name": "webView",
+            "printedName": "webView",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "WebKit.WKWebView?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKWebView",
+                    "printedName": "WebKit.WKWebView",
+                    "usr": "c:objc(cs)WKWebView"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvp",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvp",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "WebKit.WKWebView?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WKWebView",
+                        "printedName": "WebKit.WKWebView",
+                        "usr": "c:objc(cs)WKWebView"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvg",
+                "mangledName": "$s13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvg",
+                "moduleName": "WBExchangeSdk",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "WebKit.WKWebView?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WKWebView",
+                        "printedName": "WebKit.WKWebView",
+                        "usr": "c:objc(cs)WKWebView"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvs",
+                "mangledName": "$s13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvs",
+                "moduleName": "WBExchangeSdk",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvM",
+                "mangledName": "$s13WBExchangeSdk0aB6ConfigC7webViewSo05WKWebE0CSgvM",
+                "moduleName": "WBExchangeSdk",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
           {
             "kind": "Var",
             "name": "showWebView",
@@ -40,7 +414,8 @@
             "mangledName": "$s13WBExchangeSdk0aB6ConfigC11showWebViewSbvp",
             "moduleName": "WBExchangeSdk",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "accessors": [
               {
@@ -64,90 +439,35 @@
             ]
           },
           {
-            "kind": "Var",
-            "name": "showLoader",
-            "printedName": "showLoader",
+            "kind": "Function",
+            "name": "sdklog",
+            "printedName": "sdklog(_:)",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:13WBExchangeSdk0aB6ConfigC10showLoaderSbvp",
-            "mangledName": "$s13WBExchangeSdk0aB6ConfigC10showLoaderSbvp",
-            "moduleName": "WBExchangeSdk",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:13WBExchangeSdk0aB6ConfigC10showLoaderSbvg",
-                "mangledName": "$s13WBExchangeSdk0aB6ConfigC10showLoaderSbvg",
-                "moduleName": "WBExchangeSdk",
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "hasTokens",
-            "printedName": "hasTokens",
-            "children": [
+                "name": "Void",
+                "printedName": "()"
+              },
               {
                 "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
-            "declKind": "Var",
-            "usr": "s:13WBExchangeSdk0aB6ConfigC9hasTokensSbvp",
-            "mangledName": "$s13WBExchangeSdk0aB6ConfigC9hasTokensSbvp",
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC6sdklogyySSF",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC6sdklogyySSF",
             "moduleName": "WBExchangeSdk",
             "declAttributes": [
               "AccessControl"
             ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:13WBExchangeSdk0aB6ConfigC9hasTokensSbvg",
-                "mangledName": "$s13WBExchangeSdk0aB6ConfigC9hasTokensSbvg",
-                "moduleName": "WBExchangeSdk",
-                "accessorKind": "get"
-              }
-            ]
+            "funcSelfKind": "NonMutating"
           },
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(showLoaderIfNoToken:loginRequired:)",
+            "printedName": "init(mode:merchantId:accessToken:refreshToken:showBackButtonOnHomePage:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -157,10 +477,29 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
+                "name": "WBExchangeSdkMode",
+                "printedName": "WBExchangeSdk.WBExchangeSdkMode",
+                "usr": "s:13WBExchangeSdk0aB4ModeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
                 "hasDefaultArg": true,
-                "usr": "s:Sb"
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
               },
               {
                 "kind": "TypeNominal",
@@ -171,18 +510,105 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:13WBExchangeSdk0aB6ConfigC19showLoaderIfNoToken13loginRequiredACSb_Sbtcfc",
-            "mangledName": "$s13WBExchangeSdk0aB6ConfigC19showLoaderIfNoToken13loginRequiredACSb_Sbtcfc",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePageAcA0aB4ModeO_S3SSbtcfc",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePageAcA0aB4ModeO_S3SSbtcfc",
             "moduleName": "WBExchangeSdk",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Designated"
           },
           {
             "kind": "Function",
-            "name": "setTokens",
-            "printedName": "setTokens(accessToken:refreshToken:)",
+            "name": "initHandlers",
+            "printedName": "initHandlers(onLogin:onExit:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.String, Swift.Bool) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String, Swift.Bool) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String, Swift.Bool)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(() -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "() -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC12initHandlers7onLogin0F4ExityySS_SbtcSg_yycSgtF",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC12initHandlers7onLogin0F4ExityySS_SbtcSg_yycSgtF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "invokeOnLoginHandler",
+            "printedName": "invokeOnLoginHandler(accessToken:isUserVerified:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -197,14 +623,35 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Func",
-            "usr": "s:13WBExchangeSdk0aB6ConfigC9setTokens11accessToken07refreshG0ySS_SStF",
-            "mangledName": "$s13WBExchangeSdk0aB6ConfigC9setTokens11accessToken07refreshG0ySS_SStF",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC20invokeOnLoginHandler11accessToken14isUserVerifiedySS_SbtF",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC20invokeOnLoginHandler11accessToken14isUserVerifiedySS_SbtF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "invokeOnExitHandler",
+            "printedName": "invokeOnExitHandler()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC19invokeOnExitHandleryyF",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC19invokeOnExitHandleryyF",
             "moduleName": "WBExchangeSdk",
             "declAttributes": [
               "AccessControl"
@@ -291,6 +738,13 @@
         "kind": "Import",
         "name": "WebKit",
         "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "WBExchangeSdk"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "WBExchangeSdk"
       },
@@ -383,6 +837,28 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Function",
+            "name": "goBack",
+            "printedName": "goBack()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk0A4ViewV6goBackyyF",
+            "mangledName": "$s13WBExchangeSdk0A4ViewV6goBackyyF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Struct",
@@ -454,44 +930,79 @@
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 662,
+      "offset": 121,
+      "length": 10,
+      "value": "\"AuthMode\""
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 153,
+      "length": 11,
+      "value": "\"LoginMode\""
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 187,
+      "length": 12,
+      "value": "\"TokensMode\""
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1069,
+      "length": 27,
+      "value": "\"io.whitebird.sdk.exchange\""
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1169,
+      "length": 8,
+      "value": "\"System\""
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1454,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 707,
+      "offset": 1489,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 1018,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1055,
+      "offset": 1534,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
-      "offset": 707,
+      "offset": 105,
       "length": 16,
-      "value": "\"accessToken...\""
+      "value": "\"OnChangeTokens\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
-      "offset": 747,
+      "offset": 146,
+      "length": 14,
+      "value": "\"OnBackButton\""
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 1214,
       "length": 17,
-      "value": "\"refreshToken...\""
+      "value": "\"merchantId_TEST\""
     }
   ]
 }

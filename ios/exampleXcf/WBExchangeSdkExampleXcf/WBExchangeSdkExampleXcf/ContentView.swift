@@ -4,12 +4,23 @@ import WBExchangeSdk
 struct ContentView: View {
 
     @State var isShowWB = false
-
+    @State var wbExchangeView:WBExchangeView? = nil
+    
     @StateObject var wbExchangeSdkConfig = WBExchangeSdkConfig(
-        showLoaderIfNoToken: true,
-        loginRequired: true
-    )
 
+//        mode: WBExchangeSdkMode.AuthMode,
+        mode: WBExchangeSdkMode.LoginMode,
+//        mode: WBExchangeSdkMode.TokensMode,
+
+        merchantId: "merchantId_TEST",
+
+        // TokensMode
+//        accessToken: "...",
+//        refreshToken: "...",
+                
+        showBackButtonOnHomePage: true
+    )
+        
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -17,41 +28,45 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
 
-            Button("Toggle WB = \(isShowWB)") {
+            Button("isShowWB = \(isShowWB)") {
                 isShowWB.toggle()
-            }
-            .padding()
-
-            VStack {
-                Text("has tokens = \(wbExchangeSdkConfig.hasTokens)")
-                
-                if wbExchangeSdkConfig.hasTokens {
-                    Button("DELETE tokens...") {
-                        wbExchangeSdkConfig.setTokens(
-                            accessToken: "",
-                            refreshToken: ""
-                        )
-                    }
+                if isShowWB {
+                    self.wbExchangeView = WBExchangeView(config: wbExchangeSdkConfig)
                 } else {
-                    Button("SET tokens...") {
-                        wbExchangeSdkConfig.setTokens(
-                            accessToken: "accessToken...",
-                            refreshToken: "refreshToken..."
-                        )
-                    }
+                    self.wbExchangeView = nil
                 }
             }
 
             if isShowWB {
-                WBExchangeView(config: wbExchangeSdkConfig)
+                Button("send goBack to SDK") {
+                    self.wbExchangeView?.goBack()
+                }
+            }
+
+            if isShowWB {
+                wbExchangeView
+//                WBExchangeView(config: wbExchangeSdkConfig)
             } else {
                 Spacer()
             }
         }
         .padding()
+        .onAppear {
+            wbExchangeSdkConfig.initHandlers(
+                onLogin: {
+                    accessToken, isUserVerified in
+                    print("MAIN_APP: accessToken = \(accessToken.suffix(20))")
+                    print("MAIN_APP: isUserVerified = \(isUserVerified)")
+                },
+                onExit: {
+                    print("MAIN_APP: onExit")
+                    isShowWB = false
+                }
+            )
+        }
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}

@@ -1,8 +1,9 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-compiler-version: Apple Swift version 6.0.2 effective-5.10 (swiftlang-6.0.2.1.2 clang-1600.0.26.4)
 // swift-module-flags: -target arm64-apple-ios18.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name WBExchangeSdk
 import Combine
 import Foundation
+import OSLog
 import Swift
 import SwiftUI
 @_exported import WBExchangeSdk
@@ -10,20 +11,27 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+public enum WBExchangeSdkMode : Swift.String {
+  case AuthMode
+  case LoginMode
+  case TokensMode
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
 public class WBExchangeSdkConfig : Combine.ObservableObject {
+  public var webView: WebKit.WKWebView?
   public var showWebView: Swift.Bool {
     get
   }
-  public var showLoader: Swift.Bool {
-    get
-  }
-  public var hasTokens: Swift.Bool {
-    get
-  }
-  public init(showLoaderIfNoToken: Swift.Bool = false, loginRequired: Swift.Bool = false)
-  public func setTokens(accessToken: Swift.String, refreshToken: Swift.String)
+  public func sdklog(_ msg: Swift.String)
+  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false)
+  public func initHandlers(onLogin: ((Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
+  public func invokeOnLoginHandler(accessToken: Swift.String, isUserVerified: Swift.Bool)
+  public func invokeOnExitHandler()
   public func getUrl() -> Swift.String
-  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
@@ -32,8 +40,11 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
-  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  @_Concurrency.MainActor @preconcurrency public func goBack()
   public typealias Body = @_opaqueReturnTypeOf("$s13WBExchangeSdk0A4ViewV4bodyQrvp", 0) __
 }
 
+extension WBExchangeSdk.WBExchangeSdkMode : Swift.Equatable {}
+extension WBExchangeSdk.WBExchangeSdkMode : Swift.Hashable {}
+extension WBExchangeSdk.WBExchangeSdkMode : Swift.RawRepresentable {}
 extension WBExchangeSdk.WBExchangeView : Swift.Sendable {}
