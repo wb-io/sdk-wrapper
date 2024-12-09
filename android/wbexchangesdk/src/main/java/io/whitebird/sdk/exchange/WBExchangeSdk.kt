@@ -1,6 +1,7 @@
 package io.whitebird.sdk.exchange
 
 import android.util.Log
+import io.whitebird.sdk.exchange.BuildConfig.SDKLOG_ENABLED
 
 class WBExchangeSdk private constructor()
 {
@@ -15,13 +16,18 @@ class WBExchangeSdk private constructor()
 
         fun getInstance(debugMessage: String = ""): WBExchangeSdk
         {
-            Log.d("-> WB/sdk: getInstance", "$debugMessage -> $instance")
+            sdklog("-> WB/sdk: getInstance", "$debugMessage -> $instance")
             return instance ?: synchronized(this) {
                 instance ?: WBExchangeSdk().also {
                     instance = it
                     it.config = WBExchangeConfig()
                 }
             }
+        }
+
+        fun sdklog(tag: String, msg: String = "")
+        {
+            if (SDKLOG_ENABLED) Log.d(tag, msg)
         }
     }
 
@@ -42,34 +48,34 @@ class WBExchangeSdk private constructor()
         onExit: (() -> Unit)? = null
     )
     {
-        Log.d("-> WB/sdk: setup", "")
+        sdklog("-> WB/sdk: setup", "")
 
-        Log.d("-> ... mode", mode.toString())
-        Log.d("-> ... merchantId", merchantId)
+        sdklog("-> ... mode", mode.toString())
+        sdklog("-> ... merchantId", merchantId)
 
         config.mode = mode
         config.merchantId = merchantId
 
         if (config.isTokensMode)
         {
-            Log.d("-> ... accessToken", accessToken.takeLast(10))
-            Log.d("-> ... refreshToken", refreshToken.takeLast(10))
+            sdklog("-> ... accessToken", accessToken.takeLast(10))
+            sdklog("-> ... refreshToken", refreshToken.takeLast(10))
             config.accessToken = accessToken
             config.refreshToken = refreshToken
         }
 
         if (config.isAuthMode)
         {
-            Log.d("-> ... onLogin", if (onLogin != null) "true" else "false")
+            sdklog("-> ... onLogin", if (onLogin != null) "true" else "false")
             config.onLoginHandler = onLogin
         }
 
         config.showBackButtonOnHomePage = showBackButtonOnHomePage
-        if (showBackButtonOnHomePage)
-        {
-            Log.d("-> ... onExit", if (onExit != null) "true" else "false")
-            config.onExitHandler = onExit
-        }
+//        if (showBackButtonOnHomePage)
+//        {
+        sdklog("-> ... onExit", if (onExit != null) "true" else "false")
+        config.onExitHandler = onExit
+//        }
 
         config.updateWebViewUrl?.invoke()
     }
@@ -78,7 +84,7 @@ class WBExchangeSdk private constructor()
 
     fun invokeOnChangeTokensHandler(accessToken: String, isUserVerified: Boolean)
     {
-        Log.d(
+        sdklog(
             "-> WB/sdk: invokeOnChangeTokensHandler",
             "accessToken = ${accessToken.takeLast(10)}, isUserVerified = $isUserVerified"
         )
@@ -87,9 +93,9 @@ class WBExchangeSdk private constructor()
 
     // -----------------------------------------
 
-    fun invokeOnExitHandler()
+    fun invokeOnExitHandler(debugMsg: String = "")
     {
-        Log.d("-> WB/sdk: invokeOnExitHandler", "")
+        sdklog("-> WB/sdk: invokeOnExitHandler", debugMsg)
         config.onExitHandler?.invoke()
     }
 

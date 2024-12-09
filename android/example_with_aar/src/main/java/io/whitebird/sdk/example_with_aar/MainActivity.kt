@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity()
     override fun onBackPressed()
     {
         Log.d("-> MAIN_APP: onBackPressed", "")
+
+        // wbExchangeSdk.goBack()
+
+        // or
         if (!wbExchangeSdk.goBack())
         {
             Log.d("-> MAIN_APP: NO HISTORY onBACK", "")

@@ -3,11 +3,11 @@ package io.whitebird.sdk.exchange
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
+import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
 import io.whitebird.sdk.exchange.databinding.WbexchangeLayoutBinding
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -34,8 +34,8 @@ class WBExchangeView @JvmOverloads constructor(
 
     init
     {
-        Log.d("-> WB/view: -------------------", "")
-        Log.d("-> WB/view: init", "")
+        sdklog("-> WB/view: -------------------", "")
+        sdklog("-> WB/view: init", "")
 
         inflate(context, R.layout.wbexchange_layout, this)
 
@@ -55,11 +55,11 @@ class WBExchangeView @JvmOverloads constructor(
 
     private fun initWebView()
     {
-        Log.d("-> WB/view: initWebView", "")
-        Log.d("-> ... binding.wbWebView", "${binding.wbWebView}")
+        sdklog("-> WB/view: initWebView", "")
+        sdklog("-> ... binding.wbWebView", "${binding.wbWebView}")
 
         with(binding.wbWebView) {
-            Log.d("-> ... with(binding.wbWebView)", "")
+            sdklog("-> ... with(binding.wbWebView)", "")
 
             settings.apply {
                 javaScriptEnabled = true
@@ -91,16 +91,16 @@ class WBExchangeView @JvmOverloads constructor(
 
     private fun updateWebViewUrl()
     {
-        Log.d("-> WB/view: updateWebViewUrl", "")
+        sdklog("-> WB/view: updateWebViewUrl", "")
         val currentUrl = binding.wbWebView.url
-        Log.d("-> ... currentUrl from =", "$currentUrl")
+        sdklog("-> ... currentUrl from =", "$currentUrl")
 
         val config = wbExchangeSdk.getConfig()
 
-        Log.d("-> ... OK", "")
+        sdklog("-> ... OK", "")
 
         val url = config.getUrl()
-        Log.d("-> ... currentUrl to   =", url)
+        sdklog("-> ... currentUrl to   =", url)
 
         binding.wbWebView.clearHistory()
         binding.wbWebView.clearCache(false)
@@ -112,19 +112,20 @@ class WBExchangeView @JvmOverloads constructor(
 
     private fun goBack(): Boolean
     {
-        Log.d("-> WB/view: goBack", "")
+        sdklog("-> WB/view: goBack", "")
         val currentUrl = binding.wbWebView.url
-        Log.d("-> ... currentUrl", "$currentUrl")
+        sdklog("-> ... currentUrl", "$currentUrl")
 
         if (binding.wbWebView.canGoBack())
         {
-            Log.d("-> ...", "TRUE")
+            sdklog("-> ...", "TRUE")
             binding.wbWebView.goBack()
             return true
         }
         else
         {
-            Log.d("-> ...", "FALSE")
+            sdklog("-> ...", "FALSE")
+            wbExchangeSdk.invokeOnExitHandler("from onBack")
             return false
         }
     }
@@ -133,12 +134,12 @@ class WBExchangeView @JvmOverloads constructor(
 
     private fun updateUI()
     {
-        Log.d("-> WB/view: updateUI", "")
+        sdklog("-> WB/view: updateUI", "")
         val config = wbExchangeSdk.getConfig()
 
         if (config.isModeNotSelected)
         {
-            Log.d("-> ... isModeNotSelected", config.isModeNotSelected.toString())
+            sdklog("-> ... isModeNotSelected", config.isModeNotSelected.toString())
             binding.wbWebView.visibility = View.INVISIBLE
             return
         }
@@ -147,12 +148,12 @@ class WBExchangeView @JvmOverloads constructor(
 
         if (url.isNotBlank())
         {
-            Log.d("-> ... show WebView", "true")
+            sdklog("-> ... show WebView", "true")
             binding.wbWebView.visibility = View.VISIBLE
         }
         else
         {
-            Log.d("-> ... show WebView", "false")
+            sdklog("-> ... show WebView", "false")
             binding.wbWebView.visibility = View.INVISIBLE
 //            binding.wbWebView.goBack() // ??
         }

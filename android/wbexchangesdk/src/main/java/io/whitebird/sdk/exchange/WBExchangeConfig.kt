@@ -1,7 +1,7 @@
 package io.whitebird.sdk.exchange
 
-import android.util.Log
 import io.whitebird.sdk.exchange.BuildConfig.URL_EXCHANGE_SERVER
+import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
 
 enum class WBExchangeSdkMode
 {
@@ -14,7 +14,7 @@ class WBExchangeConfig
 {
     init
     {
-        Log.d("-> WB/config: INIT", "")
+        sdklog("-> WB/config: INIT")
     }
 
     // -----------------------------------------
@@ -57,7 +57,7 @@ class WBExchangeConfig
     {
         if (isModeNotSelected)
         {
-            Log.d("-> getUrl", "isModeNotSelected")
+            sdklog("-> getUrl", "isModeNotSelected")
             return "" // TODO: ?? "about:blank"
         }
 

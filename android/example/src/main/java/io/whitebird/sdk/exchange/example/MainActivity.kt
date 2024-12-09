@@ -123,11 +123,13 @@ class MainActivity : AppCompatActivity()
     {
 //        super.onBackPressed()
         Log.d("-> MAIN_APP: onBackPressed", "")
-        if (!wbExchangeSdk.goBack())
-        {
-            Log.d("-> MAIN_APP: NO HISTORY onBACK", "")
-            exitSkd()
-        }
+        wbExchangeSdk.goBack()
+
+//        if (!wbExchangeSdk.goBack())
+//        {
+//            Log.d("-> MAIN_APP: NO HISTORY onBACK", "")
+//            exitSkd()
+//        }
     }
     // -----------------------------------------
 

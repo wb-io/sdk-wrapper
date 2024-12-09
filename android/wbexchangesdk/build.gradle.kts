@@ -23,6 +23,7 @@ android {
             )
             manifestPlaceholders["usesCleartextTraffic"] = false
             buildConfigField("String", "URL_EXCHANGE_SERVER", "\"https://sdk.dev.wbdevel.net/v2.0/\"")
+            buildConfigField("Boolean", "SDKLOG_ENABLED", "false")
         }
         debug {
             // How to Resolve "Cleartext HTTP traffic not permitted"
@@ -32,6 +33,7 @@ android {
 //            buildConfigField("String", "URL_EXCHANGE_SERVER", "\"http://192.168.100.95:3004/v2.0/\"")
             buildConfigField("String", "URL_EXCHANGE_SERVER", "\"http://192.168.100.95:3004/\"")
 //             buildConfigField("String", "URL_EXCHANGE_SERVER", "\"https://sdk.dev.wbdevel.net/v2.0/\"")
+            buildConfigField("Boolean", "SDKLOG_ENABLED", "true")
         }
     }
     compileOptions {

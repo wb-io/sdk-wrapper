@@ -1,7 +1,7 @@
 package io.whitebird.sdk.exchange
 
-import android.util.Log
 import android.webkit.JavascriptInterface
+import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
 import org.json.JSONObject
 
 // -----------------------------------------
@@ -31,24 +31,24 @@ class WBExchangeJsApi
     @JavascriptInterface
     fun postMessage(messageJsonStr: String, targetOrigin: String): Boolean
     {
-        Log.d("-> WB/postMessage: message =", messageJsonStr)
+        sdklog("-> WB/postMessage: message =", messageJsonStr)
 
         val messageObj = JSONObject(messageJsonStr)
 
         // -----------------------------------------
 
         val type = messageObj.optString("type", "")
-        Log.d("-> ... type =", type)
+        sdklog("-> ... type =", type)
 
         if (type.isEmpty())
         {
-            Log.w("-> ... ERROR: type isEmpty", "!!!")
+            sdklog("-> ... ERROR: type isEmpty", "!!!")
             return false
         }
 
         if (!PostMessageType.names.contains(type))
         {
-            Log.w("-> ... ERROR: unsupported type", "!!!")
+            sdklog("-> ... ERROR: unsupported type", "!!!")
             return false
         }
 
@@ -59,8 +59,8 @@ class WBExchangeJsApi
             val accessToken = messageObj.optString("accessToken")
             val isUserVerified = messageObj.optBoolean("isUserVerified")
 
-            Log.d("-> ... accessToken    =", accessToken.takeLast(10))
-            Log.d("-> ... isUserVerified =", isUserVerified.toString())
+            sdklog("-> ... accessToken    =", accessToken.takeLast(10))
+            sdklog("-> ... isUserVerified =", isUserVerified.toString())
 
             wbExchangeSdk.invokeOnChangeTokensHandler(accessToken, isUserVerified)
             return true
@@ -70,7 +70,7 @@ class WBExchangeJsApi
 
         if (type == PostMessageType.OnBackButton.name)
         {
-            wbExchangeSdk.invokeOnExitHandler()
+            wbExchangeSdk.invokeOnExitHandler("from postMessage -> OnBackButton")
             return true
         }
 
