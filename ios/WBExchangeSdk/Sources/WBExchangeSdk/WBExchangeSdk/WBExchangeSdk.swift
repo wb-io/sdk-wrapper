@@ -24,6 +24,8 @@ public class WBExchangeSdkConfig: ObservableObject {
     @Published private var showBackButtonOnHomePage: Bool
     private var onExitHandler:(() -> Void)?
 
+    @Published private var disableAddCard: Bool
+    
     public var webView: WKWebView?
 
     // --------------------
@@ -53,13 +55,15 @@ public class WBExchangeSdkConfig: ObservableObject {
         merchantId: String,
         accessToken: String = "",
         refreshToken: String = "",
-        showBackButtonOnHomePage: Bool = false
+        showBackButtonOnHomePage: Bool = false,
+        disableAddCard: Bool = false
     ) {
         self.mode = mode
         self.merchantId = merchantId
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.showBackButtonOnHomePage = showBackButtonOnHomePage
+        self.disableAddCard = disableAddCard
     }
     
     public func initHandlers(
@@ -103,11 +107,13 @@ public class WBExchangeSdkConfig: ObservableObject {
         }
         let showBackButtonQuery = "&showBackButtonOnHomePage=\(showBackButton ? "true" : "false")"
 
+        let disableAddCardQuery = "&disableAddCard=\(disableAddCard ? "true" : "false")"
+        
         var tokensQuery = ""
         if mode == WBExchangeSdkMode.TokensMode && !accessToken.isEmpty && !refreshToken.isEmpty {
             tokensQuery = "&access_token=\(accessToken)&refresh_token=\(refreshToken)"
         }
 
-        return "\(url)\(modeQuery)\(merchantIdQuery)\(showBackButtonQuery)\(tokensQuery)"
+        return "\(url)\(modeQuery)\(merchantIdQuery)\(showBackButtonQuery)\(tokensQuery)\(disableAddCardQuery)"
     }
 }

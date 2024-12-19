@@ -18,7 +18,9 @@ struct ContentView: View {
 //        accessToken: "...",
 //        refreshToken: "...",
                 
-        showBackButtonOnHomePage: true
+        showBackButtonOnHomePage: true,
+        
+        disableAddCard: true
     )
         
     var body: some View {

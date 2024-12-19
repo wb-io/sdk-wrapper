@@ -467,7 +467,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(mode:merchantId:accessToken:refreshToken:showBackButtonOnHomePage:)",
+            "printedName": "init(mode:merchantId:accessToken:refreshToken:showBackButtonOnHomePage:disableAddCard:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -507,11 +507,18 @@
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
                 "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePageAcA0aB4ModeO_S3SSbtcfc",
-            "mangledName": "$s13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePageAcA0aB4ModeO_S3SSbtcfc",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePage14disableAddCardAcA0aB4ModeO_S3SS2btcfc",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePage14disableAddCardAcA0aB4ModeO_S3SS2btcfc",
             "moduleName": "WBExchangeSdk",
             "declAttributes": [
               "AccessControl",
@@ -951,35 +958,42 @@
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1069,
+      "offset": 1122,
       "length": 27,
       "value": "\"io.whitebird.sdk.exchange\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1169,
+      "offset": 1222,
       "length": 8,
       "value": "\"System\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1454,
+      "offset": 1507,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1489,
+      "offset": 1542,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 1534,
+      "offset": 1587,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1625,
       "length": 5,
       "value": "false"
     },

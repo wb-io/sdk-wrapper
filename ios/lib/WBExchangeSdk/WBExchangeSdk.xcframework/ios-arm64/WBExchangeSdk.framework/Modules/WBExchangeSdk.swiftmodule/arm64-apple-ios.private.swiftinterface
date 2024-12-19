@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.2 effective-5.10 (swiftlang-6.0.2.1.2 clang-1600.0.26.4)
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
 // swift-module-flags: -target arm64-apple-ios18.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name WBExchangeSdk
 import Combine
 import Foundation
@@ -27,7 +27,7 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
     get
   }
   public func sdklog(_ msg: Swift.String)
-  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false)
+  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, disableAddCard: Swift.Bool = false)
   public func initHandlers(onLogin: ((Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
   public func invokeOnLoginHandler(accessToken: Swift.String, isUserVerified: Swift.Bool)
   public func invokeOnExitHandler()
