@@ -33,6 +33,8 @@ class WBExchangeConfig
     var showBackButtonOnHomePage: Boolean = false // <- MobileType
     var onExitHandler: (() -> Unit)? = null
 
+    var disableAddCard: Boolean = false
+
     // -----------------------------------------
 
     // TokensMode
@@ -88,6 +90,9 @@ class WBExchangeConfig
             tokensQuery = "&access_token=${accessToken}&refresh_token=${refreshToken}"
         }
 
-        return "${server}${modeQuery}${merchantIdQuery}${showBackButtonQuery}${tokensQuery}"
+        val disableAddCardQuery =
+            "&disableAddCard=${if (disableAddCard) "true" else "false"}"
+
+        return "${server}${modeQuery}${merchantIdQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}"
     }
 }

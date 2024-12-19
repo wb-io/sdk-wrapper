@@ -71,7 +71,9 @@ class MainActivity : AppCompatActivity()
                 runOnUiThread { // <- !!!
                     exitSkd()
                 }
-            }
+            },
+
+            disableAddCard = true,
         )
 
         // -----------------------------------------

@@ -45,7 +45,9 @@ class WBExchangeSdk private constructor()
         onLogin: ((accessToken: String, isUserVerified: Boolean) -> Unit)? = null,
 
         showBackButtonOnHomePage: Boolean = false,
-        onExit: (() -> Unit)? = null
+        onExit: (() -> Unit)? = null,
+
+        disableAddCard: Boolean = false
     )
     {
         sdklog("-> WB/sdk: setup", "")
@@ -76,6 +78,8 @@ class WBExchangeSdk private constructor()
         sdklog("-> ... onExit", if (onExit != null) "true" else "false")
         config.onExitHandler = onExit
 //        }
+
+        config.disableAddCard = disableAddCard
 
         config.updateWebViewUrl?.invoke()
     }

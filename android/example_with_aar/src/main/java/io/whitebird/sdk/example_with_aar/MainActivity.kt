@@ -59,7 +59,9 @@ class MainActivity : AppCompatActivity()
                     // TODO: onExit - back from SDK page
                     Toast.makeText(applicationContext, "TODO: onExit", Toast.LENGTH_SHORT).show()
                 }
-            }
+            },
+
+            disableAddCard = true,
         )
     }
 
