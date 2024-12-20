@@ -12,7 +12,8 @@ struct ContentView: View {
         mode: WBExchangeSdkMode.LoginMode,
 //        mode: WBExchangeSdkMode.TokensMode,
 
-        merchantId: "merchantId_TEST",
+//        merchantId: "merchantId_TEST",
+        merchantId: "4f19017b-0793-4591-94ff-610bb3c4665b",
 
         // TokensMode
 //        accessToken: "...",
@@ -56,8 +57,9 @@ struct ContentView: View {
         .onAppear {
             wbExchangeSdkConfig.initHandlers(
                 onLogin: {
-                    accessToken, isUserVerified in
+                    accessToken, refreshToken, isUserVerified in
                     print("MAIN_APP: accessToken = \(accessToken.suffix(20))")
+                    print("MAIN_APP: refreshToken = \(refreshToken.suffix(20))")
                     print("MAIN_APP: isUserVerified = \(isUserVerified)")
                 },
                 onExit: {

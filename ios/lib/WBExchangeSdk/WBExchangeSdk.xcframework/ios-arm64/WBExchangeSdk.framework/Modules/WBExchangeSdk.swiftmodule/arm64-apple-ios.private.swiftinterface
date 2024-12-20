@@ -28,8 +28,8 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
   }
   public func sdklog(_ msg: Swift.String)
   public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, disableAddCard: Swift.Bool = false)
-  public func initHandlers(onLogin: ((Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
-  public func invokeOnLoginHandler(accessToken: Swift.String, isUserVerified: Swift.Bool)
+  public func initHandlers(onLogin: ((Swift.String, Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
+  public func invokeOnLoginHandler(accessToken: Swift.String, refreshToken: Swift.String, isUserVerified: Swift.Bool)
   public func invokeOnExitHandler()
   public func getUrl() -> Swift.String
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher

@@ -19,7 +19,7 @@ public class WBExchangeSdkConfig: ObservableObject {
     @Published private var refreshToken: String
     
     // AuthMode
-    private var onLoginHandler:((String, Bool) -> Void)?
+    private var onLoginHandler:((String, String, Bool) -> Void)?
     
     @Published private var showBackButtonOnHomePage: Bool
     private var onExitHandler:(() -> Void)?
@@ -67,7 +67,7 @@ public class WBExchangeSdkConfig: ObservableObject {
     }
     
     public func initHandlers(
-        onLogin: ((String, Bool) -> Void)? = nil,
+        onLogin: ((String, String, Bool) -> Void)? = nil,
         onExit: (() -> Void)? = nil
     ) {
         self.onLoginHandler = onLogin
@@ -76,10 +76,10 @@ public class WBExchangeSdkConfig: ObservableObject {
 
     // --------------------
 
-    public func invokeOnLoginHandler(accessToken:String, isUserVerified:Bool)
+    public func invokeOnLoginHandler(accessToken:String, refreshToken:String, isUserVerified:Bool)
     {
         sdklog("-> invokeOnLoginHandler...")
-        onLoginHandler?(accessToken, isUserVerified)
+        onLoginHandler?(accessToken, refreshToken, isUserVerified)
     }
 
     public func invokeOnExitHandler()

@@ -11,6 +11,7 @@ struct PostMessageValue: Codable {
     let type: String // <- PostMessageType ??
 
     let accessToken: String?
+    let refreshToken: String?
     let isUserVerified: Bool?
 }
 
@@ -124,11 +125,13 @@ struct WhiteBirdWebView: UIViewRepresentable {
                         
                         if type == PostMessageType.OnChangeTokens.rawValue {
                             let accessToken = postMessageValue.accessToken ?? ""
+                            let refreshToken = postMessageValue.refreshToken ?? ""
                             let isUserVerified = postMessageValue.isUserVerified ?? false
                             self.sdkConfig.sdklog("...accessToken = \(accessToken.suffix(20))")
+                            self.sdkConfig.sdklog("...refreshToken = \(refreshToken.suffix(20))")
                             self.sdkConfig.sdklog("...isUserVerified = \(isUserVerified)")
                             
-                            self.sdkConfig.invokeOnLoginHandler(accessToken: accessToken, isUserVerified: isUserVerified)
+                            self.sdkConfig.invokeOnLoginHandler(accessToken: accessToken, refreshToken: refreshToken, isUserVerified: isUserVerified)
                         }
                         
                         if type == PostMessageType.OnBackButton.rawValue {
