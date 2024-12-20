@@ -42,7 +42,7 @@ class WBExchangeSdk private constructor()
         refreshToken: String = "",
 
         // mode = WBExchangeSdkMode.AuthMode
-        onLogin: ((accessToken: String, isUserVerified: Boolean) -> Unit)? = null,
+        onLogin: ((accessToken: String, refreshToken: String, isUserVerified: Boolean) -> Unit)? = null,
 
         showBackButtonOnHomePage: Boolean = false,
         onExit: (() -> Unit)? = null,
@@ -86,13 +86,13 @@ class WBExchangeSdk private constructor()
 
     // -----------------------------------------
 
-    fun invokeOnChangeTokensHandler(accessToken: String, isUserVerified: Boolean)
+    fun invokeOnChangeTokensHandler(accessToken: String, refreshToken: String, isUserVerified: Boolean)
     {
         sdklog(
             "-> WB/sdk: invokeOnChangeTokensHandler",
-            "accessToken = ${accessToken.takeLast(10)}, isUserVerified = $isUserVerified"
+            "accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}, isUserVerified = $isUserVerified"
         )
-        config.onLoginHandler?.invoke(accessToken, isUserVerified)
+        config.onLoginHandler?.invoke(accessToken, refreshToken, isUserVerified)
     }
 
     // -----------------------------------------

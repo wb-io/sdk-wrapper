@@ -28,11 +28,12 @@ class MainActivity : AppCompatActivity()
         }
 
         wbExchangeSdk.setup(
-            merchantId = "merchantId_TEST",      // * required
+//            merchantId = "merchantId_TEST",      // * required
+            merchantId = "4f19017b-0793-4591-94ff-610bb3c4665b",      // * required
 //            mode = WBExchangeSdkMode.[!!_select_mode_!!], // * required
 
             // LoginMode
-            mode = WBExchangeSdkMode.LoginMode,
+//            mode = WBExchangeSdkMode.LoginMode,
 
             // TokensMode
 //            mode = WBExchangeSdkMode.TokensMode,
@@ -40,13 +41,14 @@ class MainActivity : AppCompatActivity()
 //            refreshToken = "...",                // default = ""
 
             // AuthMode
-//            mode = WBExchangeSdkMode.AuthMode,
-//            onLogin = { accessToken, isUserVerified ->
-//                Log.d(
-//                    "-> MAIN_APP: onLogin",
-//                    "accessToken = ${accessToken.takeLast(10)}, isUserVerified = $isUserVerified"
-//                )
-//            },
+            mode = WBExchangeSdkMode.AuthMode,
+            onLogin = { accessToken, refreshToken, isUserVerified ->
+                Log.d(
+                    "-> MAIN_APP: onLogin",
+                    "accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}, isUserVerified = $isUserVerified"
+                )
+                Toast.makeText(applicationContext, "MAIN_APP: onLogin", Toast.LENGTH_SHORT).show()
+            },
 
             showBackButtonOnHomePage = true,     // default = false
             onExit = {

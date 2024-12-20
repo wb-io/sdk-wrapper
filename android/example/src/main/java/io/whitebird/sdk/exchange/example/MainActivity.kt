@@ -41,11 +41,12 @@ class MainActivity : AppCompatActivity()
         // WBExchangeSKD:
         // -----------------------------------------
         wbExchangeSdk.setup(
-            merchantId = "merchantId_TEST",      // * required
+//            merchantId = "merchantId_TEST",      // * required
+            merchantId = "4f19017b-0793-4591-94ff-610bb3c4665b",      // * required
 //            mode = WBExchangeSdkMode.[выбрать_нужный_режим], // * required
 
             // LoginMode
-            mode = WBExchangeSdkMode.LoginMode,
+//            mode = WBExchangeSdkMode.LoginMode,
 
             // TokensMode
 //            mode = WBExchangeSdkMode.TokensMode,
@@ -53,11 +54,11 @@ class MainActivity : AppCompatActivity()
 //            refreshToken = "...",                // default = ""
 
             // AuthMode
-//            mode = WBExchangeSdkMode.AuthMode,
-            onLogin = { accessToken, isUserVerified ->
+            mode = WBExchangeSdkMode.AuthMode,
+            onLogin = { accessToken, refreshToken, isUserVerified ->
                 Log.d(
                     "-> MAIN_APP: onLogin",
-                    "accessToken = ${accessToken.takeLast(10)}, isUserVerified = $isUserVerified"
+                    "accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}, isUserVerified = $isUserVerified"
                 )
             },
 

@@ -57,12 +57,14 @@ class WBExchangeJsApi
         if (type == PostMessageType.OnChangeTokens.name)
         {
             val accessToken = messageObj.optString("accessToken")
+            val refreshToken = messageObj.optString("refreshToken")
             val isUserVerified = messageObj.optBoolean("isUserVerified")
 
             sdklog("-> ... accessToken    =", accessToken.takeLast(10))
+            sdklog("-> ... refreshToken   =", refreshToken.takeLast(10))
             sdklog("-> ... isUserVerified =", isUserVerified.toString())
 
-            wbExchangeSdk.invokeOnChangeTokensHandler(accessToken, isUserVerified)
+            wbExchangeSdk.invokeOnChangeTokensHandler(accessToken, refreshToken, isUserVerified)
             return true
         }
 

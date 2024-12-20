@@ -44,7 +44,7 @@ class WBExchangeConfig
     // -----------------------------------------
 
     // AuthMode
-    var onLoginHandler: ((accessToken: String, isUserVerified: Boolean) -> Unit)? = null
+    var onLoginHandler: ((accessToken: String, refreshToken: String, isUserVerified: Boolean) -> Unit)? = null
 
     // -----------------------------------------
 
