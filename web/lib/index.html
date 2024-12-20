@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WBExchangeSDK Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./wbExchangeSdk-demo-v001.js"></script>
+</head>
+<body>
+<header>Demo App</header>
+<main>
+
+  <aside>
+    <form>
+      <fieldset>
+        <label for="authMode">
+          <input type="radio" id="authMode" checked name="sdkMode" value="AuthMode">
+          AuthMode
+        </label>
+        <label for="loginMode">
+          <input type="radio" id="loginMode" name="sdkMode" value="LoginMode">
+          LoginMode
+        </label>
+        <label for="tokensMode">
+          <input type="radio" id="tokensMode" name="sdkMode" value="TokensMode">
+          TokensMode
+        </label>
+        <div id="tokens">
+          <label for="accessToken">accessToken</label>
+          <textarea name="accessToken" id="accessToken" cols="10" rows="2"></textarea>
+          <label for="refreshToken">refreshToken</label>
+          <textarea name="" id="refreshToken" cols="10" rows="2"></textarea>
+        </div>
+      </fieldset>
+      <button type="submit" id="updateSdk" disabled>Обновить</button>
+    </form>
+  </aside>
+
+  <h2>Настройка WBExchangeSDK</h2>
+  <h3>Контейнер</h3>
+  <ul>
+    <li>
+      Контент SDK расчитан на мобильную версию
+      - контейнер не рекомендуется делать менее 360 пикселей
+    </li>
+    <li>
+      <p>
+        Контейнер для SDK может находиться в любом месте сайта
+      </p>
+      <ul>
+        <li>
+          для примера контейнер расположен во float элементе с размерами 360 х 640
+          пикселей
+        </li>
+        <li>
+          <code>&lt;div id=&quot;wbExchangeSdkWrapper&quot;&gt;&lt;/div&gt;</code>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>Далее в конфиг передаем html-element этого контейнера</p>
+    </li>
+  </ul>
+
+  <button id="sdk-again">SDK setup again</button>
+  <div id="wbExchangeSdkWrapper"></div>
+
+  <ul>
+    <li>
+      <p>
+        <b>!! SDK не изменяет стилей контейнера</b>
+      </p>
+      <ul>
+        <li>все стили контейнера настраиваются приложением</li>
+        <li>SDK iframe занимает все доступное место в контейнере</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>
+    SDK init / config
+    <button id="copyTo">Copy to clipboard</button>
+  </h3>
+  <ul>
+    <li>
+          <pre id="setupCode"><b>wbExchangeSdk.setup</b>({
+  <span>// required params:</span>
+  <b>el</b>: document.getElementById(<wbr>"wbExchangeSdkWrapper"),
+  <b>merchantId</b>: 'merchant_DEMO',
+  <b>mode</b>: wbExchangeSdk.mode.<span id="sdkMode">AuthMode</span>,
+
+  <span>// TokensMode</span>
+  <b>accessToken</b>: '<span id="accessTokenValue"></span>',
+  <b>refreshToken</b>: '<span id="refreshTokenValue"></span>',
+
+  <span>// AuthMode</span>
+  <b>onLogin</b>: ({accessToken, refreshToken, isUserVerified}) => {},
+
+  <span>// optional params:</span>
+  <b>showBackButtonOnHomePage</b>: true,
+  <b>onExit</b>: () => {},
+
+  <b>disableAddCard</b>: true,
+})</pre>
+    </li>
+    <li>
+      <p>
+        SDK iframe вставиться в контейнер только если будут переданы обязательные
+        параметры: <code>el, mode, merchantId</code>,
+        <br>- а также <code>accessToken</code> и <code>refreshToken</code> в
+        TokensMode
+      </p>
+    </li>
+    <li>
+      <pre><b>wbExchangeSdk.mode</b> = AuthMode | LoginMode | TokensMode</pre>
+    </li>
+    <li>
+      <pre><b>wbExchangeSdk.cleanup</b>()</pre>
+      <p>
+        удаление iframe и очистка всех переданных параметров <br>
+        - в данном примере срабатывает при нажатии кнопки Back на SDK Home Page
+      </p>
+    </li>
+  </ul>
+
+  <h3>Подключение скрипта</h3>
+  <ul>
+    <li>
+      <pre>&lt;script src="https://sdk.dev.wbdevel.net/v2.0/assets/sdk-demo/wbExchangeSdk-demo-v001.js"&gt;&lt;/script&gt;</pre>
+    </li>
+  </ul>
+
+</main>
+
+<script>
+  // ----------------------------------------------------
+  function initSdkFromMainApp()
+  {
+    wbExchangeSdk.setup({
+      // SDK iframe вставиться в контейнер только если будут переданы обязательные параметры
+      // el, mode, merchantId
+      // а также accessToken и refreshToken в TokensMode
+
+      // required params:
+      el: document.getElementById('wbExchangeSdkWrapper'),
+      merchantId: '4f19017b-0793-4591-94ff-610bb3c4665b',
+
+      mode: config.mode,
+
+      // LoginMode
+      // mode: wbExchangeSdk.mode.LoginMode,
+
+      // TokensMode
+      // mode: wbExchangeSdk.mode.TokensMode,
+      accessToken: config.accessToken,
+      refreshToken: config.refreshToken,
+
+      // AuthMode
+      // mode: wbExchangeSdk.mode.AuthMode,
+      onLogin: ({accessToken, refreshToken, isUserVerified}) =>
+      {
+        console.log('%c MAIN_APP   onLogin =', 'background:#ff0;color:#000;');
+        console.log('%c ... isUserVerified =', 'background:#ff0;color:#000;', isUserVerified);
+        console.log('%c ...    accessToken =', 'background:#ff0;color:#000;', accessToken);
+        console.log('%c ...   refreshToken =', 'background:#ff0;color:#000;', refreshToken);
+      },
+
+      // optional params:
+      showBackButtonOnHomePage: true,
+      onExit: () =>
+      {
+        console.log('%c MAIN_APP onExit =', 'background:#ff0;color:#000;');
+        const exit = confirm('Нажата кнопка Back.\nВы дествительно хотите выйти/закрыть SDK?');
+        if (exit)
+        {
+          wbExchangeSdk.cleanup();
+          sdkAgainBtn && (sdkAgainBtn.style.display = 'flex');
+        }
+      },
+
+      disableAddCard: true,
+    });
+  }
+
+  // ----------------------------------------------------
+
+  const sdkAgainBtn = document.getElementById('sdk-again');
+  sdkAgainBtn?.addEventListener('click', () =>
+  {
+    sdkAgainBtn.style.display = 'none';
+    console.log('%c MAIN_APP init SDK again =', 'background:#ff0;color:#000;');
+    initSdkFromMainApp();
+  });
+
+  // ----------------------------------------------------
+
+  const config = {
+    mode: 'AuthMode',
+    currentMode: 'AuthMode',
+    accessToken: '',
+    refreshToken: '',
+  };
+
+  const inputs = document.getElementsByTagName('input');
+  const setupCode = document.getElementById('setupCode');
+  const copyTo = document.getElementById('copyTo');
+  const sdkMode = document.getElementById('sdkMode');
+  const updateSdkBtn = document.getElementById('updateSdk');
+  const tokensWrapper = document.getElementById('tokens');
+  const accessTokenInput = document.getElementById('accessToken');
+  const refreshTokenInput = document.getElementById('refreshToken');
+  const accessTokenValue = document.getElementById('accessTokenValue');
+  const refreshTokenValue = document.getElementById('refreshTokenValue');
+
+  for( let i = 0; i < inputs.length; i++ )
+  {
+    inputs[i].addEventListener('change', (e) =>
+    {
+      if (e.target.checked)
+      {
+        config.prevMode = config.mode;
+        config.mode = e.target.value;
+        updateUI();
+      }
+    });
+  }
+
+  const onChangeToken = (token) => (e) =>
+  {
+    config[token] = e.target.value;
+    updateUI();
+    updateSdkBtn && (updateSdkBtn.disabled = false);
+  };
+  accessTokenInput?.addEventListener('input', onChangeToken('accessToken'));
+  refreshTokenInput?.addEventListener('input', onChangeToken('refreshToken'));
+
+  // ----------------------------------------------------
+
+  function updateUI()
+  {
+    if (sdkMode)
+    {
+      sdkMode.textContent = config.mode;
+      if (config.mode === config.currentMode) sdkMode.className = '';
+      else sdkMode.className = sdkMode.className === 'prev' ? 'changed' : 'prev';
+    }
+
+    tokensWrapper && (tokensWrapper.style.display = config.mode === 'TokensMode' ? 'flex' : 'none');
+    updateSdkBtn && (updateSdkBtn.disabled = config.mode === config.currentMode);
+
+    const isTokensMode = config.mode === 'TokensMode';
+    accessTokenValue && (accessTokenValue.textContent = isTokensMode && config.accessToken ? `${config.accessToken.length > 10 ? '...' : ''}${config.accessToken.substr(-10, 10)}` : '');
+    refreshTokenValue && (refreshTokenValue.textContent = isTokensMode && config.refreshToken ? `${config.refreshToken.length > 10 ? '...' : ''}${config.refreshToken.substr(-10, 10)}` : '');
+
+    accessTokenValue && (accessTokenValue.className = isTokensMode && config.accessToken.length ? 'hasValue' : '');
+    refreshTokenValue && (refreshTokenValue.className = isTokensMode && config.refreshToken.length ? 'hasValue' : '');
+  }
+
+  updateSdkBtn?.addEventListener('click', (e) =>
+  {
+    e.preventDefault();
+    if (config.mode !== config.currentMode || config.mode === 'TokensMode')
+    {
+      config.currentMode = config.mode;
+      wbExchangeSdk.cleanup();
+      sdkAgainBtn && (sdkAgainBtn.style.display = 'none');
+      config.accessToken = accessTokenInput?.value || '';
+      config.refreshToken = refreshTokenInput?.value || '';
+      updateUI();
+      initSdkFromMainApp();
+    }
+  });
+
+  async function copyTextToClipboard(textToCopy)
+  {
+    try
+    {
+      await navigator.clipboard.writeText(textToCopy);
+    }
+    catch( error )
+    {
+      console.error('failed to copy to clipboard. error=' + error);
+    }
+  }
+
+  copyTo?.addEventListener('click', () =>
+  {
+    copyTextToClipboard(setupCode?.textContent);
+  });
+
+  // ----------------------------------------------------
+
+  updateUI();
+  initSdkFromMainApp();
+
+  // ----------------------------------------------------
+</script>
+
+</body>
+</html>
