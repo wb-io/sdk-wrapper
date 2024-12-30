@@ -93,7 +93,7 @@ public class WBExchangeSdkConfig: ObservableObject {
     public func getUrl() -> String {
                 
         // TODO: ?? move to ENV settings
-        var url = "https://sdk.dev.wbdevel.net/v2.0/"
+        var url = "https://sdk.whitebird.io/v2.0/"
 //        var url = "http://192.168.100.95:3004/"
 
         let modeQuery = "?mode=\(mode.rawValue)" // required
