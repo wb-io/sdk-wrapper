@@ -134,7 +134,7 @@
     }
     catch( e )
     {
-      console.error('wbExchangeSdk: ERROR -> postMessage data error');
+      console.error('wbExchangeSdk: ERROR -> postMessage data error', event.data);
       return;
     }
     if (data?.type === PostMessageType.OnChangeTokens && config.mode === SdkMode.AuthMode)
