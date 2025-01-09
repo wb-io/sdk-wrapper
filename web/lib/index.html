@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <title>WBExchangeSDK Demo</title>
   <link rel="stylesheet" href="./styles.css">
+  <script src="sdkDemo.js"></script>
   <script src="wbExchangeSdk-v001.js"></script>
 </head>
 <body>
 <header>Demo App</header>
 <main>
-
   <aside>
     <form>
       <fieldset>
         <label for="authMode">
-          <input type="radio" id="authMode" checked name="sdkMode" value="AuthMode">
+          <input type="radio" id="authMode" name="sdkMode" value="AuthMode">
           AuthMode
         </label>
         <label for="loginMode">
@@ -25,14 +25,26 @@
           <input type="radio" id="tokensMode" name="sdkMode" value="TokensMode">
           TokensMode
         </label>
-        <div id="tokens">
+        <div id="tokens" class="field">
           <label for="accessToken">accessToken</label>
           <textarea name="accessToken" id="accessToken" cols="10" rows="2"></textarea>
           <label for="refreshToken">refreshToken</label>
           <textarea name="" id="refreshToken" cols="10" rows="2"></textarea>
         </div>
+        <div class="field">
+          <label for="merchantId">merchantId</label>
+          <textarea name="" id="merchantId" cols="10" rows="2"></textarea>
+        </div>
+        <label for="disableAddCard">
+          <input type="checkbox" id="disableAddCard" name="disableAddCard">
+          disableAddCard
+        </label>
+        <label for="showBackButton">
+          <input type="checkbox" id="showBackButton" name="showBackButton">
+          showBackButton
+        </label>
       </fieldset>
-      <button type="submit" id="updateSdk" disabled>Обновить</button>
+      <button type="submit" id="updateSdk">Пересоздать iframe</button>
     </form>
   </aside>
 
@@ -82,11 +94,11 @@
     <button id="copyTo">Copy to clipboard</button>
   </h3>
   <ul>
-    <li>
+    <li id="codeWrapper">
           <pre id="setupCode"><b>wbExchangeSdk.setup</b>({
   <span>// required params:</span>
   <b>el</b>: document.getElementById(<wbr>"wbExchangeSdkWrapper"),
-  <b>merchantId</b>: 'merchant_DEMO',
+  <b>merchantId</b>: '<span id="merchantIdValue"></span>',
   <b>mode</b>: wbExchangeSdk.mode.<span id="sdkMode">AuthMode</span>,
 
   <span>// TokensMode</span>
@@ -97,11 +109,12 @@
   <b>onLogin</b>: ({accessToken, refreshToken, isUserVerified}) => {},
 
   <span>// optional params:</span>
-  <b>showBackButtonOnHomePage</b>: true,
+  <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
   <b>onExit</b>: () => {},
 
-  <b>disableAddCard</b>: true,
+  <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
 })</pre>
+      <div id="copied">Скопировано</div>
     </li>
     <li>
       <p>
@@ -126,7 +139,7 @@
   <h3>Подключение скрипта</h3>
   <ul>
     <li>
-      <pre>&lt;script src="https://sdk.dev.wbdevel.net/v2.0/assets/sdk-demo/wbExchangeSdk-demo-v001.js"&gt;&lt;/script&gt;</pre>
+      <pre>&lt;script src="https://sdk.dev.wbdevel.net/v2.0/assets/sdk-demo/wbExchangeSdk-v001.js"&gt;&lt;/script&gt;</pre>
     </li>
   </ul>
 
@@ -136,6 +149,11 @@
   // ----------------------------------------------------
   function initSdkFromMainApp()
   {
+    const logColor = 'background:#ff0;color:#000;';
+    const log = (title, ...params) => console.log.call(null, `%c ${title}`, logColor, ...params);
+
+    const { config } = sdkDemo;
+
     wbExchangeSdk.setup({
       // SDK iframe вставиться в контейнер только если будут переданы обязательные параметры
       // el, mode, merchantId
@@ -143,7 +161,7 @@
 
       // required params:
       el: document.getElementById('wbExchangeSdkWrapper'),
-      merchantId: '4f19017b-0793-4591-94ff-610bb3c4665b',
+      merchantId: config.merchantId,
 
       mode: config.mode,
 
@@ -157,141 +175,40 @@
 
       // AuthMode
       // mode: wbExchangeSdk.mode.AuthMode,
-      onLogin: ({accessToken, refreshToken, isUserVerified}) =>
+      onLogin: ({ accessToken, refreshToken, isUserVerified }) =>
       {
-        console.log('%c MAIN_APP   onLogin =', 'background:#ff0;color:#000;');
-        console.log('%c ... isUserVerified =', 'background:#ff0;color:#000;', isUserVerified);
-        console.log('%c ...    accessToken =', 'background:#ff0;color:#000;', accessToken);
-        console.log('%c ...   refreshToken =', 'background:#ff0;color:#000;', refreshToken);
+        log('MAIN_APP   onLogin =');
+        log('... isUserVerified =', isUserVerified);
+        log('...    accessToken =', accessToken);
+        log('...   refreshToken =', refreshToken);
       },
 
       // optional params:
-      showBackButtonOnHomePage: true,
+      showBackButtonOnHomePage: config.showBackButton,
       onExit: () =>
       {
-        console.log('%c MAIN_APP onExit =', 'background:#ff0;color:#000;');
+        log('MAIN_APP onExit =');
         const exit = confirm('Нажата кнопка Back.\nВы дествительно хотите выйти/закрыть SDK?');
-        if (exit)
+        if( exit )
         {
           wbExchangeSdk.cleanup();
-          sdkAgainBtn && (sdkAgainBtn.style.display = 'flex');
+          sdkDemo.showAgainBtn();
         }
       },
 
-      disableAddCard: true,
+      disableAddCard: config.disableAddCard,
     });
   }
 
   // ----------------------------------------------------
 
-  const sdkAgainBtn = document.getElementById('sdk-again');
-  sdkAgainBtn?.addEventListener('click', () =>
+  window.addEventListener('load', () =>
   {
-    sdkAgainBtn.style.display = 'none';
-    console.log('%c MAIN_APP init SDK again =', 'background:#ff0;color:#000;');
-    initSdkFromMainApp();
-  });
-
-  // ----------------------------------------------------
-
-  const config = {
-    mode: 'AuthMode',
-    currentMode: 'AuthMode',
-    accessToken: '',
-    refreshToken: '',
-  };
-
-  const inputs = document.getElementsByTagName('input');
-  const setupCode = document.getElementById('setupCode');
-  const copyTo = document.getElementById('copyTo');
-  const sdkMode = document.getElementById('sdkMode');
-  const updateSdkBtn = document.getElementById('updateSdk');
-  const tokensWrapper = document.getElementById('tokens');
-  const accessTokenInput = document.getElementById('accessToken');
-  const refreshTokenInput = document.getElementById('refreshToken');
-  const accessTokenValue = document.getElementById('accessTokenValue');
-  const refreshTokenValue = document.getElementById('refreshTokenValue');
-
-  for( let i = 0; i < inputs.length; i++ )
-  {
-    inputs[i].addEventListener('change', (e) =>
-    {
-      if (e.target.checked)
-      {
-        config.prevMode = config.mode;
-        config.mode = e.target.value;
-        updateUI();
-      }
+    window.sdkDemo = new SdkDemo({
+      initSdkFn: initSdkFromMainApp,
+      cleanupSdkFn: wbExchangeSdk.cleanup,
     });
-  }
-
-  const onChangeToken = (token) => (e) =>
-  {
-    config[token] = e.target.value;
-    updateUI();
-    updateSdkBtn && (updateSdkBtn.disabled = false);
-  };
-  accessTokenInput?.addEventListener('input', onChangeToken('accessToken'));
-  refreshTokenInput?.addEventListener('input', onChangeToken('refreshToken'));
-
-  // ----------------------------------------------------
-
-  function updateUI()
-  {
-    if (sdkMode)
-    {
-      sdkMode.textContent = config.mode;
-      if (config.mode === config.currentMode) sdkMode.className = '';
-      else sdkMode.className = sdkMode.className === 'prev' ? 'changed' : 'prev';
-    }
-
-    tokensWrapper && (tokensWrapper.style.display = config.mode === 'TokensMode' ? 'flex' : 'none');
-    updateSdkBtn && (updateSdkBtn.disabled = config.mode === config.currentMode);
-
-    const isTokensMode = config.mode === 'TokensMode';
-    accessTokenValue && (accessTokenValue.textContent = isTokensMode && config.accessToken ? `${config.accessToken.length > 10 ? '...' : ''}${config.accessToken.substr(-10, 10)}` : '');
-    refreshTokenValue && (refreshTokenValue.textContent = isTokensMode && config.refreshToken ? `${config.refreshToken.length > 10 ? '...' : ''}${config.refreshToken.substr(-10, 10)}` : '');
-
-    accessTokenValue && (accessTokenValue.className = isTokensMode && config.accessToken.length ? 'hasValue' : '');
-    refreshTokenValue && (refreshTokenValue.className = isTokensMode && config.refreshToken.length ? 'hasValue' : '');
-  }
-
-  updateSdkBtn?.addEventListener('click', (e) =>
-  {
-    e.preventDefault();
-    if (config.mode !== config.currentMode || config.mode === 'TokensMode')
-    {
-      config.currentMode = config.mode;
-      wbExchangeSdk.cleanup();
-      sdkAgainBtn && (sdkAgainBtn.style.display = 'none');
-      config.accessToken = accessTokenInput?.value || '';
-      config.refreshToken = refreshTokenInput?.value || '';
-      updateUI();
-      initSdkFromMainApp();
-    }
   });
-
-  async function copyTextToClipboard(textToCopy)
-  {
-    try
-    {
-      await navigator.clipboard.writeText(textToCopy);
-    }
-    catch( error )
-    {
-      console.error('failed to copy to clipboard. error=' + error);
-    }
-  }
-
-  copyTo?.addEventListener('click', () =>
-  {
-    copyTextToClipboard(setupCode?.textContent);
-  });
-
-  // ----------------------------------------------------
-
-  updateUI();
-  initSdkFromMainApp();
 
   // ----------------------------------------------------
 </script>
