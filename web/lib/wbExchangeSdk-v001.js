@@ -30,6 +30,9 @@
     // AuthMode
     onLoginHandler: null,
 
+    currencyTo: '',
+    cryptoWallet: '',
+
     showBackButtonOnHomePage: false,
     onExitHandler: null,
 
@@ -62,6 +65,9 @@
     if (params.refreshToken !== undefined) config.refreshToken = params.refreshToken;
 
     if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
+
+    if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
+    if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
 
     if (params.showBackButtonOnHomePage !== undefined) // true | false
     {
@@ -111,6 +117,8 @@
     let url = `${SDK_URL}/`;
     url += `?mode=${config.mode}`;
     url += `&merchantId=${config.merchantId}`;
+    url += `&currencyTo=${config.currencyTo}`;
+    url += `&cryptoWallet=${config.cryptoWallet}`;
     url += `&showBackButtonOnHomePage=${!!config.onExitHandler && config.showBackButtonOnHomePage}`;
     url += `&disableAddCard=${config.disableAddCard}`;
 
