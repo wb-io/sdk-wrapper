@@ -1,0 +1,134 @@
+---
+name: Deploy telegram app
+env:
+  PROJECT_NAME: 'tg-client'
+  PROJECT_ORG:  'wb-io'
+  CLUSTER_PROJECT_NAME: 'k8s-deploy'
+  CLUSTER_PROJECT_ORG: 'wb-io'
+  CLUSTER_BRANCH: ${{
+    ( github.ref == 'refs/heads/dev' && 'develop')
+    || ( github.ref == 'refs/heads/qa' && 'develop')
+    || ( github.ref == 'refs/heads/prod' && 'develop')
+    || 'unspecified'
+    }}
+  TIER: ${{
+    ( github.ref == 'refs/heads/dev' && 'dev')
+    || ( github.ref == 'refs/heads/qa' && 'qa')
+    || ( github.ref == 'refs/heads/prod' && 'prod')
+    || 'unspecified'
+    }}
+  REGISTRY_ADDRESS: ${{
+    ( github.ref == 'refs/heads/dev' && 'repo-dev.ops.wbdevel.net')
+    || ( github.ref == 'refs/heads/qa' && 'repo-dev.ops.wbdevel.net')
+    || ( github.ref == 'refs/heads/prod' && 'repo-prod.ops.wbdevel.net')
+    || 'unspecified'
+    }}
+  REGISTRY_USERNAME: ${{
+    ( github.ref == 'refs/heads/dev' && secrets.REPODEV_REGISTRY_USERNAME)
+    || ( github.ref == 'refs/heads/qa' && secrets.REPODEV_REGISTRY_USERNAME)
+    || ( github.ref == 'refs/heads/prod' && secrets.REPOPROD_REGISTRY_USERNAME)
+    || 'unspecified'
+    }}
+  REGISTRY_PASSWORD: ${{
+    ( github.ref == 'refs/heads/dev' && secrets.REPODEV_REGISTRY_PASSWORD)
+    || ( github.ref == 'refs/heads/qa' && secrets.REPODEV_REGISTRY_PASSWORD)
+    || ( github.ref == 'refs/heads/prod' && secrets.REPOPROD_REGISTRY_PASSWORD)
+    || 'unspecified'
+    }}
+  IMAGE_VERSION: "${{ github.sha }}"
+  CI: false
+
+on:
+  push:
+    branches:
+      - prod
+    paths:
+      - 'tg/**'
+jobs:
+  build:
+    name: build
+    runs-on:
+      - 'self-hosted'
+      - 'linux'
+      - 'minsk'
+
+    outputs:
+      image: ${{ steps.docker.outputs.imageFullName }}:${{ steps.docker.outputs.tags }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+
+      - name: Docker build and push
+        uses: mr-smithers-excellent/docker-build-push@v6
+        id: docker
+        with:
+          registry: ${{ env.REGISTRY_ADDRESS }}
+          image: ${{ env.PROJECT_ORG }}/${{ env.PROJECT_NAME }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+          tags: ${{ env.IMAGE_VERSION }}
+          dockerfile: Dockerfile
+
+      - run: rm -rf build
+
+  deploy:
+    needs: build
+    runs-on:
+      - 'self-hosted'
+      - 'linux'
+      - 'minsk'
+
+    steps:
+      - name: Check out the cluster repo
+        uses: actions/checkout@v3
+        env:
+          REPOSITORY: ${{ env.CLUSTER_PROJECT_ORG }}/${{ env.CLUSTER_PROJECT_NAME }}
+        with:
+          repository: ${{ env.REPOSITORY }}
+          token: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          path: ${{ env.CLUSTER_PROJECT_NAME }}
+          ref: ${{ env.CLUSTER_BRANCH }}
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize-version: "3.10.0"
+
+      - name: Update kubernetes version
+        env:
+          DOCKER_IMAGE: ${{ needs.build.outputs.image }}
+        run: |
+          #!/bin/sh -e
+          echo
+          echo ${PROJECT_NAME}
+          echo ${DOCKER_IMAGE}
+          pushd ${CLUSTER_PROJECT_NAME}/services/${PROJECT_NAME}/${TIER}/
+            kustomize edit set image ${PROJECT_NAME}=${DOCKER_IMAGE}
+          popd
+
+      - name: Push changes to repo
+        run: |
+          #!/bin/sh -e
+          pushd ${CLUSTER_PROJECT_NAME}/services/${PROJECT_NAME}/${TIER}/
+          MESSAGE="
+            New tag from ${PROJECT_NAME} / $(echo ${{ github.sha }} | cut -c -7)
+            Repo: ${{ github.repository }}
+            Revision: ${{ github.sha }}
+            Workflow: ${{ github.workflow }}
+            Event: ${{ github.event_name }}
+            Application Branch: ${{ github.ref }}
+            Cluster Branch: ${CLUSTER_BRANCH}
+            Image: ${IMAGE}
+            Actions Url: ${{ format('{0}/actions/runs/{1}', github.event.repository.html_url, github.run_id) }}
+          "
+          if ! git diff-index --quiet HEAD; then
+            git config --global user.name "${{ github.repository }}"
+            git config --global user.email "<action@github.com>"
+            git commit --allow-empty -m "${MESSAGE}" kustomization.yaml
+            git pull --rebase && git push origin ${CLUSTER_BRANCH}
+            if [ $? -ne 0 ]; then
+              git pull --rebase && git push origin ${CLUSTER_BRANCH}
+            fi
+          fi
+          popd
