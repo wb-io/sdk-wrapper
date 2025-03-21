@@ -66,13 +66,11 @@ jobs:
         with:
           registry: ${{ env.REGISTRY_ADDRESS }}
           image: ${{ env.PROJECT_ORG }}/${{ env.PROJECT_NAME }}
-          directory: 'tg'
+          directory: 'tg/v1'
           username: ${{ env.REGISTRY_USERNAME }}
           password: ${{ env.REGISTRY_PASSWORD }}
           tags: ${{ env.IMAGE_VERSION }}
           dockerfile: Dockerfile
-
-      - run: rm -rf build
 
   deploy:
     needs: build
