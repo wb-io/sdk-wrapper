@@ -66,8 +66,8 @@ jobs:
         with:
           registry: ${{ env.REGISTRY_ADDRESS }}
           image: ${{ env.PROJECT_ORG }}/${{ env.PROJECT_NAME }}
-          directory: tg/v1/
-          dockerfile: tg/v1/Dockerfile
+          directory: tg/
+          dockerfile: tg/Dockerfile
           username: ${{ env.REGISTRY_USERNAME }}
           password: ${{ env.REGISTRY_PASSWORD }}
           tags: ${{ env.IMAGE_VERSION }}
