@@ -22,6 +22,8 @@ class SdkDemo
     let config = {
       mode: localStorage.getItem('cnf_mode') || 'AuthMode',
       merchantId: localStorage.getItem('cnf_merchantId'),
+      currencyTo: localStorage.getItem('cnf_currencyTo'),
+      cryptoWallet: localStorage.getItem('cnf_cryptoWallet'),
       disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
       showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
 
@@ -37,6 +39,12 @@ class SdkDemo
 
       merchantIdInit: config.merchantId,
       merchantIdUpdate: false,
+
+      currencyToInit: config.currencyTo,
+      currencyToUpdate: false,
+
+      cryptoWalletInit: config.cryptoWallet,
+      cryptoWalletUpdate: false,
 
       disableAddCardInit: config.disableAddCard,
       disableAddCardUpdate: false,
@@ -74,6 +82,12 @@ class SdkDemo
     this.#dom.merchantIdInput = document.getElementById('merchantId');
     this.#dom.merchantIdValue = document.getElementById('merchantIdValue');
 
+    this.#dom.currencyToInput = document.getElementById('currencyTo');
+    this.#dom.currencyToValue = document.getElementById('currencyToValue');
+
+    this.#dom.cryptoWalletInput = document.getElementById('cryptoWallet');
+    this.#dom.cryptoWalletValue = document.getElementById('cryptoWalletValue');
+
     this.#dom.disableAddCardInput = document.getElementById('disableAddCard');
     this.#dom.disableAddCardValue = document.getElementById('disableAddCardValue');
 
@@ -94,6 +108,8 @@ class SdkDemo
     this.#dom.merchantIdInput.innerHTML = this.#config.merchantId;
     this.#dom.accessTokenInput.innerHTML = this.#config.accessToken;
     this.#dom.refreshTokenInput.innerHTML = this.#config.refreshToken;
+    this.#dom.currencyToInput.value = this.#config.currencyTo;
+    this.#dom.cryptoWalletInput.innerHTML = this.#config.cryptoWallet;
     this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
     this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
 
@@ -111,6 +127,10 @@ class SdkDemo
     this.#dom.refreshTokenInput?.addEventListener('input', onChangeToken('refreshToken'));
 
     this.#dom.merchantIdInput?.addEventListener('input', e => this.#setConfig('merchantId', e.target.value.trim()));
+
+    this.#dom.currencyToInput?.addEventListener('change', e => this.#setConfig('currencyTo', e.target.value));
+
+    this.#dom.cryptoWalletInput?.addEventListener('input', e => this.#setConfig('cryptoWallet', e.target.value.trim()));
 
     this.#dom.disableAddCardInput?.addEventListener('change', e => this.#setConfig('disableAddCard', e.target.checked));
     this.#dom.disableAddCardValue?.addEventListener('click', () => this.#setConfig('disableAddCard', !this.#config.disableAddCard));
@@ -134,6 +154,8 @@ class SdkDemo
       e.preventDefault();
       this.#config.modeInit = this.#config.mode;
       this.#config.merchantIdInit = this.#config.merchantId;
+      this.#config.currencyToInput = this.#config.currencyTo;
+      this.#config.cryptoWalletInput = this.#config.cryptoWallet;
       this.#config.disableAddCardInit = this.#config.disableAddCard;
       this.#config.showBackButtonInit = this.#config.showBackButton;
 
@@ -189,6 +211,8 @@ class SdkDemo
       sdkMode,
       tokensWrapper, accessTokenValue, refreshTokenValue,
       merchantIdValue,
+      currencyToValue,
+      cryptoWalletValue,
       disableAddCardValue, disableAddCardInput,
       showBackButtonValue, showBackButtonInput,
     } = this.#dom;
@@ -211,6 +235,16 @@ class SdkDemo
     if( this.#config.merchantId === this.#config.merchantIdInit ) merchantIdValue.className = '';
     else this.#config.merchantIdUpdate && (merchantIdValue.className = merchantIdValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.merchantIdUpdate = false;
+
+    currencyToValue.textContent = this.#config.currencyTo;
+    if( this.#config.currencyTo === this.#config.currencyToInit ) currencyToValue.className = '';
+    else this.#config.currencyToUpdate && (currencyToValue.className = currencyToValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.currencyToUpdate = false;
+
+    cryptoWalletValue.textContent = this.#config.cryptoWallet;
+    if( this.#config.cryptoWallet === this.#config.cryptoWalletInit ) cryptoWalletValue.className = '';
+    else this.#config.cryptoWalletUpdate && (cryptoWalletValue.className = cryptoWalletValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.cryptoWalletUpdate = false;
 
     disableAddCardInput.checked = this.#config.disableAddCard;
     disableAddCardValue.textContent = this.#config.disableAddCard ? 'true' : 'false';
