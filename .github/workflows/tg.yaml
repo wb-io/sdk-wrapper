@@ -50,7 +50,7 @@ jobs:
     runs-on:
       - 'self-hosted'
       - 'linux'
-      - 'minsk'
+      - 'minsk-1'
 
     outputs:
       image: ${{ steps.docker.outputs.imageFullName }}:${{ steps.docker.outputs.tags }}
