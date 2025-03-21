@@ -44,13 +44,14 @@ on:
       - prod
     paths:
       - 'tg/**'
+      - '.github/workflows/tg.yaml'
 jobs:
   build:
     name: build
     runs-on:
       - 'self-hosted'
       - 'linux'
-      - 'minsk-1'
+      - 'minsk'
 
     outputs:
       image: ${{ steps.docker.outputs.imageFullName }}:${{ steps.docker.outputs.tags }}
@@ -65,6 +66,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY_ADDRESS }}
           image: ${{ env.PROJECT_ORG }}/${{ env.PROJECT_NAME }}
+          directory: 'tg'
           username: ${{ env.REGISTRY_USERNAME }}
           password: ${{ env.REGISTRY_PASSWORD }}
           tags: ${{ env.IMAGE_VERSION }}
