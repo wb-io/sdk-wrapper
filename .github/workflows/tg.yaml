@@ -71,7 +71,6 @@ jobs:
           username: ${{ env.REGISTRY_USERNAME }}
           password: ${{ env.REGISTRY_PASSWORD }}
           tags: ${{ env.IMAGE_VERSION }}
-          dockerfile: Dockerfile
 
   deploy:
     needs: build
