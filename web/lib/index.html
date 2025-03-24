@@ -35,6 +35,28 @@
           <label for="merchantId">merchantId</label>
           <textarea name="" id="merchantId" cols="10" rows="2"></textarea>
         </div>
+        <div class="field">
+          <label for="currencyTo">Выберите валюту:</label>
+          <select id="currencyTo" class="dropdown">
+            <option value="BYN">BYN</option>
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="USDT">USDT (ERC-20)</option>
+            <option value="TRX">TRX</option>
+            <option value="USDT_TRC">USDT (TRC-20)</option>
+            <option value="TON">TON</option>
+            <option value="USDT_TON">USDT (TON)</option>
+            <option value="TON">TON</option>
+            <option value="WBP">WBP (TRC-20)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cryptoWallet">Криптоадрес</label>
+          <textarea name="" id="cryptoWallet" cols="10" rows="2"></textarea>
+        </div>
         <label for="disableAddCard">
           <input type="checkbox" id="disableAddCard" name="disableAddCard">
           disableAddCard
@@ -109,6 +131,8 @@
   <b>onLogin</b>: ({accessToken, refreshToken, isUserVerified}) => {},
 
   <span>// optional params:</span>
+  <b>currencyTo</b>: <span id="currencyToValue"></span>,
+  <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
   <b>onExit</b>: () => {},
 
@@ -184,6 +208,9 @@
       },
 
       // optional params:
+      currencyTo: config.currencyTo,
+      cryptoWallet: config.cryptoWallet,
+
       showBackButtonOnHomePage: config.showBackButton,
       onExit: () =>
       {
