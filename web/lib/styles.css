@@ -226,6 +226,8 @@ button:disabled {
 #showBackButtonValue,
 #disableAddCardValue,
 #merchantIdValue,
+#currencyToValue,
+#cryptoWalletValue,
 #sdkMode {
   display: inline-block;
   padding: 0 5px;
@@ -254,6 +256,10 @@ button:disabled {
 #disableAddCardValue.changed,
 #merchantIdValue.prev,
 #merchantIdValue.changed,
+#currencyToValue.prev,
+#currencyToValue.changed,
+#cryptoWalletValue.prev,
+#cryptoWalletValue.changed,
 #sdkMode.prev,
 #sdkMode.changed {
   background: #fee;
@@ -264,6 +270,8 @@ button:disabled {
 #showBackButtonValue.prev,
 #disableAddCardValue.prev,
 #merchantIdValue.prev,
+#currencyToValue.prev,
+#cryptoWalletValue.prev,
 #sdkMode.prev {
   animation: .4s sdkModePrev .01s ease-out;
 }
