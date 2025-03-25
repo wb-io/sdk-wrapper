@@ -22,13 +22,17 @@ class SdkDemo
     let config = {
       mode: localStorage.getItem('cnf_mode') || 'AuthMode',
       merchantId: localStorage.getItem('cnf_merchantId'),
-      currencyTo: localStorage.getItem('cnf_currencyTo'),
-      cryptoWallet: localStorage.getItem('cnf_cryptoWallet'),
-      disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
-      showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
 
       accessToken: localStorage.getItem('cnf_accessToken'),
       refreshToken: localStorage.getItem('cnf_refreshToken'),
+
+      merchantPass: localStorage.getItem('cnf_merchantPass'),
+      email: localStorage.getItem('cnf_email'),
+      externalUserId: localStorage.getItem('cnf_externalUserId'),
+      currencyTo: localStorage.getItem('cnf_currencyTo'),
+      cryptoWallet: localStorage.getItem('cnf_cryptoWallet'),
+      showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
+      disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
     };
 
     this.#config = {
@@ -40,17 +44,26 @@ class SdkDemo
       merchantIdInit: config.merchantId,
       merchantIdUpdate: false,
 
+      merchantPassInit: config.merchantPass,
+      merchantPassUpdate: false,
+
+      emailInit: config.email,
+      emailUpdate: false,
+
+      externalUserIdInit: config.externalUserId,
+      externalUserIdUpdate: false,
+
       currencyToInit: config.currencyTo,
       currencyToUpdate: false,
 
       cryptoWalletInit: config.cryptoWallet,
       cryptoWalletUpdate: false,
 
-      disableAddCardInit: config.disableAddCard,
-      disableAddCardUpdate: false,
-
       showBackButtonInit: config.showBackButton,
       showBackButtonUpdate: false,
+
+      disableAddCardInit: config.disableAddCard,
+      disableAddCardUpdate: false,
     };
 
     this.#initDom();
@@ -69,18 +82,31 @@ class SdkDemo
 
   #initDom()
   {
-    this.#dom.sdkMode = document.getElementById('sdkMode');
-    this.#dom.sdkModeRadioBtns = document.querySelectorAll('input[name="sdkMode"]');
-
-    this.#dom.updateSdkBtn = document.getElementById('updateSdk');
-    this.#dom.sdkAgainBtn = document.getElementById('sdk-again');
-
     this.#dom.setupCodeWrapper = document.getElementById('setupCode');
     this.#dom.copyTo = document.getElementById('copyTo');
     this.#dom.copied = document.getElementById('copied');
 
+    this.#dom.sdkMode = document.getElementById('sdkMode');
+    this.#dom.sdkModeRadioBtns = document.querySelectorAll('input[name="sdkMode"]');
+
     this.#dom.merchantIdInput = document.getElementById('merchantId');
     this.#dom.merchantIdValue = document.getElementById('merchantIdValue');
+
+    this.#dom.tokensWrapper = document.getElementById('tokens');
+
+    this.#dom.accessTokenInput = document.getElementById('accessToken');
+    this.#dom.accessTokenValue = document.getElementById('accessTokenValue');
+    this.#dom.refreshTokenInput = document.getElementById('refreshToken');
+    this.#dom.refreshTokenValue = document.getElementById('refreshTokenValue');
+
+    this.#dom.merchantPassInput = document.getElementById('merchantPass');
+    this.#dom.merchantPassValue = document.getElementById('merchantPassValue');
+
+    this.#dom.emailInput = document.getElementById('email');
+    this.#dom.emailValue = document.getElementById('emailValue');
+
+    this.#dom.externalUserIdInput = document.getElementById('externalUserId');
+    this.#dom.externalUserIdValue = document.getElementById('externalUserIdValue');
 
     this.#dom.currencyToInput = document.getElementById('currencyTo');
     this.#dom.currencyToValue = document.getElementById('currencyToValue');
@@ -88,32 +114,33 @@ class SdkDemo
     this.#dom.cryptoWalletInput = document.getElementById('cryptoWallet');
     this.#dom.cryptoWalletValue = document.getElementById('cryptoWalletValue');
 
-    this.#dom.disableAddCardInput = document.getElementById('disableAddCard');
-    this.#dom.disableAddCardValue = document.getElementById('disableAddCardValue');
-
     this.#dom.showBackButtonInput = document.getElementById('showBackButton');
     this.#dom.showBackButtonValue = document.getElementById('showBackButtonValue');
 
-    this.#dom.tokensWrapper = document.getElementById('tokens');
-    this.#dom.accessTokenInput = document.getElementById('accessToken');
-    this.#dom.accessTokenValue = document.getElementById('accessTokenValue');
-    this.#dom.refreshTokenInput = document.getElementById('refreshToken');
-    this.#dom.refreshTokenValue = document.getElementById('refreshTokenValue');
+    this.#dom.disableAddCardInput = document.getElementById('disableAddCard');
+    this.#dom.disableAddCardValue = document.getElementById('disableAddCardValue');
+
+    this.#dom.updateSdkBtn = document.getElementById('updateSdk');
+    this.#dom.sdkAgainBtn = document.getElementById('sdk-again');
   }
 
   // ----------------------------------------------------
 
   #initValues()
   {
+    this.#dom.sdkModeRadioBtns.forEach(radioBtn => radioBtn.checked = radioBtn.value === this.#config.mode);
     this.#dom.merchantIdInput.innerHTML = this.#config.merchantId;
+
     this.#dom.accessTokenInput.innerHTML = this.#config.accessToken;
     this.#dom.refreshTokenInput.innerHTML = this.#config.refreshToken;
+
+    this.#dom.merchantPassInput.innerHTML = this.#config.merchantPass;
+    this.#dom.emailInput.innerHTML = this.#config.email;
+    this.#dom.externalUserIdInput.innerHTML = this.#config.externalUserId;
     this.#dom.currencyToInput.value = this.#config.currencyTo;
     this.#dom.cryptoWalletInput.innerHTML = this.#config.cryptoWallet;
-    this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
     this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
-
-    this.#dom.sdkModeRadioBtns.forEach(radioBtn => radioBtn.checked = radioBtn.value === this.#config.mode);
+    this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
   }
 
   // ----------------------------------------------------
@@ -122,21 +149,27 @@ class SdkDemo
   {
     this.#dom.sdkModeRadioBtns.forEach(radioBtn => radioBtn.addEventListener('change', e => this.#setConfig('mode', e.target.value)));
 
+    this.#dom.merchantIdInput?.addEventListener('input', e => this.#setConfig('merchantId', e.target.value.trim()));
+
     const onChangeToken = token => e => this.#setConfig(token, e.target.value.trim());
     this.#dom.accessTokenInput?.addEventListener('input', onChangeToken('accessToken'));
     this.#dom.refreshTokenInput?.addEventListener('input', onChangeToken('refreshToken'));
 
-    this.#dom.merchantIdInput?.addEventListener('input', e => this.#setConfig('merchantId', e.target.value.trim()));
+    this.#dom.merchantPassInput?.addEventListener('input', e => this.#setConfig('merchantPass', e.target.value.trim()));
+
+    this.#dom.emailInput?.addEventListener('input', e => this.#setConfig('email', e.target.value.trim()));
+
+    this.#dom.externalUserIdInput?.addEventListener('input', e => this.#setConfig('externalUserId', e.target.value.trim()));
 
     this.#dom.currencyToInput?.addEventListener('change', e => this.#setConfig('currencyTo', e.target.value));
 
     this.#dom.cryptoWalletInput?.addEventListener('input', e => this.#setConfig('cryptoWallet', e.target.value.trim()));
 
-    this.#dom.disableAddCardInput?.addEventListener('change', e => this.#setConfig('disableAddCard', e.target.checked));
-    this.#dom.disableAddCardValue?.addEventListener('click', () => this.#setConfig('disableAddCard', !this.#config.disableAddCard));
-
     this.#dom.showBackButtonInput?.addEventListener('change', e => this.#setConfig('showBackButton', e.target.checked));
     this.#dom.showBackButtonValue?.addEventListener('click', () => this.#setConfig('showBackButton', !this.#config.showBackButton));
+
+    this.#dom.disableAddCardInput?.addEventListener('change', e => this.#setConfig('disableAddCard', e.target.checked));
+    this.#dom.disableAddCardValue?.addEventListener('click', () => this.#setConfig('disableAddCard', !this.#config.disableAddCard));
 
     // ----------------------------------------------------
 
@@ -154,10 +187,13 @@ class SdkDemo
       e.preventDefault();
       this.#config.modeInit = this.#config.mode;
       this.#config.merchantIdInit = this.#config.merchantId;
+      this.#config.merchantPassInit = this.#config.merchantPass;
+      this.#config.emailInit = this.#config.email;
+      this.#config.externalUserIdInit = this.#config.externalUserId;
       this.#config.currencyToInput = this.#config.currencyTo;
       this.#config.cryptoWalletInput = this.#config.cryptoWallet;
-      this.#config.disableAddCardInit = this.#config.disableAddCard;
       this.#config.showBackButtonInit = this.#config.showBackButton;
+      this.#config.disableAddCardInit = this.#config.disableAddCard;
 
       this.#cleanupSdkFn?.();
       this.#showAgainBtn(false);
@@ -209,18 +245,30 @@ class SdkDemo
   {
     const {
       sdkMode,
-      tokensWrapper, accessTokenValue, refreshTokenValue,
+      tokensWrapper,
+      accessTokenValue,
+      refreshTokenValue,
       merchantIdValue,
+      merchantPassValue,
+      emailValue,
+      externalUserIdValue,
       currencyToValue,
       cryptoWalletValue,
-      disableAddCardValue, disableAddCardInput,
-      showBackButtonValue, showBackButtonInput,
+      disableAddCardValue,
+      disableAddCardInput,
+      showBackButtonValue,
+      showBackButtonInput,
     } = this.#dom;
 
     sdkMode.textContent = this.#config.mode;
     if( this.#config.mode === this.#config.modeInit ) sdkMode.className = '';
     else this.#config.modeUpdate && (sdkMode.className = sdkMode.className === 'prev' ? 'changed' : 'prev');
     this.#config.modeUpdate = false;
+
+    merchantIdValue.textContent = this.#config.merchantId;
+    if( this.#config.merchantId === this.#config.merchantIdInit ) merchantIdValue.className = '';
+    else this.#config.merchantIdUpdate && (merchantIdValue.className = merchantIdValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.merchantIdUpdate = false;
 
     const isTokensMode = this.#config.mode === 'TokensMode';
     tokensWrapper && (tokensWrapper.style.display = isTokensMode ? 'flex' : 'none');
@@ -231,10 +279,20 @@ class SdkDemo
     refreshTokenValue.className = isTokensMode && this.#config.refreshToken.length ? 'hasValue' : '';
     refreshTokenValue.textContent = isTokensMode && this.#config.refreshToken ? `${this.#config.refreshToken.length > 10 ? '...' : ''}${this.#config.refreshToken.substr(-10, 10)}` : '';
 
-    merchantIdValue.textContent = this.#config.merchantId;
-    if( this.#config.merchantId === this.#config.merchantIdInit ) merchantIdValue.className = '';
-    else this.#config.merchantIdUpdate && (merchantIdValue.className = merchantIdValue.className === 'prev' ? 'changed' : 'prev');
-    this.#config.merchantIdUpdate = false;
+    merchantPassValue.textContent = this.#config.merchantPass;
+    if( this.#config.merchantPass === this.#config.merchantPassInit ) merchantPassValue.className = '';
+    else this.#config.merchantPassUpdate && (merchantPassValue.className = merchantPassValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.merchantPassUpdate = false;
+
+    emailValue.textContent = this.#config.email;
+    if( this.#config.email === this.#config.merchantPassInit ) emailValue.className = '';
+    else this.#config.emailUpdate && (emailValue.className = emailValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.emailUpdate = false;
+
+    externalUserIdValue.textContent = this.#config.externalUserId;
+    if( this.#config.externalUserId === this.#config.externalUserIdInit ) externalUserIdValue.className = '';
+    else this.#config.externalUserIdUpdate && (externalUserIdValue.className = externalUserIdValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.externalUserIdUpdate = false;
 
     currencyToValue.textContent = this.#config.currencyTo;
     if( this.#config.currencyTo === this.#config.currencyToInit ) currencyToValue.className = '';
@@ -246,17 +304,17 @@ class SdkDemo
     else this.#config.cryptoWalletUpdate && (cryptoWalletValue.className = cryptoWalletValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.cryptoWalletUpdate = false;
 
-    disableAddCardInput.checked = this.#config.disableAddCard;
-    disableAddCardValue.textContent = this.#config.disableAddCard ? 'true' : 'false';
-    if( this.#config.disableAddCard === this.#config.disableAddCardInit ) disableAddCardValue.className = '';
-    else this.#config.disableAddCardUpdate && (disableAddCardValue.className = disableAddCardValue.className === 'prev' ? 'changed' : 'prev');
-    this.#config.disableAddCardUpdate = false;
-
     showBackButtonInput.checked = this.#config.showBackButton;
     showBackButtonValue.textContent = this.#config.showBackButton ? 'true' : 'false';
     if( this.#config.showBackButton === this.#config.showBackButtonInit ) showBackButtonValue.className = '';
     else this.#config.showBackButtonUpdate && (showBackButtonValue.className = showBackButtonValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.showBackButtonUpdate = false;
+
+    disableAddCardInput.checked = this.#config.disableAddCard;
+    disableAddCardValue.textContent = this.#config.disableAddCard ? 'true' : 'false';
+    if( this.#config.disableAddCard === this.#config.disableAddCardInit ) disableAddCardValue.className = '';
+    else this.#config.disableAddCardUpdate && (disableAddCardValue.className = disableAddCardValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.disableAddCardUpdate = false;
   }
 
   // ----------------------------------------------------

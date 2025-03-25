@@ -19,9 +19,10 @@
   const defaultConfig = {
     sdkIframe: null,
 
+    // required params
     el: null,       // sdk wrapper in some app -> html element
-    merchantId: '', //
     mode: null,     // -> SdkMode
+    merchantId: '', //
 
     // TokensMode
     accessToken: '',
@@ -30,13 +31,15 @@
     // AuthMode
     onLoginHandler: null,
 
+    // optional params
+    merchantPass: '', // header authorization basic token
+    email: '',
+    externalUserId: '',
     currencyTo: '',
     cryptoWallet: '',
-
     showBackButtonOnHomePage: false,
-    onExitHandler: null,
-
     disableAddCard: false,
+    onExitHandler: null,
   };
 
   let config = Object.assign({}, defaultConfig);
@@ -66,15 +69,17 @@
 
     if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
 
+    if (params.merchantPass !== undefined) config.merchantPass = params.merchantPass;
+    if (params.email !== undefined) config.email = params.email;
+    if (params.externalUserId !== undefined) config.externalUserId = params.externalUserId;
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
     if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
-
     if (params.showBackButtonOnHomePage !== undefined) // true | false
     {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
     }
-    if (params.onExit !== undefined) config.onExitHandler = params.onExit;
     if (params.disableAddCard !== undefined) config.disableAddCard = params.disableAddCard;
+    if (params.onExit !== undefined) config.onExitHandler = params.onExit;
 
     makeIframe();
   };
@@ -123,6 +128,9 @@
     let url = `${SDK_URL}/`;
     url += `?mode=${config.mode}`;
     url += `&merchantId=${config.merchantId}`;
+    url += `&merchantPass=${config.merchantPass}`;
+    url += `&email=${config.email}`;
+    url += `&externalUserId=${config.externalUserId}`;
     url += `&currencyTo=${config.currencyTo}`;
     url += `&cryptoWallet=${config.cryptoWallet}`;
     url += `&showBackButtonOnHomePage=${!!config.onExitHandler && config.showBackButtonOnHomePage}`;
