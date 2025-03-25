@@ -29,11 +29,23 @@
           <label for="accessToken">accessToken</label>
           <textarea name="accessToken" id="accessToken" cols="10" rows="2"></textarea>
           <label for="refreshToken">refreshToken</label>
-          <textarea name="" id="refreshToken" cols="10" rows="2"></textarea>
+          <textarea name="refreshToken" id="refreshToken" cols="10" rows="2"></textarea>
         </div>
         <div class="field">
           <label for="merchantId">merchantId</label>
-          <textarea name="" id="merchantId" cols="10" rows="2"></textarea>
+          <textarea name="merchantId" id="merchantId" cols="10" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="merchantPass">merchantPass</label>
+          <textarea name="merchantPass" id="merchantPass" cols="10" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="email">email</label>
+          <input type="email" name="email" id="email">
+        </div>
+        <div class="field">
+          <label for="externalUserId">externalUserId</label>
+          <textarea name="externalUserId" id="externalUserId" cols="10" rows="2"></textarea>
         </div>
         <div class="field">
           <label for="currencyTo">Выберите валюту:</label>
@@ -57,13 +69,13 @@
           <label for="cryptoWallet">Криптоадрес</label>
           <textarea name="" id="cryptoWallet" cols="10" rows="2"></textarea>
         </div>
-        <label for="disableAddCard">
-          <input type="checkbox" id="disableAddCard" name="disableAddCard">
-          disableAddCard
-        </label>
         <label for="showBackButton">
           <input type="checkbox" id="showBackButton" name="showBackButton">
           showBackButton
+        </label>
+        <label for="disableAddCard">
+          <input type="checkbox" id="disableAddCard" name="disableAddCard">
+          disableAddCard
         </label>
       </fieldset>
       <button type="submit" id="updateSdk">Пересоздать iframe</button>
@@ -120,8 +132,8 @@
           <pre id="setupCode"><b>wbExchangeSdk.setup</b>({
   <span>// required params:</span>
   <b>el</b>: document.getElementById(<wbr>"wbExchangeSdkWrapper"),
-  <b>merchantId</b>: '<span id="merchantIdValue"></span>',
   <b>mode</b>: wbExchangeSdk.mode.<span id="sdkMode">AuthMode</span>,
+  <b>merchantId</b>: '<span id="merchantIdValue"></span>',
 
   <span>// TokensMode</span>
   <b>accessToken</b>: '<span id="accessTokenValue"></span>',
@@ -131,12 +143,14 @@
   <b>onLogin</b>: ({accessToken, refreshToken, isUserVerified}) => {},
 
   <span>// optional params:</span>
+  <b>merchantPass</b>: <span id="merchantPassValue"></span>,
+  <b>email</b>: <span id="emailValue"></span>,
+  <b>externalUserId</b>: <span id="externalUserIdValue"></span>,
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
-  <b>onExit</b>: () => {},
-
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
+  <b>onExit</b>: () => {},
 })</pre>
       <div id="copied">Скопировано</div>
     </li>
@@ -185,9 +199,8 @@
 
       // required params:
       el: document.getElementById('wbExchangeSdkWrapper'),
-      merchantId: config.merchantId,
-
       mode: config.mode,
+      merchantId: config.merchantId,
 
       // LoginMode
       // mode: wbExchangeSdk.mode.LoginMode,
@@ -208,10 +221,13 @@
       },
 
       // optional params:
+      merchantPass: config.merchantPass,
+      email: config.email,
+      externalUserId: config.externalUserId,
       currencyTo: config.currencyTo,
       cryptoWallet: config.cryptoWallet,
-
       showBackButtonOnHomePage: config.showBackButton,
+      disableAddCard: config.disableAddCard,
       onExit: () =>
       {
         log('MAIN_APP onExit =');
@@ -222,8 +238,6 @@
           sdkDemo.showAgainBtn();
         }
       },
-
-      disableAddCard: config.disableAddCard,
     });
   }
 
