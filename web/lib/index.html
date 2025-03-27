@@ -35,21 +35,28 @@
           <label for="merchantId">merchantId</label>
           <textarea name="merchantId" id="merchantId" cols="10" rows="2"></textarea>
         </div>
+        <div id="userData" class="field">
+          <label for="email">email</label>
+          <input type="email" name="email" id="email">
+        </div>
         <div class="field">
           <label for="merchantPass">merchantPass</label>
           <textarea name="merchantPass" id="merchantPass" cols="10" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label for="email">email</label>
-          <input type="email" name="email" id="email">
         </div>
         <div class="field">
           <label for="externalUserId">externalUserId</label>
           <textarea name="externalUserId" id="externalUserId" cols="10" rows="2"></textarea>
         </div>
         <div class="field">
-          <label for="currencyTo">Выберите валюту:</label>
-          <select id="currencyTo" class="dropdown">
+          <label for="currencyAmount">currencyAmount</label>
+          <input type="number" name="currencyAmount" id="currencyAmount">
+        </div>
+        <div class="field">
+          <label for="currencyFrom">currencyFrom</label>
+          <select id="currencyFrom" class="dropdown" autocomplete="off">
+            <optgroup label="Выберите валюту">
+              <option value="" selected disabled hidden>Выберите валюту</option>
+            </optgroup>
             <option value="BYN">BYN</option>
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
@@ -61,12 +68,31 @@
             <option value="USDT_TRC">USDT (TRC-20)</option>
             <option value="TON">TON</option>
             <option value="USDT_TON">USDT (TON)</option>
-            <option value="TON">TON</option>
             <option value="WBP">WBP (TRC-20)</option>
           </select>
         </div>
         <div class="field">
-          <label for="cryptoWallet">Криптоадрес</label>
+          <label for="currencyTo">currencyTo</label>
+          <select id="currencyTo" class="dropdown" data-placeholder="Выберите валюту">
+            <optgroup label="Выберите валюту">
+              <option value="" selected disabled hidden>Выберите валюту</option>
+            </optgroup>
+            <option value="BYN">BYN</option>
+            <option value="RUB">RUB</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="USDT">USDT (ERC-20)</option>
+            <option value="TRX">TRX</option>
+            <option value="USDT_TRC">USDT (TRC-20)</option>
+            <option value="TON">TON</option>
+            <option value="USDT_TON">USDT (TON)</option>
+            <option value="WBP">WBP (TRC-20)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cryptoWallet">cryptoWallet</label>
           <textarea name="" id="cryptoWallet" cols="10" rows="2"></textarea>
         </div>
         <label for="showBackButton">
@@ -135,17 +161,22 @@
   <b>mode</b>: wbExchangeSdk.mode.<span id="sdkMode">AuthMode</span>,
   <b>merchantId</b>: '<span id="merchantIdValue"></span>',
 
+  <span>// AuthMode</span>
+  <b>onLogin</b>: ({ accessToken, refreshToken, isUserVerified }) => {},
+
+  <span>// LoginMode</span>
+  <b>onUserData</b>: ({ email }) => {},
+
   <span>// TokensMode</span>
   <b>accessToken</b>: '<span id="accessTokenValue"></span>',
   <b>refreshToken</b>: '<span id="refreshTokenValue"></span>',
 
-  <span>// AuthMode</span>
-  <b>onLogin</b>: ({accessToken, refreshToken, isUserVerified}) => {},
-
   <span>// optional params:</span>
-  <b>merchantPass</b>: <span id="merchantPassValue"></span>,
   <b>email</b>: <span id="emailValue"></span>,
+  <b>merchantPass</b>: <span id="merchantPassValue"></span>,
   <b>externalUserId</b>: <span id="externalUserIdValue"></span>,
+  <b>currencyAmount</b>: <span id="currencyAmountValue"></span>,
+  <b>currencyFrom</b>: <span id="currencyFromValue"></span>,
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
@@ -202,14 +233,6 @@
       mode: config.mode,
       merchantId: config.merchantId,
 
-      // LoginMode
-      // mode: wbExchangeSdk.mode.LoginMode,
-
-      // TokensMode
-      // mode: wbExchangeSdk.mode.TokensMode,
-      accessToken: config.accessToken,
-      refreshToken: config.refreshToken,
-
       // AuthMode
       // mode: wbExchangeSdk.mode.AuthMode,
       onLogin: ({ accessToken, refreshToken, isUserVerified }) =>
@@ -220,10 +243,25 @@
         log('...   refreshToken =', refreshToken);
       },
 
+      // LoginMode
+      // mode: wbExchangeSdk.mode.LoginMode,
+      onUserData: ({ email }) =>
+      {
+        log('MAIN_APP   onUserData =');
+        log('... email =', email);
+      },
+
+      // TokensMode
+      // mode: wbExchangeSdk.mode.TokensMode,
+      accessToken: config.accessToken,
+      refreshToken: config.refreshToken,
+
       // optional params:
       merchantPass: config.merchantPass,
       email: config.email,
       externalUserId: config.externalUserId,
+      currencyAmount: config.currencyAmount,
+      currencyFrom: config.currencyFrom,
       currencyTo: config.currencyTo,
       cryptoWallet: config.cryptoWallet,
       showBackButtonOnHomePage: config.showBackButton,
