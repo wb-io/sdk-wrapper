@@ -24,17 +24,22 @@
     mode: null,     // -> SdkMode
     merchantId: '', //
 
+    // AuthMode
+    onLoginHandler: null,
+
+    // LoginMode
+    onUserDataHandler: null,
+
     // TokensMode
     accessToken: '',
     refreshToken: '',
-
-    // AuthMode
-    onLoginHandler: null,
 
     // optional params
     merchantPass: '', // header authorization basic token
     email: '',
     externalUserId: '',
+    currencyAmount: '',
+    currencyFrom: '',
     currencyTo: '',
     cryptoWallet: '',
     showBackButtonOnHomePage: false,
@@ -64,14 +69,17 @@
     }
     if (params.merchantId !== undefined) config.merchantId = params.merchantId;
 
+    if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
+    if (params.onUserData !== undefined) config.ononUserDataHandler = params.onUserData;
+
     if (params.accessToken !== undefined) config.accessToken = params.accessToken;
     if (params.refreshToken !== undefined) config.refreshToken = params.refreshToken;
 
-    if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
-
-    if (params.merchantPass !== undefined) config.merchantPass = params.merchantPass;
     if (params.email !== undefined) config.email = params.email;
+    if (params.merchantPass !== undefined) config.merchantPass = params.merchantPass;
     if (params.externalUserId !== undefined) config.externalUserId = params.externalUserId;
+    if (params.currencyAmount !== undefined) config.currencyAmount = params.currencyAmount;
+    if (params.currencyFrom !== undefined) config.currencyFrom = params.currencyFrom;
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
     if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
     if (params.showBackButtonOnHomePage !== undefined) // true | false
@@ -125,23 +133,28 @@
 
   const getUrl = () =>
   {
-    let url = `${SDK_URL}/`;
-    url += `?mode=${config.mode}`;
-    url += `&merchantId=${config.merchantId}`;
-    url += `&merchantPass=${config.merchantPass}`;
-    url += `&email=${config.email}`;
-    url += `&externalUserId=${config.externalUserId}`;
-    url += `&currencyTo=${config.currencyTo}`;
-    url += `&cryptoWallet=${config.cryptoWallet}`;
-    url += `&showBackButtonOnHomePage=${!!config.onExitHandler && config.showBackButtonOnHomePage}`;
-    url += `&disableAddCard=${config.disableAddCard}`;
+    const params = {
+      mode: config.mode,
+      merchantId: config.merchantId,
+      access_token: config.accessToken,
+      refresh_token: config.refreshToken,
+      merchantPass: config.merchantPass,
+      email: config.email,
+      externalUserId: config.externalUserId,
+      currencyAmount: config.currencyAmount,
+      currencyFrom: config.currencyFrom,
+      currencyTo: config.currencyTo,
+      cryptoWallet: config.cryptoWallet,
+      showBackButtonOnHomePage: config.showBackButtonOnHomePage,
+      disableAddCard: config.disableAddCard,
+    };
 
-    if (config.mode === SdkMode.TokensMode && config.accessToken && config.refreshToken)
-    {
-      url += `&access_token=${config.accessToken}&refresh_token=${config.refreshToken}`;
-    }
+    const queryString = Object.entries(params)
+        .filter(([, value]) => value !== undefined && value !== null && value !== false)
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join("&");
 
-    return url;
+    return `${SDK_URL}/?${queryString}`;
   };
 
   // ----------------------------------------------------
@@ -165,6 +178,12 @@
         accessToken: data?.accessToken,
         refreshToken: data?.refreshToken,
         isUserVerified: data?.isUserVerified,
+      });
+    }
+    if (data?.type === PostMessageType.OnChangeTokens && config.mode === SdkMode.LoginMode)
+    {
+      config.onUserDataHandler?.({
+        email: data?.email,
       });
     }
     if (data?.type === PostMessageType.OnBackButton)
