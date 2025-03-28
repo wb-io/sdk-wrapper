@@ -9,6 +9,7 @@
   const PostMessageType = {
     OnChangeTokens: 'OnChangeTokens',
     OnBackButton: 'OnBackButton',
+    OnUserData: 'OnUserData',
   };
 
   // ----------------------------------------------------
@@ -35,8 +36,8 @@
     refreshToken: '',
 
     // optional params
-    merchantPass: '', // header authorization basic token
     email: '',
+    merchantPass: '', // header authorization basic token
     externalUserId: '',
     currencyAmount: '',
     currencyFrom: '',
@@ -138,8 +139,8 @@
       merchantId: config.merchantId,
       access_token: config.accessToken,
       refresh_token: config.refreshToken,
-      merchantPass: config.merchantPass,
       email: config.email,
+      merchantPass: config.merchantPass,
       externalUserId: config.externalUserId,
       currencyAmount: config.currencyAmount,
       currencyFrom: config.currencyFrom,
@@ -180,7 +181,7 @@
         isUserVerified: data?.isUserVerified,
       });
     }
-    if (data?.type === PostMessageType.OnChangeTokens && config.mode === SdkMode.LoginMode)
+    if (data?.type === PostMessageType.OnUserData && config.mode === SdkMode.LoginMode)
     {
       config.onUserDataHandler?.({
         email: data?.email,
