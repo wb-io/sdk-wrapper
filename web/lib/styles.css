@@ -187,6 +187,14 @@ label input {
   margin: 0 .625rem 0 0;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 button {
   width: fit-content;
   padding: 6px 12px;
@@ -226,6 +234,11 @@ button:disabled {
 #showBackButtonValue,
 #disableAddCardValue,
 #merchantIdValue,
+#emailValue,
+#merchantPassValue,
+#externalUserIdValue,
+#currencyAmountValue,
+#currencyFromValue,
 #currencyToValue,
 #cryptoWalletValue,
 #sdkMode {
@@ -256,6 +269,16 @@ button:disabled {
 #disableAddCardValue.changed,
 #merchantIdValue.prev,
 #merchantIdValue.changed,
+#emailValue.prev,
+#emailValue.changed,
+#merchantPassValue.prev,
+#merchantPassValue.changed,
+#externalUserIdValue.prev,
+#externalUserIdValue.changed,
+#currencyAmountValue.prev,
+#currencyAmountValue.changed,
+#currencyFromValue.prev,
+#currencyFromValue.changed,
 #currencyToValue.prev,
 #currencyToValue.changed,
 #cryptoWalletValue.prev,
@@ -270,6 +293,11 @@ button:disabled {
 #showBackButtonValue.prev,
 #disableAddCardValue.prev,
 #merchantIdValue.prev,
+#emailValue.prev,
+#merchantPassValue.prev,
+#externalUserIdValue.prev,
+#currencyAmountValue.prev,
+#currencyFromValue.prev,
 #currencyToValue.prev,
 #cryptoWalletValue.prev,
 #sdkMode.prev {
