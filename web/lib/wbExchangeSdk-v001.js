@@ -71,7 +71,7 @@
     if (params.merchantId !== undefined) config.merchantId = params.merchantId;
 
     if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
-    if (params.onUserData !== undefined) config.ononUserDataHandler = params.onUserData;
+    if (params.onUserData !== undefined) config.onUserDataHandler = params.onUserData;
 
     if (params.accessToken !== undefined) config.accessToken = params.accessToken;
     if (params.refreshToken !== undefined) config.refreshToken = params.refreshToken;
