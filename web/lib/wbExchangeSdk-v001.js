@@ -176,6 +176,7 @@
     if (data?.type === PostMessageType.OnChangeTokens && config.mode === SdkMode.AuthMode)
     {
       config.onLoginHandler?.({
+        email: data?.email,
         accessToken: data?.accessToken,
         refreshToken: data?.refreshToken,
         isUserVerified: data?.isUserVerified,
