@@ -162,7 +162,7 @@
   <b>merchantId</b>: '<span id="merchantIdValue"></span>',
 
   <span>// AuthMode</span>
-  <b>onLogin</b>: ({ accessToken, refreshToken, isUserVerified }) => {},
+  <b>onLogin</b>: ({ email, accessToken, refreshToken, isUserVerified }) => {},
 
   <span>// LoginMode</span>
   <b>onUserData</b>: ({ email }) => {},
@@ -235,12 +235,13 @@
 
       // AuthMode
       // mode: wbExchangeSdk.mode.AuthMode,
-      onLogin: ({ accessToken, refreshToken, isUserVerified }) =>
+      onLogin: ({ email, accessToken, refreshToken, isUserVerified }) =>
       {
         log('MAIN_APP   onLogin =');
-        log('... isUserVerified =', isUserVerified);
+        log('...    email =', email);
         log('...    accessToken =', accessToken);
         log('...   refreshToken =', refreshToken);
+        log('... isUserVerified =', isUserVerified);
       },
 
       // LoginMode
