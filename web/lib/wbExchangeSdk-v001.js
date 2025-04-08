@@ -166,7 +166,7 @@
     let data = {};
     try
     {
-      data = JSON.parse(event.data);
+      data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
     }
     catch( e )
     {
