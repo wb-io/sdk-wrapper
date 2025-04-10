@@ -152,7 +152,7 @@
     };
 
     const queryString = Object.entries(params)
-        .filter(([, value]) => value !== undefined && value !== null && value !== false)
+        .filter(([, value]) => Boolean(value))
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join("&");
 
