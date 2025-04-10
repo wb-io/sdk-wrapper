@@ -113,12 +113,6 @@
       return;
     }
 
-    if (config.cryptoWallet && !config.currencyTo)
-    {
-      console.error('wbExchangeSdk: ERROR -> should be passed currencyTo param');
-      return;
-    }
-
     config.sdkIframe = document.createElement('iframe');
     config.sdkIframe.frameBorder = '0';
     config.sdkIframe.style.width = '100%';
