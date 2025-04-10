@@ -302,10 +302,10 @@ class SdkDemo
     tokensWrapper && (tokensWrapper.style.display = isTokensMode ? 'flex' : 'none');
     userDataWrapper && (userDataWrapper.style.display = isLoginMode || isAuthMode ? 'flex' : 'none');
 
-    accessTokenValue.className = isTokensMode && this.#config.accessToken.length ? 'hasValue' : '';
+    accessTokenValue.className = isTokensMode && this.#config.accessToken?.length ? 'hasValue' : '';
     accessTokenValue.textContent = isTokensMode && this.#config.accessToken ? `${this.#config.accessToken.length > 10 ? '...' : ''}${this.#config.accessToken.substr(-10, 10)}` : '';
 
-    refreshTokenValue.className = isTokensMode && this.#config.refreshToken.length ? 'hasValue' : '';
+    refreshTokenValue.className = isTokensMode && this.#config.refreshToken?.length ? 'hasValue' : '';
     refreshTokenValue.textContent = isTokensMode && this.#config.refreshToken ? `${this.#config.refreshToken.length > 10 ? '...' : ''}${this.#config.refreshToken.substr(-10, 10)}` : '';
 
     emailValue.textContent = this.#config.email;
