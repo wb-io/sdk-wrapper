@@ -54,9 +54,7 @@
         <div class="field">
           <label for="currencyFrom">currencyFrom</label>
           <select id="currencyFrom" class="dropdown" autocomplete="off">
-            <optgroup label="Выберите валюту">
-              <option value="" selected disabled hidden>Выберите валюту</option>
-            </optgroup>
+            <option value="">— Не выбрано —</option>
             <option value="BYN">BYN</option>
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
@@ -74,9 +72,7 @@
         <div class="field">
           <label for="currencyTo">currencyTo</label>
           <select id="currencyTo" class="dropdown" data-placeholder="Выберите валюту">
-            <optgroup label="Выберите валюту">
-              <option value="" selected disabled hidden>Выберите валюту</option>
-            </optgroup>
+            <option value="">— Не выбрано —</option>
             <option value="BYN">BYN</option>
             <option value="RUB">RUB</option>
             <option value="USD">USD</option>
@@ -162,7 +158,7 @@
   <b>merchantId</b>: '<span id="merchantIdValue"></span>',
 
   <span>// AuthMode</span>
-  <b>onLogin</b>: ({ accessToken, refreshToken, isUserVerified }) => {},
+  <b>onLogin</b>: ({ email, accessToken, refreshToken, isUserVerified }) => {},
 
   <span>// LoginMode</span>
   <b>onUserData</b>: ({ email }) => {},
@@ -235,12 +231,13 @@
 
       // AuthMode
       // mode: wbExchangeSdk.mode.AuthMode,
-      onLogin: ({ accessToken, refreshToken, isUserVerified }) =>
+      onLogin: ({ email, accessToken, refreshToken, isUserVerified }) =>
       {
         log('MAIN_APP   onLogin =');
-        log('... isUserVerified =', isUserVerified);
+        log('...    email =', email);
         log('...    accessToken =', accessToken);
         log('...   refreshToken =', refreshToken);
+        log('... isUserVerified =', isUserVerified);
       },
 
       // LoginMode

@@ -113,17 +113,12 @@
       return;
     }
 
-    if (config.cryptoWallet && !config.currencyTo)
-    {
-      console.error('wbExchangeSdk: ERROR -> should be passed currencyTo param');
-      return;
-    }
-
     config.sdkIframe = document.createElement('iframe');
     config.sdkIframe.frameBorder = '0';
     config.sdkIframe.style.width = '100%';
     config.sdkIframe.style.height = '100%';
     config.sdkIframe.style.display = 'block';
+    config.sdkIframe.allow = "camera";
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
@@ -151,7 +146,7 @@
     };
 
     const queryString = Object.entries(params)
-        .filter(([, value]) => value !== undefined && value !== null && value !== false)
+        .filter(([, value]) => Boolean(value))
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join("&");
 
@@ -166,7 +161,7 @@
     let data = {};
     try
     {
-      data = JSON.parse(event.data);
+      data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
     }
     catch( e )
     {
@@ -176,6 +171,7 @@
     if (data?.type === PostMessageType.OnChangeTokens && config.mode === SdkMode.AuthMode)
     {
       config.onLoginHandler?.({
+        email: data?.email,
         accessToken: data?.accessToken,
         refreshToken: data?.refreshToken,
         isUserVerified: data?.isUserVerified,

@@ -149,7 +149,7 @@ class SdkDemo
     this.#dom.accessTokenInput.innerHTML = this.#config.accessToken;
     this.#dom.refreshTokenInput.innerHTML = this.#config.refreshToken;
 
-    this.#dom.emailInput.innerHTML = this.#config.email;
+    this.#dom.emailInput.value = this.#config.email;
     this.#dom.merchantPassInput.innerHTML = this.#config.merchantPass;
     this.#dom.externalUserIdInput.innerHTML = this.#config.externalUserId;
     this.#dom.currencyAmountInput.value = this.#config.currencyAmount;
@@ -296,15 +296,16 @@ class SdkDemo
     else this.#config.merchantIdUpdate && (merchantIdValue.className = merchantIdValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.merchantIdUpdate = false;
 
-    const isTokensMode = this.#config.mode === 'TokensMode';
+    const isAuthMode = this.#config.mode === 'AuthMode';
     const isLoginMode = this.#config.mode === 'LoginMode';
+    const isTokensMode = this.#config.mode === 'TokensMode';
     tokensWrapper && (tokensWrapper.style.display = isTokensMode ? 'flex' : 'none');
-    userDataWrapper && (userDataWrapper.style.display = isLoginMode? 'flex' : 'none');
+    userDataWrapper && (userDataWrapper.style.display = isLoginMode || isAuthMode ? 'flex' : 'none');
 
-    accessTokenValue.className = isTokensMode && this.#config.accessToken.length ? 'hasValue' : '';
+    accessTokenValue.className = isTokensMode && this.#config.accessToken?.length ? 'hasValue' : '';
     accessTokenValue.textContent = isTokensMode && this.#config.accessToken ? `${this.#config.accessToken.length > 10 ? '...' : ''}${this.#config.accessToken.substr(-10, 10)}` : '';
 
-    refreshTokenValue.className = isTokensMode && this.#config.refreshToken.length ? 'hasValue' : '';
+    refreshTokenValue.className = isTokensMode && this.#config.refreshToken?.length ? 'hasValue' : '';
     refreshTokenValue.textContent = isTokensMode && this.#config.refreshToken ? `${this.#config.refreshToken.length > 10 ? '...' : ''}${this.#config.refreshToken.substr(-10, 10)}` : '';
 
     emailValue.textContent = this.#config.email;
