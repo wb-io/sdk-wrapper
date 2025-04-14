@@ -9,6 +9,7 @@
   const PostMessageType = {
     OnChangeTokens: 'OnChangeTokens',
     OnBackButton: 'OnBackButton',
+    OnUserData: 'OnUserData',
   };
 
   // ----------------------------------------------------
@@ -19,21 +20,32 @@
   const defaultConfig = {
     sdkIframe: null,
 
+    // required params
     el: null,       // sdk wrapper in some app -> html element
-    merchantId: '', //
     mode: null,     // -> SdkMode
+    merchantId: '', //
+
+    // AuthMode
+    onLoginHandler: null,
+
+    // LoginMode
+    onUserDataHandler: null,
 
     // TokensMode
     accessToken: '',
     refreshToken: '',
 
-    // AuthMode
-    onLoginHandler: null,
-
+    // optional params
+    email: '',
+    merchantPass: '', // header authorization basic token
+    externalUserId: '',
+    currencyAmount: '',
+    currencyFrom: '',
+    currencyTo: '',
+    cryptoWallet: '',
     showBackButtonOnHomePage: false,
-    onExitHandler: null,
-
     disableAddCard: false,
+    onExitHandler: null,
   };
 
   let config = Object.assign({}, defaultConfig);
@@ -58,17 +70,25 @@
     }
     if (params.merchantId !== undefined) config.merchantId = params.merchantId;
 
+    if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
+    if (params.onUserData !== undefined) config.onUserDataHandler = params.onUserData;
+
     if (params.accessToken !== undefined) config.accessToken = params.accessToken;
     if (params.refreshToken !== undefined) config.refreshToken = params.refreshToken;
 
-    if (params.onLogin !== undefined) config.onLoginHandler = params.onLogin;
-
+    if (params.email !== undefined) config.email = params.email;
+    if (params.merchantPass !== undefined) config.merchantPass = params.merchantPass;
+    if (params.externalUserId !== undefined) config.externalUserId = params.externalUserId;
+    if (params.currencyAmount !== undefined) config.currencyAmount = params.currencyAmount;
+    if (params.currencyFrom !== undefined) config.currencyFrom = params.currencyFrom;
+    if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
+    if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
     if (params.showBackButtonOnHomePage !== undefined) // true | false
     {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
     }
-    if (params.onExit !== undefined) config.onExitHandler = params.onExit;
     if (params.disableAddCard !== undefined) config.disableAddCard = params.disableAddCard;
+    if (params.onExit !== undefined) config.onExitHandler = params.onExit;
 
     makeIframe();
   };
@@ -98,6 +118,7 @@
     config.sdkIframe.style.width = '100%';
     config.sdkIframe.style.height = '100%';
     config.sdkIframe.style.display = 'block';
+    config.sdkIframe.allow = "camera";
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
@@ -108,18 +129,28 @@
 
   const getUrl = () =>
   {
-    let url = `${SDK_URL}/`;
-    url += `?mode=${config.mode}`;
-    url += `&merchantId=${config.merchantId}`;
-    url += `&showBackButtonOnHomePage=${!!config.onExitHandler && config.showBackButtonOnHomePage}`;
-    url += `&disableAddCard=${config.disableAddCard}`;
+    const params = {
+      mode: config.mode,
+      merchantId: config.merchantId,
+      access_token: config.accessToken,
+      refresh_token: config.refreshToken,
+      email: config.email,
+      merchantPass: config.merchantPass,
+      externalUserId: config.externalUserId,
+      currencyAmount: config.currencyAmount,
+      currencyFrom: config.currencyFrom,
+      currencyTo: config.currencyTo,
+      cryptoWallet: config.cryptoWallet,
+      showBackButtonOnHomePage: config.showBackButtonOnHomePage,
+      disableAddCard: config.disableAddCard,
+    };
 
-    if (config.mode === SdkMode.TokensMode && config.accessToken && config.refreshToken)
-    {
-      url += `&access_token=${config.accessToken}&refresh_token=${config.refreshToken}`;
-    }
+    const queryString = Object.entries(params)
+        .filter(([, value]) => Boolean(value))
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join("&");
 
-    return url;
+    return `${SDK_URL}/?${queryString}`;
   };
 
   // ----------------------------------------------------
@@ -130,7 +161,7 @@
     let data = {};
     try
     {
-      data = JSON.parse(event.data);
+      data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
     }
     catch( e )
     {
@@ -140,9 +171,16 @@
     if (data?.type === PostMessageType.OnChangeTokens && config.mode === SdkMode.AuthMode)
     {
       config.onLoginHandler?.({
+        email: data?.email,
         accessToken: data?.accessToken,
         refreshToken: data?.refreshToken,
         isUserVerified: data?.isUserVerified,
+      });
+    }
+    if (data?.type === PostMessageType.OnUserData && config.mode === SdkMode.LoginMode)
+    {
+      config.onUserDataHandler?.({
+        email: data?.email,
       });
     }
     if (data?.type === PostMessageType.OnBackButton)
