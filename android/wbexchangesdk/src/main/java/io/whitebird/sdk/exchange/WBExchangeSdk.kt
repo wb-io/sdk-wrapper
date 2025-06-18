@@ -1,7 +1,6 @@
 package io.whitebird.sdk.exchange
 
 import android.util.Log
-import io.whitebird.sdk.exchange.BuildConfig.SDKLOG_ENABLED
 
 class WBExchangeSdk private constructor()
 {
@@ -13,6 +12,7 @@ class WBExchangeSdk private constructor()
     {
         @Volatile
         private var instance: WBExchangeSdk? = null
+        private var logEnabled: Boolean = false
 
         fun getInstance(debugMessage: String = ""): WBExchangeSdk
         {
@@ -27,7 +27,11 @@ class WBExchangeSdk private constructor()
 
         fun sdklog(tag: String, msg: String = "")
         {
-            if (SDKLOG_ENABLED) Log.d(tag, msg)
+            if (logEnabled) Log.d(tag, msg)
+        }
+        
+        fun setLogEnabled(enabled: Boolean) {
+            logEnabled = enabled
         }
     }
 
@@ -36,6 +40,8 @@ class WBExchangeSdk private constructor()
     fun setup(
         mode: WBExchangeSdkMode,
         merchantId: String,
+        environment: WBExchangeEnvironment = WBExchangeEnvironment.DEV,
+        logEnabled: Boolean = false,
 
         // mode = WBExchangeSdkMode.TokensMode
         accessToken: String = "",
@@ -50,13 +56,17 @@ class WBExchangeSdk private constructor()
         disableAddCard: Boolean = false
     )
     {
+        setLogEnabled(logEnabled)
         sdklog("-> WB/sdk: setup", "")
 
         sdklog("-> ... mode", mode.toString())
         sdklog("-> ... merchantId", merchantId)
+        sdklog("-> ... environment", environment.toString())
+        sdklog("-> ... logEnabled", logEnabled.toString())
 
         config.mode = mode
         config.merchantId = merchantId
+        config.environment = environment
 
         if (config.isTokensMode)
         {

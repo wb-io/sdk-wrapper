@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import io.whitebird.sdk.exchange.WBExchangeSdk
 import io.whitebird.sdk.exchange.WBExchangeSdkMode
 import io.whitebird.sdk.exchange.WBExchangeView
+import io.whitebird.sdk.exchange.WBExchangeEnvironment
 
 class MainActivity : AppCompatActivity()
 {
@@ -44,6 +45,8 @@ class MainActivity : AppCompatActivity()
 //            merchantId = "merchantId_TEST",      // * required
             merchantId = "4f19017b-0793-4591-94ff-610bb3c4665b",      // * required
 //            mode = WBExchangeSdkMode.[выбрать_нужный_режим], // * required
+            environment = WBExchangeEnvironment.DEV, // DEV, QA, or PROD
+            logEnabled = true,
 
             // LoginMode
 //            mode = WBExchangeSdkMode.LoginMode,

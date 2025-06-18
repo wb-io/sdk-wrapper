@@ -1,6 +1,5 @@
 package io.whitebird.sdk.exchange
 
-import io.whitebird.sdk.exchange.BuildConfig.URL_EXCHANGE_SERVER
 import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
 
 enum class WBExchangeSdkMode
@@ -8,6 +7,20 @@ enum class WBExchangeSdkMode
     AuthMode,
     LoginMode,
     TokensMode;
+}
+
+enum class WBExchangeEnvironment {
+    DEV,
+    QA,
+    PROD;
+    
+    fun getBaseUrl(): String {
+        return when(this) {
+            DEV -> "https://sdk.dev.wbdevel.net/v2.0/"
+            QA -> "https://sdk.qa.wbdevel.net/v2.0/"
+            PROD -> "https://sdk.whitebird.io/v2.0/"
+        }
+    }
 }
 
 class WBExchangeConfig
@@ -20,6 +33,7 @@ class WBExchangeConfig
     // -----------------------------------------
 
     var mode: WBExchangeSdkMode? = null
+    var environment: WBExchangeEnvironment = WBExchangeEnvironment.DEV
 
     val isAuthMode: Boolean get() = mode == WBExchangeSdkMode.AuthMode
     val isTokensMode: Boolean get() = mode == WBExchangeSdkMode.TokensMode
@@ -63,7 +77,7 @@ class WBExchangeConfig
             return "" // TODO: ?? "about:blank"
         }
 
-        val server = URL_EXCHANGE_SERVER
+        val server = environment.getBaseUrl()
 
         val modeStr = when (mode)
         {
