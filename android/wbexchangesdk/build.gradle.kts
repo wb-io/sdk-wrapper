@@ -8,7 +8,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 24
 
 //        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -22,18 +22,12 @@ android {
                 "proguard-rules.pro"
             )
             manifestPlaceholders["usesCleartextTraffic"] = false
-            buildConfigField("String", "URL_EXCHANGE_SERVER", "\"https://sdk.qa.wbdevel.net/v2.0/\"")
-            buildConfigField("Boolean", "SDKLOG_ENABLED", "false")
         }
         debug {
             // How to Resolve "Cleartext HTTP traffic not permitted"
             // https://www.repeato.app/how-to-resolve-cleartext-http-traffic-not-permitted-error-in-android-8-and-above/
             // https://developer.android.com/build/manage-manifests#kts
             manifestPlaceholders["usesCleartextTraffic"] = true
-//            buildConfigField("String", "URL_EXCHANGE_SERVER", "\"http://192.168.100.95:3004/v2.0/\"")
-//            buildConfigField("String", "URL_EXCHANGE_SERVER", "\"http://192.168.100.95:3004/\"")
-             buildConfigField("String", "URL_EXCHANGE_SERVER", "\"https://sdk.qa.wbdevel.net/v2.0/\"")
-            buildConfigField("Boolean", "SDKLOG_ENABLED", "true")
         }
     }
     compileOptions {
