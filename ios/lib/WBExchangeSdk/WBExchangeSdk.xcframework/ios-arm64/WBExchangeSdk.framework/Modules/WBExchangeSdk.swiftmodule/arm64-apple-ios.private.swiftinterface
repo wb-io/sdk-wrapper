@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios18.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name WBExchangeSdk
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios15.6 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name WBExchangeSdk
+// swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
 import Combine
 import Foundation
 import OSLog
@@ -21,13 +22,42 @@ public enum WBExchangeSdkMode : Swift.String {
     get
   }
 }
+public enum WBSdkEnv : Swift.String {
+  case dev
+  case qa
+  case prod
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum WBCurrency {
+  case BYN
+  case RUB
+  case USD
+  case EUR
+  case BTC
+  case ETH
+  case USDT
+  case TRX
+  case USDT_TRC
+  case TON
+  case USDT_TON
+  case WBP
+  public static func == (a: WBExchangeSdk.WBCurrency, b: WBExchangeSdk.WBCurrency) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public class WBExchangeSdkConfig : Combine.ObservableObject {
   public var webView: WebKit.WKWebView?
   public var showWebView: Swift.Bool {
     get
   }
   public func sdklog(_ msg: Swift.String)
-  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, disableAddCard: Swift.Bool = false)
+  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, merchantPass: Swift.String, externalUserId: Swift.String, currencyAmount: Swift.Int? = nil, currencyFrom: WBExchangeSdk.WBCurrency? = nil, currencyTo: WBExchangeSdk.WBCurrency? = nil, cryptoWallet: Swift.String? = nil, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, disableAddCard: Swift.Bool = false, email: Swift.String? = nil, env: WBExchangeSdk.WBSdkEnv = .dev)
   public func initHandlers(onLogin: ((Swift.String, Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
   public func invokeOnLoginHandler(accessToken: Swift.String, refreshToken: Swift.String, isUserVerified: Swift.Bool)
   public func invokeOnExitHandler()
@@ -47,4 +77,9 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.Equatable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.Hashable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.RawRepresentable {}
+extension WBExchangeSdk.WBSdkEnv : Swift.Equatable {}
+extension WBExchangeSdk.WBSdkEnv : Swift.Hashable {}
+extension WBExchangeSdk.WBSdkEnv : Swift.RawRepresentable {}
+extension WBExchangeSdk.WBCurrency : Swift.Equatable {}
+extension WBExchangeSdk.WBCurrency : Swift.Hashable {}
 extension WBExchangeSdk.WBExchangeView : Swift.Sendable {}

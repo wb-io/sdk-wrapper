@@ -50,7 +50,9 @@ public struct WBExchangeView: View {
 #Preview {
     var config = WBExchangeSdkConfig(
         mode: WBExchangeSdkMode.LoginMode,
-        merchantId: "merchantId_TEST"
+        merchantId: "merchantId_TEST",
+        merchantPass: "",
+        externalUserId: ""
     )
         
     WBExchangeView(config: config)
@@ -145,8 +147,7 @@ struct WhiteBirdWebView: UIViewRepresentable {
         func jsonParse<T: Decodable>(_ json: Any, completion: @escaping ((T) -> Void)) {
             let jsonString = String(describing: json)
             let jsonData = Data(jsonString.utf8)
-            let jsonDecoder = JSONDecoder()
-        //    jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+
             do {
                 let model = try JSONDecoder().decode(T.self, from: jsonData)
                 completion(model)

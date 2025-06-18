@@ -8,12 +8,17 @@ struct ContentView: View {
     
     @StateObject var wbExchangeSdkConfig = WBExchangeSdkConfig(
 
-        mode: WBExchangeSdkMode.AuthMode,
+        mode: WBExchangeSdkMode.LoginMode,
 //        mode: WBExchangeSdkMode.LoginMode,
 //        mode: WBExchangeSdkMode.TokensMode,
 
 //        merchantId: "merchantId_TEST",
         merchantId: "4f19017b-0793-4591-94ff-610bb3c4665b",
+        merchantPass: "test",
+        externalUserId: "test",
+        
+        currencyAmount: 1000,
+        currencyFrom: .EUR,
 
         // TokensMode
 //        accessToken: "...",
@@ -21,7 +26,8 @@ struct ContentView: View {
                 
         showBackButtonOnHomePage: true,
         
-        disableAddCard: true
+        disableAddCard: true,
+        email: "iromablog+test1@gmail.com"
     )
         
     var body: some View {
@@ -67,10 +73,11 @@ struct ContentView: View {
                     isShowWB = false
                 }
             )
+            print(wbExchangeSdkConfig.getUrl())
         }
     }
 }
 
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    ContentView()
+}
