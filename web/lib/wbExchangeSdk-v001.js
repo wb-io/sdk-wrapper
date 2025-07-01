@@ -43,6 +43,7 @@
     currencyFrom: '',
     currencyTo: '',
     cryptoWallet: '',
+    redirectUrl: '',
     showBackButtonOnHomePage: false,
     disableAddCard: false,
     onExitHandler: null,
@@ -83,6 +84,7 @@
     if (params.currencyFrom !== undefined) config.currencyFrom = params.currencyFrom;
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
     if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
+    if (params.redirectUrl !== undefined) config.redirectUrl = params.redirectUrl;
     if (params.showBackButtonOnHomePage !== undefined) // true | false
     {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
@@ -141,6 +143,7 @@
       currencyFrom: config.currencyFrom,
       currencyTo: config.currencyTo,
       cryptoWallet: config.cryptoWallet,
+      redirectUrl: config.redirectUrl,
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
     };

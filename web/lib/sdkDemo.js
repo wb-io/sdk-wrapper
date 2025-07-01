@@ -33,6 +33,7 @@ class SdkDemo
       currencyFrom: localStorage.getItem('cnf_currencyFrom'),
       currencyTo: localStorage.getItem('cnf_currencyTo'),
       cryptoWallet: localStorage.getItem('cnf_cryptoWallet'),
+      redirectUrl: localStorage.getItem('cnf_redirectUrl'),
       showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
       disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
     };
@@ -66,6 +67,9 @@ class SdkDemo
 
       cryptoWalletInit: config.cryptoWallet,
       cryptoWalletUpdate: false,
+
+      redirectUrlInit: config.redirectUrl,
+      redirectUrlUpdate: false,
 
       showBackButtonInit: config.showBackButton,
       showBackButtonUpdate: false,
@@ -129,6 +133,9 @@ class SdkDemo
     this.#dom.cryptoWalletInput = document.getElementById('cryptoWallet');
     this.#dom.cryptoWalletValue = document.getElementById('cryptoWalletValue');
 
+    this.#dom.redirectUrlInput = document.getElementById('redirectUrl');
+    this.#dom.redirectUrlValue = document.getElementById('redirectUrlValue');
+
     this.#dom.showBackButtonInput = document.getElementById('showBackButton');
     this.#dom.showBackButtonValue = document.getElementById('showBackButtonValue');
 
@@ -156,6 +163,7 @@ class SdkDemo
     this.#dom.currencyFromInput.value = this.#config.currencyFrom;
     this.#dom.currencyToInput.value = this.#config.currencyTo;
     this.#dom.cryptoWalletInput.innerHTML = this.#config.cryptoWallet;
+    this.#dom.redirectUrlInput.innerHTML = this.#config.redirectUrl;
     this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
     this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
   }
@@ -186,6 +194,8 @@ class SdkDemo
 
     this.#dom.cryptoWalletInput?.addEventListener('input', e => this.#setConfig('cryptoWallet', e.target.value.trim()));
 
+    this.#dom.redirectUrlInput?.addEventListener('input', e => this.#setConfig('redirectUrl', e.target.value.trim()));
+
     this.#dom.showBackButtonInput?.addEventListener('change', e => this.#setConfig('showBackButton', e.target.checked));
     this.#dom.showBackButtonValue?.addEventListener('click', () => this.#setConfig('showBackButton', !this.#config.showBackButton));
 
@@ -215,6 +225,7 @@ class SdkDemo
       this.#config.currencyFromInput = this.#config.currencyFrom;
       this.#config.currencyToInput = this.#config.currencyTo;
       this.#config.cryptoWalletInput = this.#config.cryptoWallet;
+      this.#config.redirectUrlInit = this.#config.redirectUrl;
       this.#config.showBackButtonInit = this.#config.showBackButton;
       this.#config.disableAddCardInit = this.#config.disableAddCard;
 
@@ -280,6 +291,7 @@ class SdkDemo
       currencyFromValue,
       currencyToValue,
       cryptoWalletValue,
+      redirectUrlValue,
       disableAddCardValue,
       disableAddCardInput,
       showBackButtonValue,
@@ -342,6 +354,11 @@ class SdkDemo
     if( this.#config.cryptoWallet === this.#config.cryptoWalletInit ) cryptoWalletValue.className = '';
     else this.#config.cryptoWalletUpdate && (cryptoWalletValue.className = cryptoWalletValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.cryptoWalletUpdate = false;
+
+    redirectUrlValue.textContent = this.#config.redirectUrl;
+    if( this.#config.redirectUrl === this.#config.redirectUrlInit ) refreshTokenValue.className = '';
+    else this.#config.redirectUrlUpdate && (redirectUrlValue.className = redirectUrlValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.redirectUrlUpdate = false;
 
     showBackButtonInput.checked = this.#config.showBackButton;
     showBackButtonValue.textContent = this.#config.showBackButton ? 'true' : 'false';
