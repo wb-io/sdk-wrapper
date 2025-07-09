@@ -241,6 +241,7 @@ button:disabled {
 #currencyFromValue,
 #currencyToValue,
 #cryptoWalletValue,
+#redirectUrlValue,
 #sdkMode {
   display: inline-block;
   padding: 0 5px;
@@ -283,6 +284,8 @@ button:disabled {
 #currencyToValue.changed,
 #cryptoWalletValue.prev,
 #cryptoWalletValue.changed,
+#redirectUrlValue.prev,
+#redirectUrlValue.changed,
 #sdkMode.prev,
 #sdkMode.changed {
   background: #fee;
@@ -300,6 +303,7 @@ button:disabled {
 #currencyFromValue.prev,
 #currencyToValue.prev,
 #cryptoWalletValue.prev,
+#redirectUrlValue.prev,
 #sdkMode.prev {
   animation: .4s sdkModePrev .01s ease-out;
 }
