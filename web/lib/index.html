@@ -165,7 +165,7 @@
   <b>onLogin</b>: ({ email, accessToken, refreshToken, isUserVerified }) => {},
 
   <span>// LoginMode</span>
-  <b>onUserData</b>: ({ email }) => {},
+  <b>onUserData</b>: ({ email, accessToken, refreshToken }) => {},
 
   <span>// TokensMode</span>
   <b>accessToken</b>: '<span id="accessTokenValue"></span>',
@@ -247,10 +247,12 @@
 
       // LoginMode
       // mode: wbExchangeSdk.mode.LoginMode,
-      onUserData: ({ email }) =>
+      onUserData: ({ email, accessToken, refreshToken }) =>
       {
         log('MAIN_APP   onUserData =');
         log('... email =', email);
+        log('...    accessToken =', accessToken);
+        log('...   refreshToken =', refreshToken);
       },
 
       // TokensMode
