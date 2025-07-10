@@ -184,6 +184,8 @@
     {
       config.onUserDataHandler?.({
         email: data?.email,
+        accessToken: data?.accessToken,
+        refreshToken: data?.refreshToken,
       });
     }
     if (data?.type === PostMessageType.OnBackButton)
