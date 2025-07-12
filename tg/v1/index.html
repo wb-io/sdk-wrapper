@@ -45,10 +45,16 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const email = localStorage.getItem("email") || "";
+                const accessToken = localStorage.getItem("accessToken") || "";
+                const refreshToken = localStorage.getItem("refreshToken") || "";
+
                 const sdkConfig = {
                     el: document.getElementById("wbExchangeSdkWrapper"),
                     merchantId: '4f19017b-0793-4591-94ff-610bb3c4665b',
                     mode: wbExchangeSdk.mode.LoginMode,
+
+                    accessToken: accessToken,
+                    refreshToken: refreshToken,
 
                     email: email,
                     merchantPass: 'NGYxOTAxN2ItMDc5My00NTkxLTk0ZmYtNjEwYmIzYzQ2NjViOktMSkhmZCxrbEhJIVhsaw==',
