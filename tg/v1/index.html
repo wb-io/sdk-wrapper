@@ -43,10 +43,53 @@
 
         <script src="https://sdk.dev.wbdevel.net/v2.0/integration/wbExchangeSdk-v001.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const email = localStorage.getItem("email") || "";
-                const accessToken = localStorage.getItem("accessToken") || "";
-                const refreshToken = localStorage.getItem("refreshToken") || "";
+            // Functions for working with Telegram CloudStorage
+            async function saveToCloudStorage(key, value) {
+                if (window.Telegram?.WebApp?.CloudStorage) {
+                    try {
+                        await new Promise((resolve, reject) => {
+                            window.Telegram.WebApp.CloudStorage.setItem(key, value, (error) => {
+                                if (error) reject(error);
+                                else resolve();
+                            });
+                        });
+                    } catch (error) {
+                        // Fallback to localStorage
+                        localStorage.setItem(key, value);
+                    }
+                } else {
+                    // Fallback to localStorage
+                    localStorage.setItem(key, value);
+                }
+            }
+
+            async function getFromCloudStorage(key, fallbackValue = "") {
+                if (window.Telegram?.WebApp?.CloudStorage) {
+                    try {
+                        return await new Promise((resolve) => {
+                            window.Telegram.WebApp.CloudStorage.getItem(key, (error, value) => {
+                                if (error || !value) {
+                                    // Try localStorage as fallback
+                                    const localValue = localStorage.getItem(key) || fallbackValue;
+                                    resolve(localValue);
+                                } else {
+                                    resolve(value);
+                                }
+                            });
+                        });
+                    } catch (error) {
+                        return localStorage.getItem(key) || fallbackValue;
+                    }
+                } else {
+                    return localStorage.getItem(key) || fallbackValue;
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", async function () {
+                // Get data from CloudStorage
+                const email = await getFromCloudStorage("email");
+                const accessToken = await getFromCloudStorage("accessToken");
+                const refreshToken = await getFromCloudStorage("refreshToken");
 
                 const sdkConfig = {
                     el: document.getElementById("wbExchangeSdkWrapper"),
@@ -63,7 +106,15 @@
                     disableAddCard: false,
 
                     onExit: () => {},
-                    onUserData: ({ email, accessToken, refreshToken }) => {
+                    onUserData: async ({ email, accessToken, refreshToken }) => {
+                        // Save to CloudStorage
+                        await Promise.all([
+                            saveToCloudStorage("email", email),
+                            saveToCloudStorage("accessToken", accessToken),
+                            saveToCloudStorage("refreshToken", refreshToken)
+                        ]);
+                        
+                        // Duplicate to localStorage for quick access
                         localStorage.setItem("email", email);
                         localStorage.setItem("accessToken", accessToken);
                         localStorage.setItem("refreshToken", refreshToken);
