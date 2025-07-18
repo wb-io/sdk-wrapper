@@ -91,6 +91,10 @@
           <label for="cryptoWallet">cryptoWallet</label>
           <textarea name="" id="cryptoWallet" cols="10" rows="2"></textarea>
         </div>
+        <div class="field">
+          <label for="redirectUrl">redirectUrl</label>
+          <textarea name="" id="redirectUrl" cols="10" rows="2"></textarea>
+        </div>
         <label for="showBackButton">
           <input type="checkbox" id="showBackButton" name="showBackButton">
           showBackButton
@@ -175,6 +179,7 @@
   <b>currencyFrom</b>: <span id="currencyFromValue"></span>,
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
+  <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
   <b>onExit</b>: () => {},
@@ -265,6 +270,7 @@
       cryptoWallet: config.cryptoWallet,
       showBackButtonOnHomePage: config.showBackButton,
       disableAddCard: config.disableAddCard,
+      redirectUrl: config.redirectUrl,
       onExit: () =>
       {
         log('MAIN_APP onExit =');
