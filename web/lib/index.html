@@ -182,6 +182,7 @@
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
+  <b>onOrderCreated</b>: ({ orderId, internalCryptoAddress }) => {},
   <b>onExit</b>: () => {},
 })</pre>
       <div id="copied">Скопировано</div>
@@ -271,6 +272,12 @@
       showBackButtonOnHomePage: config.showBackButton,
       disableAddCard: config.disableAddCard,
       redirectUrl: config.redirectUrl,
+      onOrderCreated: ({ orderId, internalCryptoAddress }) =>
+      {
+        log('MAIN_APP   onOrderCreated =');
+        log('...  orderId =', orderId);
+        log('...  internalCryptoAddress =', internalCryptoAddress);
+      },
       onExit: () =>
       {
         log('MAIN_APP onExit =');
