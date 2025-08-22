@@ -10,6 +10,7 @@
     OnChangeTokens: 'OnChangeTokens',
     OnBackButton: 'OnBackButton',
     OnUserData: 'OnUserData',
+    OnOrderCreated: 'OnOrderCreated',
   };
 
   // ----------------------------------------------------
@@ -47,6 +48,7 @@
     refId: '',
     showBackButtonOnHomePage: false,
     disableAddCard: false,
+    onOrderCreatedHandler: null,
     onExitHandler: null,
   };
 
@@ -92,6 +94,7 @@
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
     }
     if (params.disableAddCard !== undefined) config.disableAddCard = params.disableAddCard;
+    if (params.onOrderCreated !== undefined) config.onOrderCreatedHandler = params.onOrderCreated;
     if (params.onExit !== undefined) config.onExitHandler = params.onExit;
 
     makeIframe();
@@ -189,6 +192,13 @@
         email: data?.email,
         accessToken: data?.accessToken,
         refreshToken: data?.refreshToken,
+      });
+    }
+    if (data?.type === PostMessageType.OnOrderCreated)
+    {
+      config.onOrderCreatedHandler?.({
+        orderId: data?.orderId,
+        internalCryptoAddress: data?.internalCryptoAddress,
       });
     }
     if (data?.type === PostMessageType.OnBackButton)
