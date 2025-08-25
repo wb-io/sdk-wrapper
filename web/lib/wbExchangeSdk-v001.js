@@ -45,6 +45,7 @@
     currencyTo: '',
     cryptoWallet: '',
     redirectUrl: '',
+    startAppPage: '',
     refId: '',
     showBackButtonOnHomePage: false,
     disableAddCard: false,
@@ -88,6 +89,7 @@
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
     if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
     if (params.redirectUrl !== undefined) config.redirectUrl = params.redirectUrl;
+    if (params.startAppPage !== undefined) config.startAppPage = params.startAppPage;
     if (params.refId !== undefined) config.refId = params.refId;
     if (params.showBackButtonOnHomePage !== undefined) // true | false
     {
@@ -149,6 +151,7 @@
       currencyTo: config.currencyTo,
       cryptoWallet: config.cryptoWallet,
       redirectUrl: config.redirectUrl,
+      startAppPage: config.startAppPage,
       refId: config.refId,
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
