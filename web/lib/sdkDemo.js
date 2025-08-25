@@ -34,6 +34,7 @@ class SdkDemo
       currencyTo: localStorage.getItem('cnf_currencyTo'),
       cryptoWallet: localStorage.getItem('cnf_cryptoWallet'),
       redirectUrl: localStorage.getItem('cnf_redirectUrl'),
+      startAppPage: localStorage.getItem('cnf_startAppPage'),
       showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
       disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
     };
@@ -71,6 +72,9 @@ class SdkDemo
       redirectUrlInit: config.redirectUrl,
       redirectUrlUpdate: false,
 
+      startAppPageInit: config.startAppPage,
+      startAppPageUpdate: false,
+
       showBackButtonInit: config.showBackButton,
       showBackButtonUpdate: false,
 
@@ -106,6 +110,7 @@ class SdkDemo
 
     this.#dom.tokensWrapper = document.getElementById('tokens');
     this.#dom.userDataWrapper = document.getElementById('userData');
+    this.#dom.startAppPageWrapper = document.getElementById('startAppPageField');
 
     this.#dom.accessTokenInput = document.getElementById('accessToken');
     this.#dom.accessTokenValue = document.getElementById('accessTokenValue');
@@ -136,6 +141,9 @@ class SdkDemo
     this.#dom.redirectUrlInput = document.getElementById('redirectUrl');
     this.#dom.redirectUrlValue = document.getElementById('redirectUrlValue');
 
+    this.#dom.startAppPageInput = document.getElementById('startAppPage');
+    this.#dom.startAppPageValue = document.getElementById('startAppPageValue');
+
     this.#dom.showBackButtonInput = document.getElementById('showBackButton');
     this.#dom.showBackButtonValue = document.getElementById('showBackButtonValue');
 
@@ -164,6 +172,7 @@ class SdkDemo
     this.#dom.currencyToInput.value = this.#config.currencyTo;
     this.#dom.cryptoWalletInput.innerHTML = this.#config.cryptoWallet;
     this.#dom.redirectUrlInput.innerHTML = this.#config.redirectUrl;
+    this.#dom.startAppPageInput.value = this.#config.startAppPage;
     this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
     this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
   }
@@ -196,6 +205,8 @@ class SdkDemo
 
     this.#dom.redirectUrlInput?.addEventListener('input', e => this.#setConfig('redirectUrl', e.target.value.trim()));
 
+    this.#dom.startAppPageInput?.addEventListener('change', e => this.#setConfig('startAppPage', e.target.value));
+
     this.#dom.showBackButtonInput?.addEventListener('change', e => this.#setConfig('showBackButton', e.target.checked));
     this.#dom.showBackButtonValue?.addEventListener('click', () => this.#setConfig('showBackButton', !this.#config.showBackButton));
 
@@ -226,6 +237,7 @@ class SdkDemo
       this.#config.currencyToInput = this.#config.currencyTo;
       this.#config.cryptoWalletInput = this.#config.cryptoWallet;
       this.#config.redirectUrlInit = this.#config.redirectUrl;
+      this.#config.startAppPageInit = this.#config.startAppPage;
       this.#config.showBackButtonInit = this.#config.showBackButton;
       this.#config.disableAddCardInit = this.#config.disableAddCard;
 
@@ -281,6 +293,7 @@ class SdkDemo
       sdkMode,
       tokensWrapper,
       userDataWrapper,
+      startAppPageWrapper,
       accessTokenValue,
       refreshTokenValue,
       merchantIdValue,
@@ -292,10 +305,11 @@ class SdkDemo
       currencyToValue,
       cryptoWalletValue,
       redirectUrlValue,
-      disableAddCardValue,
-      disableAddCardInput,
+      startAppPageValue,
       showBackButtonValue,
       showBackButtonInput,
+      disableAddCardValue,
+      disableAddCardInput,
     } = this.#dom;
 
     sdkMode.textContent = this.#config.mode;
@@ -313,6 +327,7 @@ class SdkDemo
     const isTokensMode = this.#config.mode === 'TokensMode';
     tokensWrapper && (tokensWrapper.style.display = isTokensMode ? 'flex' : 'none');
     userDataWrapper && (userDataWrapper.style.display = isLoginMode || isAuthMode ? 'flex' : 'none');
+    startAppPageWrapper && (startAppPageWrapper.style.display = isTokensMode || isLoginMode ? 'flex' : 'none');
 
     accessTokenValue.className = isTokensMode && this.#config.accessToken?.length ? 'hasValue' : '';
     accessTokenValue.textContent = isTokensMode && this.#config.accessToken ? `${this.#config.accessToken.length > 10 ? '...' : ''}${this.#config.accessToken.substr(-10, 10)}` : '';
@@ -359,6 +374,11 @@ class SdkDemo
     if( this.#config.redirectUrl === this.#config.redirectUrlInit ) refreshTokenValue.className = '';
     else this.#config.redirectUrlUpdate && (redirectUrlValue.className = redirectUrlValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.redirectUrlUpdate = false;
+
+    startAppPageValue.textContent = (isTokensMode || isLoginMode) && this.#config.startAppPage ? this.#config.startAppPage : '';
+    if( this.#config.startAppPage === this.#config.startAppPageInit ) startAppPageValue.className = '';
+    else this.#config.startAppPageUpdate && (startAppPageValue.className = startAppPageValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.startAppPageUpdate = false;
 
     showBackButtonInput.checked = this.#config.showBackButton;
     showBackButtonValue.textContent = this.#config.showBackButton ? 'true' : 'false';

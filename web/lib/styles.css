@@ -242,6 +242,7 @@ button:disabled {
 #currencyToValue,
 #cryptoWalletValue,
 #redirectUrlValue,
+#startAppPageValue,
 #sdkMode {
   display: inline-block;
   padding: 0 5px;
@@ -286,6 +287,8 @@ button:disabled {
 #cryptoWalletValue.changed,
 #redirectUrlValue.prev,
 #redirectUrlValue.changed,
+#startAppPageValue.prev,
+#startAppPageValue.changed,
 #sdkMode.prev,
 #sdkMode.changed {
   background: #fee;
@@ -304,6 +307,7 @@ button:disabled {
 #currencyToValue.prev,
 #cryptoWalletValue.prev,
 #redirectUrlValue.prev,
+#startAppPageValue.prev,
 #sdkMode.prev {
   animation: .4s sdkModePrev .01s ease-out;
 }
@@ -350,7 +354,8 @@ button:disabled {
 }
 
 .field input,
-.field textarea {
+.field textarea,
+.field select {
   margin-bottom: 10px;
   padding: 6px;
   font-size: 12px;
@@ -359,6 +364,12 @@ button:disabled {
 }
 .field textarea {
   resize: vertical;
+}
+.field select {
+  max-width: 160px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #tokens {
