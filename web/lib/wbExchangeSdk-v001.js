@@ -10,6 +10,7 @@
     OnChangeTokens: 'OnChangeTokens',
     OnBackButton: 'OnBackButton',
     OnUserData: 'OnUserData',
+    OnOrderCreated: 'OnOrderCreated',
   };
 
   // ----------------------------------------------------
@@ -44,9 +45,11 @@
     currencyTo: '',
     cryptoWallet: '',
     redirectUrl: '',
+    startAppPage: '',
     refId: '',
     showBackButtonOnHomePage: false,
     disableAddCard: false,
+    onOrderCreatedHandler: null,
     onExitHandler: null,
   };
 
@@ -86,12 +89,14 @@
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
     if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
     if (params.redirectUrl !== undefined) config.redirectUrl = params.redirectUrl;
+    if (params.startAppPage !== undefined) config.startAppPage = params.startAppPage;
     if (params.refId !== undefined) config.refId = params.refId;
     if (params.showBackButtonOnHomePage !== undefined) // true | false
     {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
     }
     if (params.disableAddCard !== undefined) config.disableAddCard = params.disableAddCard;
+    if (params.onOrderCreated !== undefined) config.onOrderCreatedHandler = params.onOrderCreated;
     if (params.onExit !== undefined) config.onExitHandler = params.onExit;
 
     makeIframe();
@@ -146,6 +151,7 @@
       currencyTo: config.currencyTo,
       cryptoWallet: config.cryptoWallet,
       redirectUrl: config.redirectUrl,
+      startAppPage: config.startAppPage,
       refId: config.refId,
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
@@ -189,6 +195,13 @@
         email: data?.email,
         accessToken: data?.accessToken,
         refreshToken: data?.refreshToken,
+      });
+    }
+    if (data?.type === PostMessageType.OnOrderCreated)
+    {
+      config.onOrderCreatedHandler?.({
+        orderId: data?.orderId,
+        internalCryptoAddress: data?.internalCryptoAddress,
       });
     }
     if (data?.type === PostMessageType.OnBackButton)

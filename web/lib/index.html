@@ -95,6 +95,14 @@
           <label for="redirectUrl">redirectUrl</label>
           <textarea name="" id="redirectUrl" cols="10" rows="2"></textarea>
         </div>
+        <div id="startAppPageField" class="field">
+          <label for="startAppPage">startAppPage</label>
+          <select id="startAppPage" class="dropdown" autocomplete="off">
+            <option value="">— Домашняя страница —</option>
+            <option value="/account/payments">Способы оплаты</option>
+            <option value="/user-operations">История транзакций</option>
+          </select>
+        </div>
         <label for="showBackButton">
           <input type="checkbox" id="showBackButton" name="showBackButton">
           showBackButton
@@ -180,8 +188,10 @@
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
+  <b>startAppPage</b>: <span id="startAppPageValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
+  <b>onOrderCreated</b>: ({ orderId, internalCryptoAddress }) => {},
   <b>onExit</b>: () => {},
 })</pre>
       <div id="copied">Скопировано</div>
@@ -224,18 +234,45 @@
 
     const { config } = sdkDemo;
 
+    const setupParams = (config) => {
+      const baseParams = {
+        // required params:
+        el: document.getElementById('wbExchangeSdkWrapper'),
+        mode: config.mode,
+        merchantId: config.merchantId,
+
+        // optional params (available in all modes):
+        email: config.email,
+        merchantPass: config.merchantPass,
+        externalUserId: config.externalUserId,
+        currencyAmount: config.currencyAmount,
+        currencyFrom: config.currencyFrom,
+        currencyTo: config.currencyTo,
+        cryptoWallet: config.cryptoWallet,
+        redirectUrl: config.redirectUrl,
+        showBackButtonOnHomePage: config.showBackButton,
+        disableAddCard: config.disableAddCard,
+      };
+
+      // Params only for TokensMode
+      if (config.mode === 'TokensMode') {
+        baseParams.accessToken = config.accessToken;
+        baseParams.refreshToken = config.refreshToken;
+        baseParams.startAppPage = config.startAppPage;
+      }
+
+      // Params only for LoginMode  
+      if (config.mode === 'LoginMode') {
+        baseParams.startAppPage = config.startAppPage;
+      }
+
+      return baseParams;
+    };
+
     wbExchangeSdk.setup({
-      // SDK iframe вставиться в контейнер только если будут переданы обязательные параметры
-      // el, mode, merchantId
-      // а также accessToken и refreshToken в TokensMode
+      ...setupParams(config),
 
-      // required params:
-      el: document.getElementById('wbExchangeSdkWrapper'),
-      mode: config.mode,
-      merchantId: config.merchantId,
-
-      // AuthMode
-      // mode: wbExchangeSdk.mode.AuthMode,
+      // Event handlers
       onLogin: ({ email, accessToken, refreshToken, isUserVerified }) =>
       {
         log('MAIN_APP   onLogin =');
@@ -245,8 +282,6 @@
         log('... isUserVerified =', isUserVerified);
       },
 
-      // LoginMode
-      // mode: wbExchangeSdk.mode.LoginMode,
       onUserData: ({ email, accessToken, refreshToken }) =>
       {
         log('MAIN_APP   onUserData =');
@@ -255,22 +290,13 @@
         log('...   refreshToken =', refreshToken);
       },
 
-      // TokensMode
-      // mode: wbExchangeSdk.mode.TokensMode,
-      accessToken: config.accessToken,
-      refreshToken: config.refreshToken,
+      onOrderCreated: ({ orderId, internalCryptoAddress }) =>
+      {
+        log('MAIN_APP   onOrderCreated =');
+        log('...  orderId =', orderId);
+        log('...  internalCryptoAddress =', internalCryptoAddress);
+      },
 
-      // optional params:
-      email: config.email,
-      merchantPass: config.merchantPass,
-      externalUserId: config.externalUserId,
-      currencyAmount: config.currencyAmount,
-      currencyFrom: config.currencyFrom,
-      currencyTo: config.currencyTo,
-      cryptoWallet: config.cryptoWallet,
-      showBackButtonOnHomePage: config.showBackButton,
-      disableAddCard: config.disableAddCard,
-      redirectUrl: config.redirectUrl,
       onExit: () =>
       {
         log('MAIN_APP onExit =');
