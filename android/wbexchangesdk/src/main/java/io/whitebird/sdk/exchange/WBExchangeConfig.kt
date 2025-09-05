@@ -43,6 +43,7 @@ class WBExchangeConfig
     // -----------------------------------------
 
     var merchantId: String = ""
+    var merchantPass: String? = null
 
     var showBackButtonOnHomePage: Boolean = false // <- MobileType
     var onExitHandler: (() -> Unit)? = null
@@ -89,6 +90,7 @@ class WBExchangeConfig
         val modeQuery = "?mode=${modeStr}" // required
 
         val merchantIdQuery = "&merchantId=${merchantId}" // required
+        val merchantPassQuery = if (merchantPass != null) "&merchantPass=${merchantPass}" else ""
 
         var showBackButton = false
         if (showBackButtonOnHomePage && onExitHandler != null)
@@ -107,6 +109,6 @@ class WBExchangeConfig
         val disableAddCardQuery =
             "&disableAddCard=${if (disableAddCard) "true" else "false"}"
 
-        return "${server}${modeQuery}${merchantIdQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}"
+        return "${server}${modeQuery}${merchantIdQuery}${merchantPassQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}"
     }
 }
