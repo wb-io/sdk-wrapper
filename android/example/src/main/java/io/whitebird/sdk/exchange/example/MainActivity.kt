@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity()
         wbExchangeSdk.setup(
 //            merchantId = "merchantId_TEST",      // * required
             merchantId = "4f19017b-0793-4591-94ff-610bb3c4665b",      // * required
+//            merchantPass = "your_merchant_pass",   // optional
 //            mode = WBExchangeSdkMode.[выбрать_нужный_режим], // * required
             environment = WBExchangeEnvironment.DEV, // DEV, QA, or PROD
             logEnabled = true,
