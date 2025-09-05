@@ -67,6 +67,7 @@ After building, rename the file to match your version, e.g., `wbexchangesdk-0.1.
    
            wbExchangeSdk.setup(
                merchantId = "merchantId_TEST",      // * required
+               merchantPass = "your_merchant_pass",  // optional
                environment = WBExchangeEnvironment.DEV, // DEV, QA, or PROD
                logEnabled = true,
                

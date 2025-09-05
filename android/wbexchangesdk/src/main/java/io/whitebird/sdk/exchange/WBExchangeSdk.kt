@@ -40,6 +40,7 @@ class WBExchangeSdk private constructor()
     fun setup(
         mode: WBExchangeSdkMode,
         merchantId: String,
+        merchantPass: String? = null,
         environment: WBExchangeEnvironment = WBExchangeEnvironment.DEV,
         logEnabled: Boolean = false,
 
@@ -61,11 +62,13 @@ class WBExchangeSdk private constructor()
 
         sdklog("-> ... mode", mode.toString())
         sdklog("-> ... merchantId", merchantId)
+        sdklog("-> ... merchantPass", if (!merchantPass.isNullOrEmpty()) "***" else "")
         sdklog("-> ... environment", environment.toString())
         sdklog("-> ... logEnabled", logEnabled.toString())
 
         config.mode = mode
         config.merchantId = merchantId
+        config.merchantPass = merchantPass
         config.environment = environment
 
         if (config.isTokensMode)
