@@ -20,8 +20,6 @@ struct ContentView: View {
 //        refreshToken: "...",
                 
         showBackButtonOnHomePage: true,
-        
-        disableAddCard: true
     )
         
     var body: some View {
