@@ -107,6 +107,22 @@ struct WhiteBirdWebView: UIViewRepresentable {
             self.webView = webView
         }
         
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            
+            if let url = navigationAction.request.url {
+                let ext = url.pathExtension.lowercased()
+                
+                // список типов файлов, которые нужно открывать отдельно
+                if ["pdf", "doc", "docx", "xls", "xlsx", "zip"].contains(ext) {
+                    UIApplication.shared.open(url)   // открываем через Safari / Files
+                    decisionHandler(.cancel)
+                    return
+                }
+            }
+            
+            decisionHandler(.allow)
+        }
+        
         // receive message from wkwebview
         func userContentController(
             _ userContentController: WKUserContentController,

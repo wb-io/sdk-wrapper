@@ -947,84 +947,84 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 121,
       "length": 10,
       "value": "\"AuthMode\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 153,
       "length": 11,
       "value": "\"LoginMode\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 187,
       "length": 12,
       "value": "\"TokensMode\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 1130,
       "length": 27,
       "value": "\"io.whitebird.sdk.exchange\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 1230,
       "length": 8,
       "value": "\"System\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 1515,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 1550,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
       "offset": 1595,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
       "offset": 1633,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
       "offset": 105,
       "length": 16,
       "value": "\"OnChangeTokens\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
       "offset": 146,
       "length": 14,
       "value": "\"OnBackButton\""
     },
     {
-      "filePath": "\/Users\/max\/mintdata\/wb\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
       "offset": 1244,
       "length": 17,
