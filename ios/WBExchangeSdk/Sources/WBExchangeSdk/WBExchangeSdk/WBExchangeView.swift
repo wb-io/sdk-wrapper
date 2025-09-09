@@ -50,9 +50,7 @@ public struct WBExchangeView: View {
 #Preview {
     var config = WBExchangeSdkConfig(
         mode: WBExchangeSdkMode.LoginMode,
-        merchantId: "merchantId_TEST",
-        merchantPass: "",
-        externalUserId: ""
+        merchantId: "merchantId_TEST"
     )
         
     WBExchangeView(config: config)
@@ -109,6 +107,22 @@ struct WhiteBirdWebView: UIViewRepresentable {
             self.webView = webView
         }
         
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            
+            if let url = navigationAction.request.url {
+                let ext = url.pathExtension.lowercased()
+                
+                // список типов файлов, которые нужно открывать отдельно
+                if ["pdf", "doc", "docx", "xls", "xlsx", "zip"].contains(ext) {
+                    UIApplication.shared.open(url)   // открываем через Safari / Files
+                    decisionHandler(.cancel)
+                    return
+                }
+            }
+            
+            decisionHandler(.allow)
+        }
+        
         // receive message from wkwebview
         func userContentController(
             _ userContentController: WKUserContentController,
@@ -147,7 +161,8 @@ struct WhiteBirdWebView: UIViewRepresentable {
         func jsonParse<T: Decodable>(_ json: Any, completion: @escaping ((T) -> Void)) {
             let jsonString = String(describing: json)
             let jsonData = Data(jsonString.utf8)
-
+            let jsonDecoder = JSONDecoder()
+        //    jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let model = try JSONDecoder().decode(T.self, from: jsonData)
                 completion(model)
