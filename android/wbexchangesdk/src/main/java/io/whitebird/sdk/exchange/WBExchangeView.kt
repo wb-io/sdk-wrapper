@@ -1,10 +1,17 @@
 package io.whitebird.sdk.exchange
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Message
 import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
 import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
@@ -53,6 +60,38 @@ class WBExchangeView @JvmOverloads constructor(
 
     // -----------------------------------------
 
+    private fun shouldOpenExternally(url: String): Boolean
+    {
+        // Open PDFs and non-webview-friendly schemes externally
+        return url.endsWith(".pdf", ignoreCase = true)
+                || url.startsWith("mailto:", ignoreCase = true)
+                || url.startsWith("tel:", ignoreCase = true)
+    }
+
+    private fun openExternalUrl(url: String)
+    {
+        try
+        {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            if (context !is Activity)
+            {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(intent)
+            sdklog("-> WB/view: openExternalUrl", url)
+        }
+        catch (e: ActivityNotFoundException)
+        {
+            sdklog("-> WB/view: openExternalUrl failed", e.message ?: "ActivityNotFoundException")
+        }
+        catch (t: Throwable)
+        {
+            sdklog("-> WB/view: openExternalUrl failed", t.message ?: "Unknown error")
+        }
+    }
+
+    // -----------------------------------------
+
     private fun initWebView()
     {
         sdklog("-> WB/view: initWebView", "")
@@ -64,6 +103,7 @@ class WBExchangeView @JvmOverloads constructor(
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
+                setSupportMultipleWindows(true)
             }
 
             // binding.wbWebView.
@@ -78,12 +118,70 @@ class WBExchangeView @JvmOverloads constructor(
             // !!! и чтобы переход по внешним ссылкам оставался в webview
             // а не открывался браузер
             webViewClient = object : WebViewClient()
-            {}
+            {
+                override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean
+                {
+                    val url = request.url.toString()
+                    if (shouldOpenExternally(url))
+                    {
+                        openExternalUrl(url)
+                        return true
+                    }
+                    return false
+                }
+
+                @Suppress("OverridingDeprecatedMember")
+                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean
+                {
+                    if (shouldOpenExternally(url))
+                    {
+                        openExternalUrl(url)
+                        return true
+                    }
+                    return false
+                }
+            }
 
             // WebChromeClient — чтобы взаимодействовать с этой страницей после того,
             // как она успешно загружена.
             webChromeClient = object : WebChromeClient()
-            {}
+            {
+                override fun onCreateWindow(
+                    view: WebView,
+                    isDialog: Boolean,
+                    isUserGesture: Boolean,
+                    resultMsg: Message
+                ): Boolean
+                {
+                    // Handle target="_blank" links by opening externally
+                    val tempWebView = WebView(view.context)
+                    tempWebView.settings.javaScriptEnabled = true
+                    tempWebView.webViewClient = object : WebViewClient()
+                    {
+                        override fun shouldOverrideUrlLoading(v: WebView, request: WebResourceRequest): Boolean
+                        {
+                            val url = request.url.toString()
+                            openExternalUrl(url)
+                            // Clean up the temporary WebView
+                            v.destroy()
+                            return true
+                        }
+
+                        @Suppress("OverridingDeprecatedMember")
+                        override fun shouldOverrideUrlLoading(v: WebView, url: String): Boolean
+                        {
+                            openExternalUrl(url)
+                            v.destroy()
+                            return true
+                        }
+                    }
+
+                    val transport = resultMsg.obj as WebView.WebViewTransport
+                    transport.webView = tempWebView
+                    resultMsg.sendToTarget()
+                    return true
+                }
+            }
         }
     }
 
