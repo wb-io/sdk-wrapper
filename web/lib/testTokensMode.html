@@ -1,0 +1,136 @@
+<html lang="ru" style="--tg-viewport-height: 100vh; --tg-viewport-stable-height: 100vh;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ref testn</title>
+    <style>
+        :root {
+            --wb-color: #0169FF;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 260px;
+            margin-top: 5px;
+        }
+        textarea {
+            height: 60px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 6px 12px;
+            align-items: center;
+            color: #fff;
+            border: 0;
+            border-radius: 8px;
+            background: var(--wb-color);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+            outline: 0;
+            cursor: pointer;
+            user-select: none;
+            transition: box-shadow .1s ease-out;
+        }
+        #wbExchangeSdkWrapper {
+            overflow: hidden;
+            width: 100%;
+            max-width: 360px;
+            height: 640px;
+            margin: 10px 0 10px 20px;
+            box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .4)
+        }
+        #wrapper {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <form id="apiForm">
+        <label for="merchantId">Merchant ID</label>
+        <input type="text" id="merchantId" name="merchantId" required>
+
+        <label for="clientId">Client ID</label>
+        <input type="text" id="clientId" name="clientId" required>
+
+        <label for="apikey">API Key</label>
+        <textarea id="apikey" name="apikey" required></textarea>
+
+        <button type="submit">Загрузить пользователя</button>
+    </form>
+    <div id="wbExchangeSdkWrapper" style="width: 360px; height:640px"></div>
+    <script src=" https://sdk.dev.wbdevel.net/v2.0/integration/wbExchangeSdk-v001.js"></script>
+    <script>
+        const form = document.getElementById("apiForm");
+        const merchantIdInput = document.getElementById("merchantId");
+        const clientIdInput = document.getElementById("clientId");
+        const apiKeyInput = document.getElementById("apikey");
+
+        // Загружаем сохранённые данные при открытии страницы
+        window.addEventListener("DOMContentLoaded", () => {
+            merchantIdInput.value = localStorage.getItem("merchantId") || "QKdOtetagkcGgKhH9hZMYTYuOHI828FwRGrTE0YcqAnFER3D3TpVomsaTYB0zRH37MG6yHeTeZZK1U9tLqF";
+            clientIdInput.value = localStorage.getItem("clientId") || "7971cccf-d567-4717-a983-60487435a701";
+            apiKeyInput.value = localStorage.getItem("apiKey") || "132029e5-68f8-4cf7-84b7-eb8f4eacbe2e";
+        });
+
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const merchantId = merchantIdInput.value;
+            const clientId = clientIdInput.value;
+            const apiKey = apiKeyInput.value;
+
+            localStorage.setItem("merchantId", merchantId);
+            localStorage.setItem("clientId", clientId);
+            localStorage.setItem("apiKey", apiKey);
+
+            await window.setupFrame(merchantId, clientId, apiKey);
+        });
+
+    </script>
+
+    <script>
+        window.setupFrame = async function (merchantId, clientId, apiKey) {
+            wbExchangeSdk.cleanup()
+
+            const url = "https://api.dev.wbdevel.net/api/v2/auth/merchant/client/token/generate"
+            const bodyData = { clientId };
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-api-key": apiKey
+                },
+                body: JSON.stringify(bodyData)
+            });
+
+            const data = await response.json();
+
+            const sdkConfig = {
+                el: document.getElementById("wbExchangeSdkWrapper"),
+                merchantId: merchantId,
+                mode: wbExchangeSdk.mode.TokensMode,
+                accessToken: data.token,
+                refreshToken: data.refreshToken,
+                showBackButtonOnHomePage: true,
+                onExit: () => {
+                    console.log("Exiting...");
+
+                    var exitConfirm = confirm("Точно выйти?");
+
+                    if (exitConfirm) {
+                        wbExchangeSdk.cleanup()
+                    }
+                }
+            };
+
+            wbExchangeSdk.setup(sdkConfig);
+        }
+    </script>
+</div>
+
+</body></html>
