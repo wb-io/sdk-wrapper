@@ -284,6 +284,849 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "WBSdkEnv",
+        "printedName": "WBSdkEnv",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "dev",
+            "printedName": "dev",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBSdkEnv.Type) -> WBExchangeSdk.WBSdkEnv",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBSdkEnv",
+                    "printedName": "WBExchangeSdk.WBSdkEnv",
+                    "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBSdkEnv.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBSdkEnv",
+                        "printedName": "WBExchangeSdk.WBSdkEnv",
+                        "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk8WBSdkEnvO3devyA2CmF",
+            "mangledName": "$s13WBExchangeSdk8WBSdkEnvO3devyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "qa",
+            "printedName": "qa",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBSdkEnv.Type) -> WBExchangeSdk.WBSdkEnv",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBSdkEnv",
+                    "printedName": "WBExchangeSdk.WBSdkEnv",
+                    "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBSdkEnv.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBSdkEnv",
+                        "printedName": "WBExchangeSdk.WBSdkEnv",
+                        "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk8WBSdkEnvO2qayA2CmF",
+            "mangledName": "$s13WBExchangeSdk8WBSdkEnvO2qayA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "prod",
+            "printedName": "prod",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBSdkEnv.Type) -> WBExchangeSdk.WBSdkEnv",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBSdkEnv",
+                    "printedName": "WBExchangeSdk.WBSdkEnv",
+                    "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBSdkEnv.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBSdkEnv",
+                        "printedName": "WBExchangeSdk.WBSdkEnv",
+                        "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk8WBSdkEnvO4prodyA2CmF",
+            "mangledName": "$s13WBExchangeSdk8WBSdkEnvO4prodyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "WBExchangeSdk.WBSdkEnv?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBSdkEnv",
+                    "printedName": "WBExchangeSdk.WBSdkEnv",
+                    "usr": "s:13WBExchangeSdk8WBSdkEnvO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:13WBExchangeSdk8WBSdkEnvO8rawValueACSgSS_tcfc",
+            "mangledName": "$s13WBExchangeSdk8WBSdkEnvO8rawValueACSgSS_tcfc",
+            "moduleName": "WBExchangeSdk",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13WBExchangeSdk8WBSdkEnvO8rawValueSSvp",
+            "mangledName": "$s13WBExchangeSdk8WBSdkEnvO8rawValueSSvp",
+            "moduleName": "WBExchangeSdk",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk8WBSdkEnvO8rawValueSSvg",
+                "mangledName": "$s13WBExchangeSdk8WBSdkEnvO8rawValueSSvg",
+                "moduleName": "WBExchangeSdk",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:13WBExchangeSdk8WBSdkEnvO",
+        "mangledName": "$s13WBExchangeSdk8WBSdkEnvO",
+        "moduleName": "WBExchangeSdk",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "WBCurrency",
+        "printedName": "WBCurrency",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "BYN",
+            "printedName": "BYN",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3BYNyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3BYNyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "RUB",
+            "printedName": "RUB",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3RUByA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3RUByA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "USD",
+            "printedName": "USD",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3USDyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3USDyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "EUR",
+            "printedName": "EUR",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3EURyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3EURyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "BTC",
+            "printedName": "BTC",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3BTCyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3BTCyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "ETH",
+            "printedName": "ETH",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3ETHyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3ETHyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "USDT",
+            "printedName": "USDT",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO4USDTyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO4USDTyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "TRX",
+            "printedName": "TRX",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3TRXyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3TRXyA2CmF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "USDT_TRC",
+            "printedName": "USDT_TRC",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO8USDT_TRCyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO8USDT_TRCyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "TON",
+            "printedName": "TON",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3TONyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3TONyA2CmF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "USDT_TON",
+            "printedName": "USDT_TON",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO8USDT_TONyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO8USDT_TONyA2CmF",
+            "moduleName": "WBExchangeSdk"
+          },
+          {
+            "kind": "Var",
+            "name": "WBP",
+            "printedName": "WBP",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(WBExchangeSdk.WBCurrency.Type) -> WBExchangeSdk.WBCurrency",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "WBExchangeSdk.WBCurrency.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "WBCurrency",
+                        "printedName": "WBExchangeSdk.WBCurrency",
+                        "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO3WBPyA2CmF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO3WBPyA2CmF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WBCurrency",
+                "printedName": "WBExchangeSdk.WBCurrency",
+                "usr": "s:13WBExchangeSdk10WBCurrencyO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WBCurrency",
+                "printedName": "WBExchangeSdk.WBCurrency",
+                "usr": "s:13WBExchangeSdk10WBCurrencyO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO2eeoiySbAC_ACtFZ",
+            "moduleName": "WBExchangeSdk",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO9hashValueSivp",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO9hashValueSivp",
+            "moduleName": "WBExchangeSdk",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk10WBCurrencyO9hashValueSivg",
+                "mangledName": "$s13WBExchangeSdk10WBCurrencyO9hashValueSivg",
+                "moduleName": "WBExchangeSdk",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk10WBCurrencyO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s13WBExchangeSdk10WBCurrencyO4hash4intoys6HasherVz_tF",
+            "moduleName": "WBExchangeSdk",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:13WBExchangeSdk10WBCurrencyO",
+        "mangledName": "$s13WBExchangeSdk10WBCurrencyO",
+        "moduleName": "WBExchangeSdk",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "WBExchangeSdkConfig",
         "printedName": "WBExchangeSdkConfig",
         "children": [
@@ -467,7 +1310,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(mode:merchantId:accessToken:refreshToken:showBackButtonOnHomePage:disableAddCard:)",
+            "printedName": "init(mode:merchantId:merchantPass:externalUserId:currencyAmount:currencyFrom:currencyTo:cryptoWallet:accessToken:refreshToken:showBackButtonOnHomePage:disableAddCard:email:env:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -491,6 +1334,78 @@
                 "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "WBExchangeSdk.WBCurrency?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "WBExchangeSdk.WBCurrency?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WBCurrency",
+                    "printedName": "WBExchangeSdk.WBCurrency",
+                    "usr": "s:13WBExchangeSdk10WBCurrencyO"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
                 "hasDefaultArg": true,
                 "usr": "s:SS"
               },
@@ -514,11 +1429,33 @@
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
                 "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WBSdkEnv",
+                "printedName": "WBExchangeSdk.WBSdkEnv",
+                "hasDefaultArg": true,
+                "usr": "s:13WBExchangeSdk8WBSdkEnvO"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePage14disableAddCardAcA0aB4ModeO_S3SS2btcfc",
-            "mangledName": "$s13WBExchangeSdk0aB6ConfigC4mode10merchantId11accessToken07refreshH024showBackButtonOnHomePage14disableAddCardAcA0aB4ModeO_S3SS2btcfc",
+            "usr": "s:13WBExchangeSdk0aB6ConfigC4mode10merchantId0E4Pass012externalUserF014currencyAmount0J4From0J2To12cryptoWallet11accessToken07refreshQ024showBackButtonOnHomePage14disableAddCard5email3envAcA0aB4ModeO_S3SSiSgAA10WBCurrencyOSgAWSSSgS2SS2bAxA8WBSdkEnvOtcfc",
+            "mangledName": "$s13WBExchangeSdk0aB6ConfigC4mode10merchantId0E4Pass012externalUserF014currencyAmount0J4From0J2To12cryptoWallet11accessToken07refreshQ024showBackButtonOnHomePage14disableAddCard5email3envAcA0aB4ModeO_S3SSiSgAA10WBCurrencyOSgAWSSSgS2SS2bAxA8WBSdkEnvOtcfc",
             "moduleName": "WBExchangeSdk",
             "declAttributes": [
               "AccessControl",
@@ -947,88 +1884,109 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 121,
       "length": 10,
       "value": "\"AuthMode\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 153,
       "length": 11,
       "value": "\"LoginMode\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
       "offset": 187,
       "length": 12,
       "value": "\"TokensMode\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1335,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1130,
+      "offset": 1915,
       "length": 27,
       "value": "\"io.whitebird.sdk.exchange\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1230,
+      "offset": 2015,
       "length": 8,
       "value": "\"System\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1515,
+      "offset": 2533,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 1550,
+      "offset": 2568,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 1595,
+      "offset": 2622,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 1633,
+      "offset": 2660,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
       "offset": 105,
       "length": 16,
       "value": "\"OnChangeTokens\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
       "offset": 146,
       "length": 14,
       "value": "\"OnBackButton\""
     },
     {
-      "filePath": "\/Users\/romangruzd\/WebstormProjects\/sdk-wrapper\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
       "offset": 1244,
       "length": 17,
       "value": "\"merchantId_TEST\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 1285,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 1313,
+      "length": 2,
+      "value": "\"\""
     }
   ]
 }
