@@ -63,7 +63,7 @@
         <button type="submit">Загрузить пользователя</button>
     </form>
     <div id="wbExchangeSdkWrapper" style="width: 360px; height:640px"></div>
-    <script src=" https://sdk.dev.wbdevel.net/v2.0/integration/wbExchangeSdk-v001.js"></script>
+    <script src="wbExchangeSdk-v001.js"></script>
     <script>
         const form = document.getElementById("apiForm");
         const merchantIdInput = document.getElementById("merchantId");
@@ -72,9 +72,9 @@
 
         // Загружаем сохранённые данные при открытии страницы
         window.addEventListener("DOMContentLoaded", () => {
-            merchantIdInput.value = localStorage.getItem("merchantId") || "QKdOtetagkcGgKhH9hZMYTYuOHI828FwRGrTE0YcqAnFER3D3TpVomsaTYB0zRH37MG6yHeTeZZK1U9tLqF";
-            clientIdInput.value = localStorage.getItem("clientId") || "7971cccf-d567-4717-a983-60487435a701";
-            apiKeyInput.value = localStorage.getItem("apiKey") || "132029e5-68f8-4cf7-84b7-eb8f4eacbe2e";
+            merchantIdInput.value = localStorage.getItem("merchantId") || "";
+            clientIdInput.value = localStorage.getItem("clientId") || "";
+            apiKeyInput.value = localStorage.getItem("apiKey") || "";
         });
 
         form.addEventListener("submit", async function(e) {
@@ -97,7 +97,8 @@
         window.setupFrame = async function (merchantId, clientId, apiKey) {
             wbExchangeSdk.cleanup()
 
-            const url = "https://api.dev.wbdevel.net/api/v2/auth/merchant/client/token/generate"
+            const baseUrl = window.location.origin.replace("sdk", "api");
+            const url = `${baseUrl}/api/v2/auth/merchant/client/token/generate`
             const bodyData = { clientId };
             const response = await fetch(url, {
                 method: "POST",
