@@ -39,7 +39,7 @@
     // optional params
     email: '',
     merchantPass: '', // header authorization basic token
-    externalUserId: '',
+    externalClientId: '',
     currencyAmount: '',
     currencyFrom: '',
     currencyTo: '',
@@ -83,7 +83,7 @@
 
     if (params.email !== undefined) config.email = params.email;
     if (params.merchantPass !== undefined) config.merchantPass = params.merchantPass;
-    if (params.externalUserId !== undefined) config.externalUserId = params.externalUserId;
+    if (params.externalClientId !== undefined) config.externalClientId = params.externalClientId;
     if (params.currencyAmount !== undefined) config.currencyAmount = params.currencyAmount;
     if (params.currencyFrom !== undefined) config.currencyFrom = params.currencyFrom;
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
@@ -145,7 +145,7 @@
       refresh_token: config.refreshToken,
       email: config.email,
       merchantPass: config.merchantPass,
-      externalUserId: config.externalUserId,
+      externalClientId: config.externalClientId,
       currencyAmount: config.currencyAmount,
       currencyFrom: config.currencyFrom,
       currencyTo: config.currencyTo,

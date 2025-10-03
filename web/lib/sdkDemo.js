@@ -28,7 +28,7 @@ class SdkDemo
 
       email: localStorage.getItem('cnf_email'),
       merchantPass: localStorage.getItem('cnf_merchantPass'),
-      externalUserId: localStorage.getItem('cnf_externalUserId'),
+      externalClientId: localStorage.getItem('cnf_externalClientId'),
       currencyAmount: localStorage.getItem('cnf_currencyAmount'),
       currencyFrom: localStorage.getItem('cnf_currencyFrom'),
       currencyTo: localStorage.getItem('cnf_currencyTo'),
@@ -54,8 +54,8 @@ class SdkDemo
       merchantPassInit: config.merchantPass,
       merchantPassUpdate: false,
 
-      externalUserIdInit: config.externalUserId,
-      externalUserIdUpdate: false,
+      externalClientIdInit: config.externalClientId,
+      externalClientIdUpdate: false,
 
       currencyAmountInit: config.currencyAmount,
       currencyAmountUpdate: false,
@@ -123,8 +123,8 @@ class SdkDemo
     this.#dom.merchantPassInput = document.getElementById('merchantPass');
     this.#dom.merchantPassValue = document.getElementById('merchantPassValue');
 
-    this.#dom.externalUserIdInput = document.getElementById('externalUserId');
-    this.#dom.externalUserIdValue = document.getElementById('externalUserIdValue');
+    this.#dom.externalClientIdInput = document.getElementById('externalClientId');
+    this.#dom.externalClientIdValue = document.getElementById('externalClientIdValue');
 
     this.#dom.currencyAmountInput = document.getElementById('currencyAmount');
     this.#dom.currencyAmountValue = document.getElementById('currencyAmountValue');
@@ -166,7 +166,7 @@ class SdkDemo
 
     this.#dom.emailInput.value = this.#config.email;
     this.#dom.merchantPassInput.innerHTML = this.#config.merchantPass;
-    this.#dom.externalUserIdInput.innerHTML = this.#config.externalUserId;
+    this.#dom.externalClientIdInput.innerHTML = this.#config.externalClientId;
     this.#dom.currencyAmountInput.value = this.#config.currencyAmount;
     this.#dom.currencyFromInput.value = this.#config.currencyFrom;
     this.#dom.currencyToInput.value = this.#config.currencyTo;
@@ -193,7 +193,7 @@ class SdkDemo
 
     this.#dom.merchantPassInput?.addEventListener('input', e => this.#setConfig('merchantPass', e.target.value.trim()));
 
-    this.#dom.externalUserIdInput?.addEventListener('input', e => this.#setConfig('externalUserId', e.target.value.trim()));
+    this.#dom.externalClientIdInput?.addEventListener('input', e => this.#setConfig('externalClientId', e.target.value.trim()));
 
     this.#dom.currencyAmountInput?.addEventListener('input', e => this.#setConfig('currencyAmount', e.target.value.trim()));
 
@@ -231,7 +231,7 @@ class SdkDemo
       this.#config.merchantIdInit = this.#config.merchantId;
       this.#config.emailInit = this.#config.email;
       this.#config.merchantPassInit = this.#config.merchantPass;
-      this.#config.externalUserIdInit = this.#config.externalUserId;
+      this.#config.externalClientIdInit = this.#config.externalClientId;
       this.#config.currencyAmountInput = this.#config.currencyAmount;
       this.#config.currencyFromInput = this.#config.currencyFrom;
       this.#config.currencyToInput = this.#config.currencyTo;
@@ -299,7 +299,7 @@ class SdkDemo
       merchantIdValue,
       merchantPassValue,
       emailValue,
-      externalUserIdValue,
+      externalClientIdValue,
       currencyAmountValue,
       currencyFromValue,
       currencyToValue,
@@ -345,10 +345,10 @@ class SdkDemo
     else this.#config.merchantPassUpdate && (merchantPassValue.className = merchantPassValue.className === 'prev' ? 'changed' : 'prev');
     this.#config.merchantPassUpdate = false;
 
-    externalUserIdValue.textContent = this.#config.externalUserId;
-    if( this.#config.externalUserId === this.#config.externalUserIdInit ) externalUserIdValue.className = '';
-    else this.#config.externalUserIdUpdate && (externalUserIdValue.className = externalUserIdValue.className === 'prev' ? 'changed' : 'prev');
-    this.#config.externalUserIdUpdate = false;
+    externalClientIdValue.textContent = this.#config.externalClientId;
+    if( this.#config.externalClientId === this.#config.externalClientIdInit ) externalClientIdValue.className = '';
+    else this.#config.externalClientIdUpdate && (externalClientIdValue.className = externalClientIdValue.className === 'prev' ? 'changed' : 'prev');
+    this.#config.externalClientIdUpdate = false;
 
     currencyAmountValue.textContent = this.#config.currencyAmount;
     if( this.#config.currencyAmount === this.#config.currencyAmountInit ) currencyAmountValue.className = '';
