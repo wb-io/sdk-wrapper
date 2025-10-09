@@ -1,169 +1,167 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+ <head>
+  <meta charset="UTF-8" />
   <title>WBExchangeSDK Demo</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script src="sdkDemo.js"></script>
-  <script src="wbExchangeSdk-v001.js"></script>
-</head>
-<body>
-<header>Demo App</header>
-<main>
-  <aside>
-    <form>
-      <fieldset>
-        <label for="authMode">
-          <input type="radio" id="authMode" name="sdkMode" value="AuthMode">
-          AuthMode
-        </label>
-        <label for="loginMode">
-          <input type="radio" id="loginMode" name="sdkMode" value="LoginMode">
-          LoginMode
-        </label>
-        <label for="tokensMode">
-          <input type="radio" id="tokensMode" name="sdkMode" value="TokensMode">
-          TokensMode
-        </label>
-        <div id="tokens" class="field">
-          <label for="accessToken">accessToken</label>
-          <textarea name="accessToken" id="accessToken" cols="10" rows="2"></textarea>
-          <label for="refreshToken">refreshToken</label>
-          <textarea name="refreshToken" id="refreshToken" cols="10" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label for="merchantId">merchantId</label>
-          <textarea name="merchantId" id="merchantId" cols="10" rows="2"></textarea>
-        </div>
-        <div id="userData" class="field">
-          <label for="email">email</label>
-          <input type="email" name="email" id="email">
-        </div>
-        <div class="field">
-          <label for="merchantPass">merchantPass</label>
-          <textarea name="merchantPass" id="merchantPass" cols="10" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label for="externalClientId">externalClientId</label>
-          <textarea name="externalClientId" id="externalClientId" cols="10" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label for="currencyAmount">currencyAmount</label>
-          <input type="number" name="currencyAmount" id="currencyAmount">
-        </div>
-        <div class="field">
-          <label for="currencyFrom">currencyFrom</label>
-          <select id="currencyFrom" class="dropdown" autocomplete="off">
-            <option value="">— Не выбрано —</option>
-            <option value="BYN">BYN</option>
-            <option value="RUB">RUB</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="BTC">BTC</option>
-            <option value="ETH">ETH</option>
-            <option value="USDT">USDT (ERC-20)</option>
-            <option value="TRX">TRX</option>
-            <option value="USDT_TRC">USDT (TRC-20)</option>
-            <option value="TON">TON</option>
-            <option value="USDT_TON">USDT (TON)</option>
-            <option value="WBP">WBP (TRC-20)</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="currencyTo">currencyTo</label>
-          <select id="currencyTo" class="dropdown" data-placeholder="Выберите валюту">
-            <option value="">— Не выбрано —</option>
-            <option value="BYN">BYN</option>
-            <option value="RUB">RUB</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="BTC">BTC</option>
-            <option value="ETH">ETH</option>
-            <option value="USDT">USDT (ERC-20)</option>
-            <option value="TRX">TRX</option>
-            <option value="USDT_TRC">USDT (TRC-20)</option>
-            <option value="TON">TON</option>
-            <option value="USDT_TON">USDT (TON)</option>
-            <option value="WBP">WBP (TRC-20)</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="cryptoWallet">cryptoWallet</label>
-          <textarea name="" id="cryptoWallet" cols="10" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label for="redirectUrl">redirectUrl</label>
-          <textarea name="" id="redirectUrl" cols="10" rows="2"></textarea>
-        </div>
-        <div id="startAppPageField" class="field">
-          <label for="startAppPage">startAppPage</label>
-          <select id="startAppPage" class="dropdown" autocomplete="off">
-            <option value="">— Домашняя страница —</option>
-            <option value="/account/payments">Способы оплаты</option>
-            <option value="/user-operations">История транзакций</option>
-          </select>
-        </div>
-        <label for="showBackButton">
-          <input type="checkbox" id="showBackButton" name="showBackButton">
-          showBackButton
-        </label>
-        <label for="disableAddCard">
-          <input type="checkbox" id="disableAddCard" name="disableAddCard">
-          disableAddCard
-        </label>
-      </fieldset>
-      <button type="submit" id="updateSdk">Пересоздать iframe</button>
+  <link rel="stylesheet" href="./styles.css" />
+ </head>
+ <body>
+  <header>Demo App</header>
+  <main>
+   <aside>
+    <form id="demo-form">
+     <fieldset>
+      <label for="authMode">
+       <input type="radio" id="authMode" name="sdkMode" value="AuthMode" />
+       AuthMode
+      </label>
+      <label for="loginMode">
+       <input type="radio" id="loginMode" name="sdkMode" value="LoginMode" />
+       LoginMode
+      </label>
+      <label for="tokensMode">
+       <input type="radio" id="tokensMode" name="sdkMode" value="TokensMode" />
+       TokensMode
+      </label>
+      <div id="tokens" class="field">
+       <label for="accessToken">accessToken</label>
+       <textarea name="accessToken" id="accessToken" cols="10" rows="2"></textarea>
+       <label for="refreshToken">refreshToken</label>
+       <textarea name="refreshToken" id="refreshToken" cols="10" rows="2"></textarea>
+      </div>
+      <div class="field">
+       <label for="merchantId">merchantId</label>
+       <textarea name="merchantId" id="merchantId" cols="10" rows="2"></textarea>
+      </div>
+      <div id="userData" class="field">
+       <label for="email">email</label>
+       <input type="email" name="email" id="email" />
+      </div>
+      <div class="field">
+       <label for="merchantPass">merchantPass</label>
+       <textarea name="merchantPass" id="merchantPass" cols="10" rows="2"></textarea>
+      </div>
+      <div class="field">
+       <label for="externalClientId">externalClientId</label>
+       <textarea name="externalClientId" id="externalClientId" cols="10" rows="2"></textarea>
+      </div>
+      <div class="field">
+       <label for="currencyAmount">currencyAmount</label>
+       <input type="number" name="currencyAmount" id="currencyAmount" />
+      </div>
+      <div class="field">
+       <label for="currencyFrom">currencyFrom</label>
+       <select id="currencyFrom" class="dropdown" autocomplete="off">
+        <option value="">— Не выбрано —</option>
+        <option value="BYN">BYN</option>
+        <option value="RUB">RUB</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="USDT">USDT (ERC-20)</option>
+        <option value="TRX">TRX</option>
+        <option value="USDT_TRC">USDT (TRC-20)</option>
+        <option value="TON">TON</option>
+        <option value="USDT_TON">USDT (TON)</option>
+        <option value="WBP">WBP (TRC-20)</option>
+       </select>
+       <label for="disabledCurrencyFrom">
+        <input type="checkbox" name="disabledCurrencyFrom" id="disabledCurrencyFrom" />
+        disabled currency from
+       </label>
+      </div>
+      <div class="field">
+       <label for="currencyTo">currencyTo</label>
+       <select id="currencyTo" class="dropdown" data-placeholder="Выберите валюту">
+        <option value="">— Не выбрано —</option>
+        <option value="BYN">BYN</option>
+        <option value="RUB">RUB</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="USDT">USDT (ERC-20)</option>
+        <option value="TRX">TRX</option>
+        <option value="USDT_TRC">USDT (TRC-20)</option>
+        <option value="TON">TON</option>
+        <option value="USDT_TON">USDT (TON)</option>
+        <option value="WBP">WBP (TRC-20)</option>
+       </select>
+       <label for="disabledCurrencyTo">
+        <input type="checkbox" name="disabledCurrencyTo" id="disabledCurrencyTo" />
+        disabled currency to
+       </label>
+      </div>
+      <div class="field">
+       <label for="cryptoWallet">cryptoWallet</label>
+       <textarea name="" id="cryptoWallet" cols="10" rows="2"></textarea>
+      </div>
+      <div class="field">
+       <label for="redirectUrl">redirectUrl</label>
+       <textarea name="" id="redirectUrl" cols="10" rows="2"></textarea>
+      </div>
+      <div id="startAppPageField" class="field">
+       <label for="startAppPage">startAppPage</label>
+       <select id="startAppPage" class="dropdown" autocomplete="off">
+        <option value="">— Домашняя страница —</option>
+        <option value="/account/payments">Способы оплаты</option>
+        <option value="/user-operations">История транзакций</option>
+       </select>
+      </div>
+      <label for="showBackButton">
+       <input type="checkbox" id="showBackButton" name="showBackButton" />
+       showBackButton
+      </label>
+      <label for="disableAddCard">
+       <input type="checkbox" id="disableAddCard" name="disableAddCard" />
+       disableAddCard
+      </label>
+     </fieldset>
+     <button type="submit" id="updateSdk">Пересоздать iframe</button>
     </form>
-  </aside>
+   </aside>
 
-  <h2>Настройка WBExchangeSDK</h2>
-  <h3>Контейнер</h3>
-  <ul>
+   <h2>Настройка WBExchangeSDK</h2>
+   <h3>Контейнер</h3>
+   <ul>
+    <li>Контент SDK расчитан на мобильную версию - контейнер не рекомендуется делать менее 360 пикселей</li>
     <li>
-      Контент SDK расчитан на мобильную версию
-      - контейнер не рекомендуется делать менее 360 пикселей
+     <p>Контейнер для SDK может находиться в любом месте сайта</p>
+     <ul>
+      <li>для примера контейнер расположен во float элементе с размерами 360 х 640 пикселей</li>
+      <li>
+       <code>&lt;div id=&quot;wbExchangeSdkWrapper&quot;&gt;&lt;/div&gt;</code>
+      </li>
+     </ul>
     </li>
     <li>
-      <p>
-        Контейнер для SDK может находиться в любом месте сайта
-      </p>
-      <ul>
-        <li>
-          для примера контейнер расположен во float элементе с размерами 360 х 640
-          пикселей
-        </li>
-        <li>
-          <code>&lt;div id=&quot;wbExchangeSdkWrapper&quot;&gt;&lt;/div&gt;</code>
-        </li>
-      </ul>
+     <p>Далее в конфиг передаем html-element этого контейнера</p>
     </li>
+   </ul>
+
+   <button id="sdk-again">SDK setup again</button>
+   <div id="wbExchangeSdkWrapper"></div>
+
+   <ul>
     <li>
-      <p>Далее в конфиг передаем html-element этого контейнера</p>
+     <p>
+      <b>!! SDK не изменяет стилей контейнера</b>
+     </p>
+     <ul>
+      <li>все стили контейнера настраиваются приложением</li>
+      <li>SDK iframe занимает все доступное место в контейнере</li>
+     </ul>
     </li>
-  </ul>
+   </ul>
 
-  <button id="sdk-again">SDK setup again</button>
-  <div id="wbExchangeSdkWrapper"></div>
-
-  <ul>
-    <li>
-      <p>
-        <b>!! SDK не изменяет стилей контейнера</b>
-      </p>
-      <ul>
-        <li>все стили контейнера настраиваются приложением</li>
-        <li>SDK iframe занимает все доступное место в контейнере</li>
-      </ul>
-    </li>
-  </ul>
-
-  <h3>
+   <h3>
     SDK init / config
     <button id="copyTo">Copy to clipboard</button>
-  </h3>
-  <ul>
+   </h3>
+   <ul>
     <li id="codeWrapper">
-          <pre id="setupCode"><b>wbExchangeSdk.setup</b>({
+     <pre id="setupCode"><b>wbExchangeSdk.setup</b>({
   <span>// required params:</span>
   <b>el</b>: document.getElementById(<wbr>"wbExchangeSdkWrapper"),
   <b>mode</b>: wbExchangeSdk.mode.<span id="sdkMode">AuthMode</span>,
@@ -186,6 +184,8 @@
   <b>currencyAmount</b>: <span id="currencyAmountValue"></span>,
   <b>currencyFrom</b>: <span id="currencyFromValue"></span>,
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
+  <b>disabledCurrencyFrom</b>: <span id="disabledCurrencyFromValue"></span>,
+  <b>disabledCurrencyTo</b>: <span id="disabledCurrencyToValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>startAppPage</b>: <span id="startAppPageValue"></span>,
@@ -193,135 +193,137 @@
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
   <b>onOrderCreated</b>: ({ orderId, internalCryptoAddress }) => {},
   <b>onExit</b>: () => {},
+  <b>debug</b>: boolean,
 })</pre>
-      <div id="copied">Скопировано</div>
+     <div id="copied">Скопировано</div>
     </li>
     <li>
-      <p>
-        SDK iframe вставиться в контейнер только если будут переданы обязательные
-        параметры: <code>el, mode, merchantId</code>,
-        <br>- а также <code>accessToken</code> и <code>refreshToken</code> в
-        TokensMode
-      </p>
+     <p>
+      SDK iframe вставиться в контейнер только если будут переданы обязательные параметры:
+      <code>el, mode, merchantId</code>
+      ,
+      <br />
+      - а также
+      <code>accessToken</code>
+      и
+      <code>refreshToken</code>
+      в TokensMode
+     </p>
     </li>
     <li>
-      <pre><b>wbExchangeSdk.mode</b> = AuthMode | LoginMode | TokensMode</pre>
+     <pre><b>wbExchangeSdk.mode</b> = AuthMode | LoginMode | TokensMode</pre>
     </li>
     <li>
-      <pre><b>wbExchangeSdk.cleanup</b>()</pre>
-      <p>
-        удаление iframe и очистка всех переданных параметров <br>
-        - в данном примере срабатывает при нажатии кнопки Back на SDK Home Page
-      </p>
+     <pre><b>wbExchangeSdk.cleanup</b>()</pre>
+     <p>
+      удаление iframe и очистка всех переданных параметров
+      <br />
+      - в данном примере срабатывает при нажатии кнопки Back на SDK Home Page
+     </p>
     </li>
-  </ul>
+   </ul>
 
-  <h3>Подключение скрипта</h3>
-  <ul>
+   <h3>Подключение скрипта</h3>
+   <ul>
     <li>
-      <pre>&lt;script src="https://sdk.dev.wbdevel.net/v2.0/integration/wbExchangeSdk-v001.js"&gt;&lt;/script&gt;</pre>
+     <pre>&lt;script src="https://sdk.dev.wbdevel.net/v2.0/integration/wbExchangeSdk-v001.js"&gt;&lt;/script&gt;</pre>
     </li>
-  </ul>
+   </ul>
+  </main>
 
-</main>
-
-<script>
-  // ----------------------------------------------------
-  function initSdkFromMainApp()
-  {
+  <script>
+   // ----------------------------------------------------
+   function initSdkFromMainApp() {
     const logColor = 'background:#ff0;color:#000;';
     const log = (title, ...params) => console.log.call(null, `%c ${title}`, logColor, ...params);
 
     const { config } = sdkDemo;
 
-    const setupParams = (config) => {
-      const baseParams = {
-        // required params:
-        el: document.getElementById('wbExchangeSdkWrapper'),
-        mode: config.mode,
-        merchantId: config.merchantId,
+    const setupParams = config => {
+     const baseParams = {
+      // required params:
+      el: document.getElementById('wbExchangeSdkWrapper'),
+      mode: config.mode,
+      merchantId: config.merchantId,
 
-        // optional params (available in all modes):
-        email: config.email,
-        merchantPass: config.merchantPass,
-        externalClientId: config.externalClientId,
-        currencyAmount: config.currencyAmount,
-        currencyFrom: config.currencyFrom,
-        currencyTo: config.currencyTo,
-        cryptoWallet: config.cryptoWallet,
-        redirectUrl: config.redirectUrl,
-        showBackButtonOnHomePage: config.showBackButton,
-        disableAddCard: config.disableAddCard,
-      };
+      // optional params (available in all modes):
+      email: config.email,
+      merchantPass: config.merchantPass,
+      externalClientId: config.externalClientId,
+      currencyAmount: config.currencyAmount,
+      currencyFrom: config.currencyFrom,
+      disabledCurrencyFrom: config.disabledCurrencyFrom,
+      currencyTo: config.currencyTo,
+      disabledCurrencyTo: config.disabledCurrencyTo,
+      cryptoWallet: config.cryptoWallet,
+      redirectUrl: config.redirectUrl,
+      showBackButtonOnHomePage: config.showBackButton,
+      disableAddCard: config.disableAddCard,
+     };
 
-      // Params only for TokensMode
-      if (config.mode === 'TokensMode') {
-        baseParams.accessToken = config.accessToken;
-        baseParams.refreshToken = config.refreshToken;
-        baseParams.startAppPage = config.startAppPage;
-      }
+     // Params only for TokensMode
+     if (config.mode === 'TokensMode') {
+      baseParams.accessToken = config.accessToken;
+      baseParams.refreshToken = config.refreshToken;
+      baseParams.startAppPage = config.startAppPage;
+     }
 
-      // Params only for LoginMode  
-      if (config.mode === 'LoginMode') {
-        baseParams.startAppPage = config.startAppPage;
-      }
+     // Params only for LoginMode
+     if (config.mode === 'LoginMode') {
+      baseParams.startAppPage = config.startAppPage;
+     }
 
-      return baseParams;
+     return baseParams;
     };
 
     wbExchangeSdk.setup({
-      ...setupParams(config),
+     ...setupParams(config),
 
-      // Event handlers
-      onLogin: ({ email, accessToken, refreshToken, isUserVerified }) =>
-      {
-        log('MAIN_APP   onLogin =');
-        log('...  email =', email);
-        log('...  accessToken =', accessToken);
-        log('...  refreshToken =', refreshToken);
-        log('...  isUserVerified =', isUserVerified);
-      },
+     // Event handlers
+     onLogin: ({ email, accessToken, refreshToken, isUserVerified }) => {
+      log('MAIN_APP   onLogin =');
+      log('...  email =', email);
+      log('...  accessToken =', accessToken);
+      log('...  refreshToken =', refreshToken);
+      log('...  isUserVerified =', isUserVerified);
+     },
 
-      onUserData: ({ email, accessToken, refreshToken }) =>
-      {
-        log('MAIN_APP   onUserData =');
-        log('...  email =', email);
-        log('...  accessToken =', accessToken);
-        log('...  refreshToken =', refreshToken);
-      },
+     onUserData: ({ email, accessToken, refreshToken }) => {
+      log('MAIN_APP   onUserData =');
+      log('...  email =', email);
+      log('...  accessToken =', accessToken);
+      log('...  refreshToken =', refreshToken);
+     },
 
-      onOrderCreated: ({ orderId, internalCryptoAddress }) =>
-      {
-        log('MAIN_APP   onOrderCreated =');
-        log('...  orderId =', orderId);
-        log('...  internalCryptoAddress =', internalCryptoAddress);
-      },
+     onOrderCreated: ({ orderId, internalCryptoAddress }) => {
+      log('MAIN_APP   onOrderCreated =');
+      log('...  orderId =', orderId);
+      log('...  internalCryptoAddress =', internalCryptoAddress);
+     },
 
-      onExit: () =>
-      {
-        log('MAIN_APP onExit =');
-        const exit = confirm('Нажата кнопка Back.\nВы дествительно хотите выйти/закрыть SDK?');
-        if( exit )
-        {
-          wbExchangeSdk.cleanup();
-          sdkDemo.showAgainBtn();
-        }
-      },
+     onExit: () => {
+      log('MAIN_APP onExit =');
+      const exit = confirm('Нажата кнопка Back.\nВы дествительно хотите выйти/закрыть SDK?');
+      if (exit) {
+       wbExchangeSdk.cleanup();
+       sdkDemo.showAgainBtn();
+      }
+     },
     });
-  }
+   }
 
-  // ----------------------------------------------------
+   // ----------------------------------------------------
 
-  window.addEventListener('load', () =>
-  {
+   window.addEventListener('load', () => {
     window.sdkDemo = new SdkDemo({
-      initSdkFn: initSdkFromMainApp,
-      cleanupSdkFn: wbExchangeSdk.cleanup,
+     initSdkFn: initSdkFromMainApp,
+     cleanupSdkFn: wbExchangeSdk.cleanup,
     });
-  });
+   });
 
-  // ----------------------------------------------------
-</script>
-
-</body>
+   // ----------------------------------------------------
+  </script>
+  <script src="sdkDemo.js"></script>
+  <script src="wbExchangeSdk-v001.js"></script>
+ </body>
 </html>
