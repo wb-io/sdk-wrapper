@@ -1,5 +1,6 @@
 package io.whitebird.sdk.exchange
 
+import java.math.BigDecimal
 import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
 
 enum class WBExchangeSdkMode
@@ -13,7 +14,7 @@ enum class WBExchangeEnvironment {
     DEV,
     QA,
     PROD;
-    
+
     fun getBaseUrl(): String {
         return when(this) {
             DEV -> "https://sdk.dev.wbdevel.net/v2.0/"
@@ -21,6 +22,29 @@ enum class WBExchangeEnvironment {
             PROD -> "https://sdk.whitebird.io/v2.0/"
         }
     }
+}
+
+// Currency options for pre-filling. Display names for reference:
+enum class WBCurrency(val displayName: String) {
+    BYN("BYN"),
+    USD("USD"),
+    EUR("EUR"),
+    RUB("RUB"),
+    BTC("BTC"),
+    ETH("ETH"),
+    USDT("USDT (ERC-20)"),
+    TRX("TRX"),
+    USDC("USDC (ERC-20)"),
+    USDT_TRC("USDT (TRC-20)"),
+    TON("TON"),
+    USDT_TON("USDT (TON)"),
+    WBP("WBP (TRC-20)");
+}
+
+enum class WBStartAppPage(val urlPath: String?) {
+    HOMEPAGE(null),
+    PAYMENTS("/account/payments"),
+    OPERATIONS("/user-operations");
 }
 
 class WBExchangeConfig
@@ -49,6 +73,15 @@ class WBExchangeConfig
     var onExitHandler: (() -> Unit)? = null
 
     var disableAddCard: Boolean = false
+
+    var email: String? = null
+    var externalClientId: String? = null
+    var currencyAmount: BigDecimal? = null
+    var currencyFrom: WBCurrency? = null
+    var currencyTo: WBCurrency? = null
+    var cryptoWallet: String? = null
+    var refId: String? = null
+    var startAppPage: WBStartAppPage = WBStartAppPage.HOMEPAGE
 
     // -----------------------------------------
 
@@ -109,6 +142,15 @@ class WBExchangeConfig
         val disableAddCardQuery =
             "&disableAddCard=${if (disableAddCard) "true" else "false"}"
 
-        return "${server}${modeQuery}${merchantIdQuery}${merchantPassQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}"
+        val emailQuery = if (!email.isNullOrBlank()) "&email=${email}" else ""
+        val externalClientIdQuery = if (!externalClientId.isNullOrBlank()) "&externalClientId=${externalClientId}" else ""
+        val currencyAmountQuery = if (currencyAmount != null) "&currencyAmount=${currencyAmount!!.toPlainString()}" else ""
+        val currencyFromQuery = if (currencyFrom != null) "&currencyFrom=${currencyFrom}" else ""
+        val currencyToQuery = if (currencyTo != null) "&currencyTo=${currencyTo}" else ""
+        val cryptoWalletQuery = if (!cryptoWallet.isNullOrBlank()) "&cryptoWallet=${cryptoWallet}" else ""
+        val refIdQuery = if (!refId.isNullOrBlank()) "&refId=${refId}" else ""
+        val startAppPageQuery = startAppPage.urlPath?.let { "&startAppPage=$it" } ?: ""
+
+        return "${server}${modeQuery}${merchantIdQuery}${merchantPassQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}${emailQuery}${externalClientIdQuery}${currencyAmountQuery}${currencyFromQuery}${currencyToQuery}${cryptoWalletQuery}${refIdQuery}${startAppPageQuery}"
     }
 }

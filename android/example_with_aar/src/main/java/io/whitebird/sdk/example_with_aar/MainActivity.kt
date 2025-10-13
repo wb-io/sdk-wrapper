@@ -10,6 +10,9 @@ import androidx.core.view.WindowInsetsCompat
 import io.whitebird.sdk.exchange.WBExchangeSdk
 import io.whitebird.sdk.exchange.WBExchangeSdkMode
 import io.whitebird.sdk.exchange.WBExchangeEnvironment
+import io.whitebird.sdk.exchange.WBCurrency
+import io.whitebird.sdk.exchange.WBStartAppPage
+import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity()
 {
@@ -68,6 +71,17 @@ class MainActivity : AppCompatActivity()
             },
 
             disableAddCard = true,
+
+            // Other optional parameters
+//            email = "user@example.com",
+//            externalClientId = "012abc...",
+//            cryptoWallet = "0xabc...",
+//            refId = "ref-id-...",
+//
+//            currencyAmount = BigDecimal("100.00"),
+//            currencyFrom = WBCurrency.USD,
+//            currencyTo = WBCurrency.USDT,
+//            startAppPage = WBStartAppPage.PAYMENTS,
         )
     }
 

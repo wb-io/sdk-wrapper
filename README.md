@@ -34,16 +34,16 @@ You can build the AAR module in two ways:
 **Debug version** - allows loading from local server via HTTP  
 **Release version** - only allows HTTPS connections
 
-After building, rename the file to match your version, e.g., `wbexchangesdk-0.1.0.aar`
+After building, rename the file to match your version, e.g., `wbexchangesdk-0.2.0.aar`
 
 ## Integration Using AAR
 
-1. Place the `wbexchangesdk-0.1.0.aar` file in your app's `libs` folder
+1. Place the `wbexchangesdk-0.2.0.aar` file in your app's `libs` folder
 
 2. Modify the `build.gradle.kts` file for the module containing the AAR:
    ```kotlin
    dependencies {
-       implementation(files("libs/wbexchangesdk-0.1.0.aar"))
+       implementation(files("libs/wbexchangesdk-0.2.0.aar"))
        
        // Required transitive dependencies
        implementation("androidx.databinding:viewbinding:8.6.0")
@@ -98,6 +98,17 @@ After building, rename the file to match your version, e.g., `wbexchangesdk-0.1.
                },
                
                disableAddCard = true,
+
+               // Other optional parameters
+               email = "user@example.com",
+               externalClientId = "client-123",
+               cryptoWallet = "0xabc...",
+               refId = "ref-42",
+
+               currencyAmount = BigDecimal("123.45"),
+               currencyFrom = WBCurrency.USD,
+               currencyTo = WBCurrency.USDT,
+               startAppPage = WBStartAppPage.PAYMENTS,
            )
        }
        
