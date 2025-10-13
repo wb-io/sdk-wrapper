@@ -1,6 +1,7 @@
 package io.whitebird.sdk.exchange
 
 import android.util.Log
+import java.math.BigDecimal
 
 class WBExchangeSdk private constructor()
 {
@@ -54,7 +55,17 @@ class WBExchangeSdk private constructor()
         showBackButtonOnHomePage: Boolean = false,
         onExit: (() -> Unit)? = null,
 
-        disableAddCard: Boolean = false
+        disableAddCard: Boolean = false,
+
+        // Optional parameters
+        email: String? = null,
+        externalClientId: String? = null,
+        currencyAmount: BigDecimal? = null,
+        currencyFrom: WBCurrency? = null,
+        currencyTo: WBCurrency? = null,
+        cryptoWallet: String? = null,
+        refId: String? = null,
+        startAppPage: WBStartAppPage = WBStartAppPage.HOMEPAGE
     )
     {
         setLogEnabled(logEnabled)
@@ -93,6 +104,15 @@ class WBExchangeSdk private constructor()
 //        }
 
         config.disableAddCard = disableAddCard
+
+        config.email = email
+        config.externalClientId = externalClientId
+        config.currencyAmount = currencyAmount
+        config.currencyFrom = currencyFrom
+        config.currencyTo = currencyTo
+        config.cryptoWallet = cryptoWallet
+        config.refId = refId
+        config.startAppPage = startAppPage
 
         config.updateWebViewUrl?.invoke()
     }
