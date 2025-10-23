@@ -22,18 +22,18 @@
  // const SDK_URL = `${SDK_ORIGIN}`;
 
  const defaultConfig = {
-  sdkIframe: null,
+  sdkIframe: undefined,
 
   // required params
-  el: null, // sdk wrapper in some app -> html element
-  mode: null, // -> SdkMode
+  el: undefined, // sdk wrapper in some app -> html element
+  mode: undefined, // -> SdkMode
   merchantId: '', //
 
   // AuthMode
-  onLoginHandler: null,
+  onLoginHandler: undefined,
 
   // LoginMode
-  onUserDataHandler: null,
+  onUserDataHandler: undefined,
 
   // TokensMode
   accessToken: '',
@@ -46,16 +46,16 @@
   currencyAmount: '',
   currencyFrom: '',
   currencyTo: '',
-  disabledCurrencyFrom: false,
-  disabledCurrencyTo: false,
+  disableCurrencyFrom: false,
+  disableCurrencyTo: false,
   cryptoWallet: '',
   redirectUrl: '',
   startAppPage: '',
   refId: '',
   showBackButtonOnHomePage: false,
   disableAddCard: false,
-  onOrderCreatedHandler: null,
-  onExitHandler: null,
+  onOrderCreatedHandler: undefined,
+  onExitHandler: undefined,
  };
 
  let config = Object.assign({}, defaultConfig);
@@ -70,7 +70,7 @@
 
   if (params.el && config.el !== params.el && config.sdkIframe) {
    config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
-   config.sdkIframe = null;
+   config.sdkIframe = undefined;
   }
 
   if (params.el !== undefined) config.el = params.el;
@@ -78,7 +78,7 @@
    config.mode =
     params.mode === SdkMode.AuthMode || params.mode === SdkMode.LoginMode || params.mode === SdkMode.TokensMode
      ? params.mode
-     : null;
+     : undefined;
   }
   if (params.merchantId !== undefined) config.merchantId = params.merchantId;
 
@@ -94,8 +94,8 @@
   if (params.currencyAmount !== undefined) config.currencyAmount = params.currencyAmount;
   if (params.currencyFrom !== undefined) config.currencyFrom = params.currencyFrom;
   if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
-  if (params.disabledCurrencyFrom !== undefined) config.disabledCurrencyFrom = params.disabledCurrencyFrom;
-  if (params.disabledCurrencyTo !== undefined) config.disabledCurrencyTo = params.disabledCurrencyTo;
+  if (params.disableCurrencyFrom !== undefined) config.disableCurrencyFrom = params.disableCurrencyFrom;
+  if (params.disableCurrencyTo !== undefined) config.disableCurrencyTo = params.disableCurrencyTo;
   if (params.cryptoWallet !== undefined) config.cryptoWallet = params.cryptoWallet;
   if (params.redirectUrl !== undefined) config.redirectUrl = params.redirectUrl;
   if (params.startAppPage !== undefined) config.startAppPage = params.startAppPage;
@@ -154,8 +154,8 @@
    currencyAmount: config.currencyAmount,
    currencyFrom: config.currencyFrom,
    currencyTo: config.currencyTo,
-   disabledCurrencyFrom: config.disabledCurrencyFrom,
-   disabledCurrencyTo: config.disabledCurrencyTo,
+   disableCurrencyFrom: config.disableCurrencyFrom,
+   disableCurrencyTo: config.disableCurrencyTo,
    cryptoWallet: config.cryptoWallet,
    redirectUrl: config.redirectUrl,
    startAppPage: config.startAppPage,
@@ -165,7 +165,7 @@
   };
 
   const queryString = Object.entries(params)
-   .filter(([key, value]) => value !== undefined)
+   .filter(([key, value]) => value)
    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
    .join('&');
   return `${SDK_URL}/?${queryString}`;

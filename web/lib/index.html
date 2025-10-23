@@ -51,7 +51,7 @@
       </div>
       <div class="field">
        <label for="currencyFrom">currencyFrom</label>
-       <select id="currencyFrom" class="dropdown" autocomplete="off">
+       <select id="currencyFrom" class="dropdown">
         <option value="">— Не выбрано —</option>
         <option value="BYN">BYN</option>
         <option value="RUB">RUB</option>
@@ -66,8 +66,8 @@
         <option value="USDT_TON">USDT (TON)</option>
         <option value="WBP">WBP (TRC-20)</option>
        </select>
-       <label for="disabledCurrencyFrom">
-        <input type="checkbox" name="disabledCurrencyFrom" id="disabledCurrencyFrom" />
+       <label for="disableCurrencyFrom">
+        <input type="checkbox" name="disableCurrencyFrom" id="disableCurrencyFrom" />
         disabled currency from
        </label>
       </div>
@@ -88,8 +88,8 @@
         <option value="USDT_TON">USDT (TON)</option>
         <option value="WBP">WBP (TRC-20)</option>
        </select>
-       <label for="disabledCurrencyTo">
-        <input type="checkbox" name="disabledCurrencyTo" id="disabledCurrencyTo" />
+       <label for="disableCurrencyTo">
+        <input type="checkbox" name="disableCurrencyTo" id="disableCurrencyTo" />
         disabled currency to
        </label>
       </div>
@@ -184,8 +184,8 @@
   <b>currencyAmount</b>: <span id="currencyAmountValue"></span>,
   <b>currencyFrom</b>: <span id="currencyFromValue"></span>,
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
-  <b>disabledCurrencyFrom</b>: <span id="disabledCurrencyFromValue"></span>,
-  <b>disabledCurrencyTo</b>: <span id="disabledCurrencyToValue"></span>,
+  <b>disableCurrencyFrom</b>: <span id="disableCurrencyFromValue"></span>,
+  <b>disableCurrencyTo</b>: <span id="disableCurrencyToValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>startAppPage</b>: <span id="startAppPageValue"></span>,
@@ -252,9 +252,9 @@
       externalClientId: config.externalClientId,
       currencyAmount: config.currencyAmount,
       currencyFrom: config.currencyFrom,
-      disabledCurrencyFrom: config.disabledCurrencyFrom,
+      disableCurrencyFrom: config.disableCurrencyFrom,
       currencyTo: config.currencyTo,
-      disabledCurrencyTo: config.disabledCurrencyTo,
+      disableCurrencyTo: config.disableCurrencyTo,
       cryptoWallet: config.cryptoWallet,
       redirectUrl: config.redirectUrl,
       showBackButtonOnHomePage: config.showBackButton,
