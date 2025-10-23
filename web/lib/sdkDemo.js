@@ -18,24 +18,24 @@ class SdkDemo {
 
   let config = {
    mode: localStorage.getItem('cnf_mode') || 'AuthMode',
-   merchantId: localStorage.getItem('cnf_merchantId'),
+   merchantId: localStorage.getItem('cnf_merchantId') || '',
 
-   accessToken: localStorage.getItem('cnf_accessToken'),
-   refreshToken: localStorage.getItem('cnf_refreshToken'),
+   accessToken: localStorage.getItem('cnf_accessToken') || '',
+   refreshToken: localStorage.getItem('cnf_refreshToken') || '',
 
-   email: localStorage.getItem('cnf_email'),
-   merchantPass: localStorage.getItem('cnf_merchantPass'),
-   externalClientId: localStorage.getItem('cnf_externalClientId'),
-   currencyAmount: localStorage.getItem('cnf_currencyAmount'),
-   currencyFrom: localStorage.getItem('cnf_currencyFrom'),
-   currencyTo: localStorage.getItem('cnf_currencyTo'),
-   cryptoWallet: localStorage.getItem('cnf_cryptoWallet'),
-   redirectUrl: localStorage.getItem('cnf_redirectUrl'),
-   startAppPage: localStorage.getItem('cnf_startAppPage'),
+   email: localStorage.getItem('cnf_email') || '',
+   merchantPass: localStorage.getItem('cnf_merchantPass') || '',
+   externalClientId: localStorage.getItem('cnf_externalClientId') || '',
+   currencyAmount: localStorage.getItem('cnf_currencyAmount') || '',
+   currencyFrom: localStorage.getItem('cnf_currencyFrom') || '',
+   currencyTo: localStorage.getItem('cnf_currencyTo') || '',
+   cryptoWallet: localStorage.getItem('cnf_cryptoWallet') || '',
+   redirectUrl: localStorage.getItem('cnf_redirectUrl') || '',
+   startAppPage: localStorage.getItem('cnf_startAppPage') || '',
    showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
    disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
-   disabledCurrencyFrom: localStorage.getItem('cnf_disabledCurrencyFrom') === 'true',
-   disabledCurrencyTo: localStorage.getItem('cnf_disabledCurrencyTo') === 'true',
+   disableCurrencyFrom: localStorage.getItem('cnf_disableCurrencyFrom') === 'true',
+   disableCurrencyTo: localStorage.getItem('cnf_disableCurrencyTo') === 'true',
   };
 
   this.#config = {
@@ -80,11 +80,11 @@ class SdkDemo {
    disableAddCardInit: config.disableAddCard,
    disableAddCardUpdate: false,
 
-   disabledCurrencyFromInit: config.disabledCurrencyFrom,
-   disabledCurrencyFromUpdate: false,
+   disableCurrencyFromInit: config.disableCurrencyFrom,
+   disableCurrencyFromUpdate: false,
 
-   disabledCurrencyToInit: config.disabledCurrencyTo,
-   disabledCurrencyToUpdate: false,
+   disableCurrencyToInit: config.disableCurrencyTo,
+   disableCurrencyToUpdate: false,
   };
 
   this.#initDom();
@@ -153,10 +153,10 @@ class SdkDemo {
   this.#dom.disableAddCardInput = document.getElementById('disableAddCard');
   this.#dom.disableAddCardValue = document.getElementById('disableAddCardValue');
 
-  this.#dom.disabledCurrencyFromInput = document.getElementById('disabledCurrencyFrom');
-  this.#dom.disabledCurrencyToInput = document.getElementById('disabledCurrencyTo');
-  this.#dom.disabledCurrencyFromValue = document.getElementById('disabledCurrencyFromValue');
-  this.#dom.disabledCurrencyToValue = document.getElementById('disabledCurrencyToValue');
+  this.#dom.disableCurrencyFromInput = document.getElementById('disableCurrencyFrom');
+  this.#dom.disableCurrencyToInput = document.getElementById('disableCurrencyTo');
+  this.#dom.disableCurrencyFromValue = document.getElementById('disableCurrencyFromValue');
+  this.#dom.disableCurrencyToValue = document.getElementById('disableCurrencyToValue');
 
   this.#dom.updateSdkBtn = document.getElementById('updateSdk');
   this.#dom.sdkAgainBtn = document.getElementById('sdk-again');
@@ -182,8 +182,8 @@ class SdkDemo {
   this.#dom.startAppPageInput.value = this.#config.startAppPage;
   this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
   this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
-  this.#dom.disabledCurrencyFromInput.checked = this.#config.disabledCurrencyFrom;
-  this.#dom.disabledCurrencyToInput.checked = this.#config.disabledCurrencyTo;
+  this.#dom.disableCurrencyFromInput.checked = this.#config.disableCurrencyFrom;
+  this.#dom.disableCurrencyToInput.checked = this.#config.disableCurrencyTo;
  }
 
  // ----------------------------------------------------
@@ -231,11 +231,11 @@ class SdkDemo {
    this.#setConfig('disableAddCard', !this.#config.disableAddCard)
   );
 
-  this.#dom.disabledCurrencyFromInput?.addEventListener('change', e =>
-   this.#setConfig('disabledCurrencyFrom', e.target.checked)
+  this.#dom.disableCurrencyFromInput?.addEventListener('change', e =>
+   this.#setConfig('disableCurrencyFrom', e.target.checked)
   );
-  this.#dom.disabledCurrencyToInput?.addEventListener('change', e =>
-   this.#setConfig('disabledCurrencyTo', e.target.checked)
+  this.#dom.disableCurrencyToInput?.addEventListener('change', e =>
+   this.#setConfig('disableCurrencyTo', e.target.checked)
   );
 
   // ----------------------------------------------------
@@ -264,8 +264,8 @@ class SdkDemo {
    this.#config.startAppPageInit = this.#config.startAppPage;
    this.#config.showBackButtonInit = this.#config.showBackButton;
    this.#config.disableAddCardInit = this.#config.disableAddCard;
-   this.#config.disabledCurrencyFromInit = this.#config.disabledCurrencyFrom;
-   this.#config.disabledCurrencyToInit = this.#config.disabledCurrencyTo;
+   this.#config.disableCurrencyFromInit = this.#config.disableCurrencyFrom;
+   this.#config.disableCurrencyToInit = this.#config.disableCurrencyTo;
 
    this.#cleanupSdkFn?.();
    this.#showAgainBtn(false);
@@ -328,8 +328,8 @@ class SdkDemo {
    showBackButtonInput,
    disableAddCardValue,
    disableAddCardInput,
-   disabledCurrencyFromValue,
-   disabledCurrencyToValue,
+   disableCurrencyFromValue,
+   disableCurrencyToValue,
   } = this.#dom;
 
   sdkMode.textContent = this.#config.mode;
@@ -441,26 +441,26 @@ class SdkDemo {
     (disableAddCardValue.className = disableAddCardValue.className === 'prev' ? 'changed' : 'prev');
   this.#config.disableAddCardUpdate = false;
 
-  disabledCurrencyFromValue.textContent = this.#config.disabledCurrencyFrom ? 'true' : 'false';
-  if (this.#config.disabledCurrencyFrom === this.#config.disabledCurrencyFromInit)
-   disabledCurrencyFromValue.className = '';
+  disableCurrencyFromValue.textContent = this.#config.disableCurrencyFrom ? 'true' : 'false';
+  if (this.#config.disableCurrencyFrom === this.#config.disableCurrencyFromInit)
+   disableCurrencyFromValue.className = '';
   else
-   this.#config.disabledCurrencyFromUpdate &&
-    (disabledCurrencyFromValue.className = disabledCurrencyFromValue.className === 'prev' ? 'changed' : 'prev');
-  this.#config.disabledCurrencyFromUpdate = false;
+   this.#config.disableCurrencyFromUpdate &&
+    (disableCurrencyFromValue.className = disableCurrencyFromValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.disableCurrencyFromUpdate = false;
 
-  disabledCurrencyToValue.textContent = this.#config.disabledCurrencyTo ? 'true' : 'false';
-  if (this.#config.disabledCurrencyTo === this.#config.disabledCurrencyToInit) disabledCurrencyToValue.className = '';
+  disableCurrencyToValue.textContent = this.#config.disableCurrencyTo ? 'true' : 'false';
+  if (this.#config.disableCurrencyTo === this.#config.disableCurrencyToInit) disableCurrencyToValue.className = '';
   else
-   this.#config.disabledCurrencyToUpdate &&
-    (disabledCurrencyToValue.className = disabledCurrencyToValue.className === 'prev' ? 'changed' : 'prev');
-  this.#config.disabledCurrencyToUpdate = false;
+   this.#config.disableCurrencyToUpdate &&
+    (disableCurrencyToValue.className = disableCurrencyToValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.disableCurrencyToUpdate = false;
 
-  const isDisabledFrom = this.#config.disabledCurrencyFrom;
-  const isDisabledTo = this.#config.disabledCurrencyTo;
-  this.#dom.currencyFromInput.disabled = isDisabledFrom;
+  const isDisableFrom = this.#config.disableCurrencyFrom;
+  const isDisabledTo = this.#config.disableCurrencyTo;
+  this.#dom.currencyFromInput.disabled = isDisableFrom;
   this.#dom.currencyToInput.disabled = isDisabledTo;
-  this.#dom.currencyAmountInput.disabled = isDisabledFrom;
+  this.#dom.currencyAmountInput.disabled = isDisableFrom;
   this.#dom.cryptoWalletInput.disabled = isDisabledTo;
  }
 
