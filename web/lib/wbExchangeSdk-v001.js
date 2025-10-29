@@ -18,8 +18,8 @@
   const SDK_URL = `${SDK_ORIGIN}/v2.0`;
 
   //TODO only local test
-  // const SDK_ORIGIN = 'http://localhost:3000';
-  // const SDK_URL = `${SDK_ORIGIN}`;
+  //const SDK_ORIGIN = "http://localhost:3000";
+  //const SDK_URL = `${SDK_ORIGIN}`;
 
   const defaultConfig = {
     sdkIframe: undefined,
@@ -67,7 +67,7 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
-
+    console.log(params);
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
       config.sdkIframe = undefined;
