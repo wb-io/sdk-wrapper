@@ -14,12 +14,12 @@
 
   // ----------------------------------------------------
 
-  // const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
-  // const SDK_URL = `${SDK_ORIGIN}/v2.0`;
+  const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
+  const SDK_URL = `${SDK_ORIGIN}/v2.0`;
 
   //TODO only local test
-  const SDK_ORIGIN = "http://localhost:3000";
-  const SDK_URL = `${SDK_ORIGIN}`;
+  //const SDK_ORIGIN = "http://localhost:3000";
+  //const SDK_URL = `${SDK_ORIGIN}`;
 
   const defaultConfig = {
     sdkIframe: undefined,
