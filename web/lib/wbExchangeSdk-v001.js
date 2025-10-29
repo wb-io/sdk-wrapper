@@ -14,7 +14,7 @@
 
   // ----------------------------------------------------
 
-  const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
+  const SDK_ORIGIN = "https://sdk.qa.wbdevel.net";
   const SDK_URL = `${SDK_ORIGIN}/v2.0`;
 
   //TODO only local test
