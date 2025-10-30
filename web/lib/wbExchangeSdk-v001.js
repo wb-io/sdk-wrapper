@@ -30,11 +30,9 @@
   }
  };
 
- const SDK_URL = getSdkOrigin();
+ const SDK_ORIGIN = getSdkOrigin();
 
- //TODO only local test
- // const SDK_ORIGIN = 'http://localhost:3000';
- // const SDK_URL = `${SDK_ORIGIN}`;
+ const SDK_URL = SDK_ORIGIN;
 
  const defaultConfig = {
   sdkIframe: undefined,
@@ -183,6 +181,7 @@
    .filter(([key, value]) => value)
    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
    .join('&');
+
   return `${SDK_URL}/?${queryString}`;
  };
 
