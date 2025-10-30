@@ -14,8 +14,23 @@
 
  // ----------------------------------------------------
 
- const SDK_ORIGIN = 'https://sdk.dev.wbdevel.net';
- const SDK_URL = `${SDK_ORIGIN}/v2.0`;
+ const getSdkOrigin = () => {
+  const currentHost = window.location.hostname;
+  const version = '/v2.0';
+  if (currentHost.includes('localhost') || currentHost.includes('127.0.0.1')) {
+   return 'http://localhost:3000';
+  } else if (currentHost.includes('.dev.')) {
+   return 'https://sdk.dev.wbdevel.net' + version;
+  } else if (currentHost.includes('.qa.')) {
+   return 'https://sdk.qa.wbdevel.net' + version;
+  } else if (currentHost.includes('whitebird.io')) {
+   return 'https://sdk.whitebird.io' + version;
+  } else {
+   return 'https://sdk.whitebird.io' + version;
+  }
+ };
+
+ const SDK_URL = getSdkOrigin();
 
  //TODO only local test
  // const SDK_ORIGIN = 'http://localhost:3000';
