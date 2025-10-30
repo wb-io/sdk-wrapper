@@ -14,12 +14,26 @@
 
   // ----------------------------------------------------
 
-  const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
-  const SDK_URL = `${SDK_ORIGIN}/v2.0`;
+  const getSdkOrigin = () => {
+    const currentHost = window.location.hostname;
+    const version = "/v2.0";
+    if (
+      currentHost.includes("localhost") ||
+      currentHost.includes("127.0.0.1")
+    ) {
+      return "http://localhost:3000";
+    } else if (currentHost.includes(".dev.")) {
+      return "https://sdk.dev.wbdevel.net" + version;
+    } else if (currentHost.includes(".qa.")) {
+      return "https://sdk.qa.wbdevel.net" + version;
+    } else if (currentHost.includes("whitebird.io")) {
+      return "https://sdk.whitebird.io" + version;
+    } else {
+      return "https://sdk.whitebird.io" + version;
+    }
+  };
 
-  //TODO only local test
-  //const SDK_ORIGIN = "http://localhost:3000";
-  //const SDK_URL = `${SDK_ORIGIN}`;
+  const SDK_URL = getSdkOrigin();
 
   const defaultConfig = {
     sdkIframe: undefined,
@@ -67,7 +81,7 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
-    console.log(params);
+
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
       config.sdkIframe = undefined;
