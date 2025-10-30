@@ -13,6 +13,7 @@
   };
 
   // ----------------------------------------------------
+
   const getSdkOrigin = () => {
     const currentHost = window.location.hostname;
     const version = "/v2.0";
@@ -32,8 +33,9 @@
     }
   };
 
+  const SDK_ORIGIN = getSdkOrigin();
 
-  const SDK_URL = getSdkOrigin();
+  const SDK_URL = SDK_ORIGIN;
 
   const defaultConfig = {
     sdkIframe: undefined,
@@ -204,6 +206,7 @@
       .filter(([key, value]) => value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join("&");
+
     return `${SDK_URL}/?${queryString}`;
   };
 
