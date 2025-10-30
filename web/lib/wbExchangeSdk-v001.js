@@ -13,7 +13,6 @@
   };
 
   // ----------------------------------------------------
-
   const getSdkOrigin = () => {
     const currentHost = window.location.hostname;
     const version = "/v2.0";
@@ -32,6 +31,7 @@
       return "https://sdk.whitebird.io" + version;
     }
   };
+
 
   const SDK_URL = getSdkOrigin();
 
