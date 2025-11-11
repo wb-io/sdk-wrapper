@@ -421,14 +421,14 @@ class SdkDemo {
       isTokensMode && this.#config.accessToken?.length ? "hasValue" : "";
     accessTokenValue.textContent =
       isTokensMode && this.#config.accessToken
-        ? `${this.#config.accessToken.length > 10 ? "..." : ""}${this.#config.accessToken.substr(-10, 10)}`
+        ? `${this.#config.accessToken.length > 10 ? "..." : ""}${this.#config.accessToken.slice(-15)}`
         : "";
 
     refreshTokenValue.className =
       isTokensMode && this.#config.refreshToken?.length ? "hasValue" : "";
     refreshTokenValue.textContent =
       isTokensMode && this.#config.refreshToken
-        ? `${this.#config.refreshToken.length > 10 ? "..." : ""}${this.#config.refreshToken.substr(-10, 10)}`
+        ? `${this.#config.refreshToken.length > 10 ? "..." : ""}${this.#config.refreshToken.slice(-15)}`
         : "";
 
     emailValue.textContent = this.#config.email;
