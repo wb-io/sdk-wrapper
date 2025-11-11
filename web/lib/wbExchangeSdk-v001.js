@@ -17,9 +17,8 @@
  const getSdkOrigin = () => {
   const currentHost = window.location.hostname;
   const version = '/v2.0';
-  if (currentHost.includes('localhost') || currentHost.includes('127.0.0.1')) {
-   return 'http://localhost:3000';
-  } else if (currentHost.includes('.dev.')) {
+
+  if (currentHost.includes('.dev.') || currentHost.includes('localhost') || currentHost.includes('127.0.0.1')) {
    return 'https://sdk.dev.wbdevel.net' + version;
   } else if (currentHost.includes('.qa.')) {
    return 'https://sdk.qa.wbdevel.net' + version;
@@ -37,10 +36,9 @@
  const defaultConfig = {
   sdkIframe: undefined,
 
-  // required params
-  el: undefined, // sdk wrapper in some app -> html element
-  mode: undefined, // -> SdkMode
-  merchantId: '', //
+  el: undefined,
+  mode: undefined,
+  merchantId: '',
 
   // AuthMode
   onLoginHandler: undefined,
@@ -178,7 +176,7 @@
   };
 
   const queryString = Object.entries(params)
-   .filter(([key, value]) => value)
+   .filter(([_, value]) => value)
    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
    .join('&');
 
