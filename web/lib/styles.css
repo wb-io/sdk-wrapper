@@ -1,233 +1,233 @@
 :root {
-  --wb-color: #0169FF;
+    --wb-color: #0169FF;
 }
 
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 
-  line-height: 1.5;
-  font-family: Arial, "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+    font-family: Arial, "Helvetica Neue", sans-serif;
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  height: 48px;
-  padding: 0 20px;
-  background: #fff;
-  box-shadow: 0 0 0 .5px rgba(0, 0, 0, .2), 0 0 0 .5px #fff, 0 1px 3px 0 rgba(0, 0, 0, .1);
-  transition: height .3s ease-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 20px;
+    background: #fff;
+    box-shadow: 0 0 0 .5px rgba(0, 0, 0, .2), 0 0 0 .5px #fff, 0 1px 3px 0 rgba(0, 0, 0, .1);
+    transition: height .3s ease-out;
 }
 
 main {
-  position: relative;
-  max-width: 920px;
-  padding: 65px 20px 20px 220px;
+    position: relative;
+    max-width: 920px;
+    padding: 65px 20px 20px 220px;
 }
 
 aside {
-  position: fixed;
-  top: 48px;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-  width: 160px;
-  padding: 20px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  box-shadow: 0 0 0 .5px rgba(0, 0, 0, .2);
+    position: fixed;
+    top: 48px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 160px;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    box-shadow: 0 0 0 .5px rgba(0, 0, 0, .2);
 }
 
 @media screen and (max-width: 900px) {
-  main {
-    padding-left: 20px;
-  }
+    main {
+        padding-left: 20px;
+    }
 
-  aside {
-    position: relative;
-    margin: -17px 20px 10px -20px;
-    float: left;
-    top: auto;
-    left: auto;
-    bottom: auto;
-    border-bottom-right-radius: 8px;
-  }
+    aside {
+        position: relative;
+        margin: -17px 20px 10px -20px;
+        float: left;
+        top: auto;
+        left: auto;
+        bottom: auto;
+        border-bottom-right-radius: 8px;
+    }
 }
 
 @media screen and (max-width: 768px) {
-  aside {
-    float: none;
-    width: 100%;
-    margin-right: 0;
-    border-right: 0;
-    border-radius: 0;
-  }
+    aside {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        border-right: 0;
+        border-radius: 0;
+    }
 }
 
 ul {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 ul ul li {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 li {
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: [dot] 16px [content] 1fr;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: [dot] 16px [content] 1fr;
 }
 
 li > * {
-  grid-area: auto / content;
+    grid-area: auto / content;
 }
 
 li:before {
-  grid-area: auto / dot;
-  /*grid-row: 1 / -1;*/ /* ?? */
-  /*grid-row: span 10;*/ /* !! */
-  content: '';
-  width: 5px;
-  height: 5px;
-  margin: 9px 0 0 1px;
-  border-radius: 50%;
-  background: var(--wb-color);
+    grid-area: auto / dot;
+    /*grid-row: 1 / -1;*/ /* ?? */
+    /*grid-row: span 10;*/ /* !! */
+    content: '';
+    width: 5px;
+    height: 5px;
+    margin: 9px 0 0 1px;
+    border-radius: 50%;
+    background: var(--wb-color);
 }
 
 h1, h2, h3, h4 {
-  margin: 0 0 .5em 0;
+    margin: 0 0 .5em 0;
 }
 
 p {
-  margin: 0;
+    margin: 0;
 }
 
 pre {
-  margin: 0;
-  padding-top: 1px;
-  font-size: .875rem;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-word;
-  font-family: monospace;
+    margin: 0;
+    padding-top: 1px;
+    font-size: .875rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-family: monospace;
 }
 
 code {
-  padding-top: 1px;
-  font-family: monospace;
-  font-size: .875rem;
-  font-weight: bold;
-  word-wrap: break-word;
-  word-break: break-word;
+    padding-top: 1px;
+    font-family: monospace;
+    font-size: .875rem;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 #sdk-again {
-  display: none;
-  position: absolute;
-  right: 40px;
-  margin-top: 30px;
+    display: none;
+    position: absolute;
+    right: 40px;
+    margin-top: 30px;
 }
 
 #wbExchangeSdkWrapper {
-  float: right;
-  overflow: hidden;
-  width: 100%;
-  max-width: 360px;
-  height: 640px;
-  margin: 10px 0 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .4);
+    float: right;
+    overflow: hidden;
+    width: 100%;
+    max-width: 360px;
+    height: 640px;
+    margin: 10px 0 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .4);
 }
 
 @media screen and (max-width: 700px) {
-  #wbExchangeSdkWrapper {
-    float: none;
-    margin: 20px auto;
-  }
+    #wbExchangeSdkWrapper {
+        float: none;
+        margin: 20px auto;
+    }
 
-  #sdk-again {
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+    #sdk-again {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 0;
-  margin: 0;
-  border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 fieldset > label {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
+    display: flex;
+    align-items: center;
+    margin-right: auto;
 }
 
 label input {
-  margin: 0 .625rem 0 0;
+    margin: 0 .625rem 0 0;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }
 
 button {
-  width: fit-content;
-  padding: 6px 12px;
-  align-items: center;
-  color: #fff;
-  border: 0;
-  border-radius: 8px;
-  background: var(--wb-color);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
-  outline: 0;
-  cursor: pointer;
-  user-select: none;
-  transition: box-shadow .1s ease-out;
+    width: fit-content;
+    padding: 6px 12px;
+    align-items: center;
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    background: var(--wb-color);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+    outline: 0;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow .1s ease-out;
 }
 
 button:hover {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3), inset 0 0 20px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3), inset 0 0 20px 0 rgba(0, 0, 0, .1);
 }
 
 button:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .3), inset 0 0 20px 0 rgba(0, 0, 0, .2);
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .3), inset 0 0 20px 0 rgba(0, 0, 0, .2);
 }
 
 button:disabled {
-  opacity: .5;
-  pointer-events: none;
+    opacity: .5;
+    pointer-events: none;
 }
 
 #showBackButtonValue,
 #disableAddCardValue {
-  cursor: pointer;
-  user-select: none;
+    cursor: pointer;
+    user-select: none;
 }
 
 .hasValue,
@@ -236,7 +236,7 @@ button:disabled {
 #merchantIdValue,
 #emailValue,
 #merchantPassValue,
-#externalUserIdValue,
+#externalClientIdValue,
 #currencyAmountValue,
 #currencyFromValue,
 #currencyToValue,
@@ -244,25 +244,25 @@ button:disabled {
 #redirectUrlValue,
 #startAppPageValue,
 #sdkMode {
-  display: inline-block;
-  padding: 0 5px;
-  border-radius: 8px;
-  background: #efe;
-  box-shadow: inset 0 0 0 .5px rgba(0, 128, 0, .8), 0 .5px 0 0 rgba(0,0,0,.1);
-  transition: background-color .3s ease-out, box-shadow .3s ease-out;
-  animation: .4s sdkModeCurrent .01s ease-out;
+    display: inline-block;
+    padding: 0 5px;
+    border-radius: 8px;
+    background: #efe;
+    box-shadow: inset 0 0 0 .5px rgba(0, 128, 0, .8), 0 .5px 0 0 rgba(0,0,0,.1);
+    transition: background-color .3s ease-out, box-shadow .3s ease-out;
+    animation: .4s sdkModeCurrent .01s ease-out;
 }
 
 #accessTokenValue,
 #refreshTokenValue {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 #accessTokenValue.hasValue,
 #refreshTokenValue.hasValue {
-  padding: 0 5px;
-  background: rgba(0, 0, 255, .05);
-  box-shadow: inset 0 0 0 .5px rgba(0, 0, 100, .4), 0 .5px 0 0 rgba(0,0,0,.1);
+    padding: 0 5px;
+    background: rgba(0, 0, 255, .05);
+    box-shadow: inset 0 0 0 .5px rgba(0, 0, 100, .4), 0 .5px 0 0 rgba(0,0,0,.1);
 }
 
 #showBackButtonValue.prev,
@@ -275,8 +275,8 @@ button:disabled {
 #emailValue.changed,
 #merchantPassValue.prev,
 #merchantPassValue.changed,
-#externalUserIdValue.prev,
-#externalUserIdValue.changed,
+#externalClientIdValue.prev,
+#externalClientIdValue.changed,
 #currencyAmountValue.prev,
 #currencyAmountValue.changed,
 #currencyFromValue.prev,
@@ -291,9 +291,9 @@ button:disabled {
 #startAppPageValue.changed,
 #sdkMode.prev,
 #sdkMode.changed {
-  background: #fee;
-  box-shadow: inset 0 0 0 .5px rgba(255, 0, 0, .8), 0 .5px 0 0 rgba(0,0,0,.1);
-  animation: .4s sdkModeChange .01s ease-out;
+    background: #fee;
+    box-shadow: inset 0 0 0 .5px rgba(255, 0, 0, .8), 0 .5px 0 0 rgba(0,0,0,.1);
+    animation: .4s sdkModeChange .01s ease-out;
 }
 
 #showBackButtonValue.prev,
@@ -301,7 +301,7 @@ button:disabled {
 #merchantIdValue.prev,
 #emailValue.prev,
 #merchantPassValue.prev,
-#externalUserIdValue.prev,
+#externalClientIdValue.prev,
 #currencyAmountValue.prev,
 #currencyFromValue.prev,
 #currencyToValue.prev,
@@ -309,117 +309,117 @@ button:disabled {
 #redirectUrlValue.prev,
 #startAppPageValue.prev,
 #sdkMode.prev {
-  animation: .4s sdkModePrev .01s ease-out;
+    animation: .4s sdkModePrev .01s ease-out;
 }
 
 @keyframes sdkModeCurrent {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes sdkModeChange {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes sdkModePrev {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .field input,
 .field textarea,
 .field select {
-  margin-bottom: 10px;
-  padding: 6px;
-  font-size: 12px;
-  border: .5px solid #ccc;
-  border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 6px;
+    font-size: 12px;
+    border: .5px solid #ccc;
+    border-radius: 4px;
 }
 .field textarea {
-  resize: vertical;
+    resize: vertical;
 }
 .field select {
-  max-width: 160px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #tokens {
-  display: none;
-  margin-bottom: -5px;
-  flex-direction: column;
+    display: none;
+    margin-bottom: -5px;
+    flex-direction: column;
 }
 
 .field label {
-  color: #888;
-  font-size: 14px;
+    color: #888;
+    font-size: 14px;
 }
 
 h3 {
-  display: flex;
+    display: flex;
 }
 
 #copyTo {
-  margin-left: auto;
-  color: #fff;
-  background: var(--wb-color);
+    margin-left: auto;
+    color: #fff;
+    background: var(--wb-color);
 }
 
 #codeWrapper {
-  position: relative;
+    position: relative;
 }
 
 #copied {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 20px 30px;
-  background: rgba(0,255,0,.2);
-  border: 1px solid rgba(0,0,0,0.2);
-  border-radius: 20px;
-  opacity: 0;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px 30px;
+    background: rgba(0,255,0,.2);
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 #copied.go {
-  animation: .3s copiedAnimation ease-out;
+    animation: .3s copiedAnimation ease-out;
 }
 
 @keyframes copiedAnimation {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(.1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(4);
-  }
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(.1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(4);
+    }
 }
