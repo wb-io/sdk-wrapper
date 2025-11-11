@@ -33,7 +33,7 @@
     }
   };
 
-  const SDK_ORIGIN = getSdkOrigin();
+  const SDK_ORIGIN = "https://sdk.whitebird.io/v2.0";
 
   const SDK_URL = SDK_ORIGIN;
 
