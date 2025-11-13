@@ -29,7 +29,7 @@
   }
  };
 
- const SDK_ORIGIN = 'https://sdk.dev.wbdevel.net'; //'http://localhost:3000';
+ const SDK_ORIGIN = 'https://sdk.dev.wbdevel.net/v2.0'; //'http://localhost:3000';
 
  const SDK_URL = SDK_ORIGIN;
 
