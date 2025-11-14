@@ -13,29 +13,14 @@
   };
 
   // ----------------------------------------------------
+  const version = "/v2.0";
 
-  const getSdkOrigin = () => {
-    const currentHost = window.location.hostname;
-    const version = "/v2.0";
+  const SDK_ORIGIN = "https://sdk.whitebird.io";
+  const SDK_URL = SDK_ORIGIN + version;
 
-    if (
-      currentHost.includes(".dev.") ||
-      currentHost.includes("localhost") ||
-      currentHost.includes("127.0.0.1")
-    ) {
-      return "https://sdk.dev.wbdevel.net" + version;
-    } else if (currentHost.includes(".qa.")) {
-      return "https://sdk.qa.wbdevel.net" + version;
-    } else if (currentHost.includes("whitebird.io")) {
-      return "https://sdk.whitebird.io" + version;
-    } else {
-      return "https://sdk.whitebird.io" + version;
-    }
-  };
-
-  const SDK_ORIGIN = "https://sdk.whitebird.io/v2.0";
-
-  const SDK_URL = SDK_ORIGIN;
+  //Only local test
+  // const SDK_ORIGIN =  'http://localhost:3000';
+  // const SDK_URL = SDK_ORIGIN;
 
   const defaultConfig = {
     sdkIframe: undefined,
@@ -138,7 +123,6 @@
     if (params.onOrderCreated !== undefined)
       config.onOrderCreatedHandler = params.onOrderCreated;
     if (params.onExit !== undefined) config.onExitHandler = params.onExit;
-
     makeIframe();
   };
 
