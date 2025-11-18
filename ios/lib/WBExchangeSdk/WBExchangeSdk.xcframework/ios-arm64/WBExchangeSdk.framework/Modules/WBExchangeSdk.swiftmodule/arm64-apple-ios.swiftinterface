@@ -12,10 +12,29 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+@_Concurrency.MainActor @preconcurrency public struct WBExchangeView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(config: WBExchangeSdk.WBExchangeSdkConfig)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public func goBack()
+  public typealias Body = @_opaqueReturnTypeOf("$s13WBExchangeSdk0A4ViewV4bodyQrvp", 0) __
+}
+
 public enum WBExchangeSdkMode : Swift.String {
   case AuthMode
   case LoginMode
   case TokensMode
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum WBExchangeSdkStartPage : Swift.String {
+  case home
+  case paymentMethods
+  case transactionHistory
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -45,6 +64,7 @@ public enum WBCurrency {
   case TON
   case USDT_TON
   case WBP
+  case USDC
   public static func == (a: WBExchangeSdk.WBCurrency, b: WBExchangeSdk.WBCurrency) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -57,7 +77,7 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
     get
   }
   public func sdklog(_ msg: Swift.String)
-  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, merchantPass: Swift.String, externalUserId: Swift.String, currencyAmount: Swift.Int? = nil, currencyFrom: WBExchangeSdk.WBCurrency? = nil, currencyTo: WBExchangeSdk.WBCurrency? = nil, cryptoWallet: Swift.String? = nil, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, disableAddCard: Swift.Bool = false, email: Swift.String? = nil, env: WBExchangeSdk.WBSdkEnv = .dev)
+  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, merchantPass: Swift.String, externalClientId: Swift.String? = nil, currencyAmount: Swift.Int? = nil, currencyFrom: WBExchangeSdk.WBCurrency? = nil, currencyTo: WBExchangeSdk.WBCurrency? = nil, cryptoWallet: Swift.String? = nil, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, email: Swift.String? = nil, refId: Swift.String? = nil, startAppPage: WBExchangeSdk.WBExchangeSdkStartPage = .home, env: WBExchangeSdk.WBSdkEnv = .dev)
   public func initHandlers(onLogin: ((Swift.String, Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
   public func invokeOnLoginHandler(accessToken: Swift.String, refreshToken: Swift.String, isUserVerified: Swift.Bool)
   public func invokeOnExitHandler()
@@ -65,21 +85,15 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-@_Concurrency.MainActor @preconcurrency public struct WBExchangeView : SwiftUICore.View {
-  @_Concurrency.MainActor @preconcurrency public init(config: WBExchangeSdk.WBExchangeSdkConfig)
-  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
-    get
-  }
-  @_Concurrency.MainActor @preconcurrency public func goBack()
-  public typealias Body = @_opaqueReturnTypeOf("$s13WBExchangeSdk0A4ViewV4bodyQrvp", 0) __
-}
-
+extension WBExchangeSdk.WBExchangeView : Swift.Sendable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.Equatable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.Hashable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.RawRepresentable {}
+extension WBExchangeSdk.WBExchangeSdkStartPage : Swift.Equatable {}
+extension WBExchangeSdk.WBExchangeSdkStartPage : Swift.Hashable {}
+extension WBExchangeSdk.WBExchangeSdkStartPage : Swift.RawRepresentable {}
 extension WBExchangeSdk.WBSdkEnv : Swift.Equatable {}
 extension WBExchangeSdk.WBSdkEnv : Swift.Hashable {}
 extension WBExchangeSdk.WBSdkEnv : Swift.RawRepresentable {}
 extension WBExchangeSdk.WBCurrency : Swift.Equatable {}
 extension WBExchangeSdk.WBCurrency : Swift.Hashable {}
-extension WBExchangeSdk.WBExchangeView : Swift.Sendable {}
