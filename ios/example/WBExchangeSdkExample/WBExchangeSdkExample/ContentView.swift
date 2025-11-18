@@ -8,35 +8,29 @@ struct ContentView: View {
     
     @StateObject var wbExchangeSdkConfig = WBExchangeSdkConfig(
 
-        mode: WBExchangeSdkMode.LoginMode,
 //        mode: WBExchangeSdkMode.LoginMode,
+        mode: WBExchangeSdkMode.AuthMode,
 //        mode: WBExchangeSdkMode.TokensMode,
 
-//        merchantId: "merchantId_TEST",
-        merchantId: "4f19017b-0793-4591-94ff-610bb3c4665b",
+        merchantId: "TEST",
         merchantPass: "test",
-        externalUserId: "test",
+        externalClientId: "TEST",
         
-        currencyAmount: 1000,
+        currencyAmount: 100,
         currencyFrom: .EUR,
 
         // TokensMode
-//        accessToken: "...",
-//        refreshToken: "...",
+        accessToken: "..",
+        refreshToken: "...",
                 
         showBackButtonOnHomePage: true,
-        
-        disableAddCard: true,
-        email: "iromablog+test1@gmail.com"
+        email: "test@gmail.com",
+        startAppPage: .transactionHistory,
+        env: .dev
     )
         
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-
             Button("isShowWB = \(isShowWB)") {
                 isShowWB.toggle()
                 if isShowWB {
@@ -54,12 +48,13 @@ struct ContentView: View {
 
             if isShowWB {
                 wbExchangeView
+                    .ignoresSafeArea()
 //                WBExchangeView(config: wbExchangeSdkConfig)
             } else {
                 Spacer()
             }
         }
-        .padding()
+//        .padding()
         .onAppear {
             wbExchangeSdkConfig.initHandlers(
                 onLogin: {
@@ -75,6 +70,7 @@ struct ContentView: View {
             )
             print(wbExchangeSdkConfig.getUrl())
         }
+//        .ignoresSafeArea()
     }
 }
 

@@ -9,6 +9,12 @@ public enum WBExchangeSdkMode: String {
     case TokensMode = "TokensMode"
 }
 
+public enum WBExchangeSdkStartPage: String {
+    case home = ""
+    case paymentMethods = "/account/payments"
+    case transactionHistory = "/user-operations"
+}
+
 public enum WBSdkEnv: String {
     case dev
     case qa
@@ -28,6 +34,7 @@ public enum WBCurrency {
     case TON
     case USDT_TON // TON
     case WBP // TRC-20
+    case USDC
 }
 
 public class WBExchangeSdkConfig: ObservableObject {
@@ -37,7 +44,7 @@ public class WBExchangeSdkConfig: ObservableObject {
     @Published private var mode: WBExchangeSdkMode
     @Published private var merchantId: String
     @Published private var merchantPass: String
-    @Published private var externalUserId: String
+    @Published private var externalClientId: String?
     
     // Exchange config
     @Published private var currencyAmount: Int?
@@ -53,8 +60,9 @@ public class WBExchangeSdkConfig: ObservableObject {
     private var onLoginHandler:((String, String, Bool) -> Void)?
     
     // extra configurations:
-    @Published private var disableAddCard: Bool = false
     @Published private var email: String?
+    @Published private var refId: String?
+    @Published private var startAppPage: WBExchangeSdkStartPage = .home
     
     // Back button config
     @Published private var showBackButtonOnHomePage: Bool
@@ -88,7 +96,7 @@ public class WBExchangeSdkConfig: ObservableObject {
         mode: WBExchangeSdkMode,
         merchantId: String,
         merchantPass: String,
-        externalUserId: String,
+        externalClientId: String? = nil,
         
         currencyAmount: Int? = nil,
         currencyFrom: WBCurrency? = nil,
@@ -99,14 +107,15 @@ public class WBExchangeSdkConfig: ObservableObject {
         refreshToken: String = "",
         
         showBackButtonOnHomePage: Bool = false,
-        disableAddCard: Bool = false,
         email: String? = nil,
+        refId: String? = nil,
+        startAppPage: WBExchangeSdkStartPage = .home,
         env: WBSdkEnv = .dev
     ) {
         self.mode = mode
         self.merchantId = merchantId
         self.merchantPass = merchantPass
-        self.externalUserId = externalUserId
+        self.externalClientId = externalClientId
         
         self.currencyAmount = currencyAmount
         self.currencyFrom = currencyFrom
@@ -117,8 +126,9 @@ public class WBExchangeSdkConfig: ObservableObject {
         self.refreshToken = refreshToken
         
         self.showBackButtonOnHomePage = showBackButtonOnHomePage
-        self.disableAddCard = disableAddCard
         self.email = email
+        self.refId = refId
+        self.startAppPage = startAppPage
         self.env = env
     }
     
@@ -153,7 +163,7 @@ public class WBExchangeSdkConfig: ObservableObject {
             "mode=\(mode.rawValue)",
             "merchantId=\(merchantId)",
             "merchantPass=\(merchantPass)",
-            "externalUserId=\(externalUserId)",
+            "externalClientId=\(getNullableParam(externalClientId))",
             
             "currencyAmount=\(getNullableParam(currencyAmount))",
             "currencyFrom=\(getNullableParam(currencyFrom))",
@@ -161,8 +171,9 @@ public class WBExchangeSdkConfig: ObservableObject {
             "cryptoWallet=\(getNullableParam(cryptoWallet))",
             
             "showBackButtonOnHomePage=\(showBackButton)",
-            "disableAddCard=\(disableAddCard)",
-            "email=\(getNullableParam(email))"
+            "email=\(getNullableParam(email))",
+            "refId=\(getNullableParam(refId))",
+            "startAppPage=\(startAppPage.rawValue)"
         ]
         
         if mode == WBExchangeSdkMode.TokensMode && !accessToken.isEmpty && !refreshToken.isEmpty {
