@@ -52,11 +52,13 @@ public struct WBExchangeView: View {
         mode: WBExchangeSdkMode.LoginMode,
         merchantId: "merchantId_TEST",
         merchantPass: "",
-        externalUserId: ""
+        externalClientId: ""
     )
         
     WBExchangeView(config: config)
 }
+
+private let listOfAllowedExternalDomains = ["wbitcash.com"]
 
 struct WhiteBirdWebView: UIViewRepresentable {
     
@@ -71,6 +73,8 @@ struct WhiteBirdWebView: UIViewRepresentable {
         
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userContentController
+        configuration.mediaTypesRequiringUserActionForPlayback = .all
+        configuration.allowsInlineMediaPlayback = true
         
         let _wkwebview = WKWebView(frame: .zero, configuration: configuration)
         _wkwebview.navigationDelegate = coordinator
@@ -109,14 +113,37 @@ struct WhiteBirdWebView: UIViewRepresentable {
             self.webView = webView
         }
         
+        func webView(_ webView: WKWebView,
+                     requestMediaCapturePermissionFor origin: WKSecurityOrigin,
+                     initiatedByFrame frame: WKFrameInfo,
+                     type: WKMediaCaptureType,
+                     decisionHandler: @escaping (WKPermissionDecision) -> Void) {
+
+            decisionHandler(.grant)   // разрешаем
+        }
+        
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             
             if let url = navigationAction.request.url {
                 let ext = url.pathExtension.lowercased()
-                
+            
                 // список типов файлов, которые нужно открывать отдельно
                 if ["pdf", "doc", "docx", "xls", "xlsx", "zip"].contains(ext) {
                     UIApplication.shared.open(url)   // открываем через Safari / Files
+                    decisionHandler(.cancel)
+                    return
+                }
+                
+                var host = ""
+                
+                if #available(iOS 16.0, *) {
+                    host = url.host() ?? ""
+                } else {
+                    host = url.host ?? ""
+                }
+                
+                if listOfAllowedExternalDomains.contains(host.lowercased()) {
+                    UIApplication.shared.open(url)
                     decisionHandler(.cancel)
                     return
                 }
