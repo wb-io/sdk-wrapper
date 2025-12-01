@@ -36,6 +36,7 @@
  * @property {string} [currencyTo] - Целевая валюта
  * @property {boolean} [disableCurrencyFrom] - Отключить валюту from
  * @property {boolean} [disableCurrencyTo] - Отключить валюту to
+ * @property {boolean} [isAuthAgent] - Отключить кнопку logout
  * @property {string} [cryptoWallet] - Крипто-кошелек
  * @property {string} [redirectUrl] - URL перенаправления
  * @property {string} [startAppPage] - Стартовая страница
