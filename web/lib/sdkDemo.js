@@ -36,6 +36,7 @@ class SdkDemo {
    disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
    disableCurrencyFrom: localStorage.getItem('cnf_disableCurrencyFrom') === 'true',
    disableCurrencyTo: localStorage.getItem('cnf_disableCurrencyTo') === 'true',
+   isAuthAgent: localStorage.getItem('cnf_isAuthAgent') === 'true',
   };
 
   this.#config = {
@@ -85,6 +86,9 @@ class SdkDemo {
 
    disableCurrencyToInit: config.disableCurrencyTo,
    disableCurrencyToUpdate: false,
+
+   isAuthAgentInit: config.isAuthAgent,
+   isAuthAgentUpdate: false,
   };
 
   this.#initDom();
@@ -155,8 +159,10 @@ class SdkDemo {
 
   this.#dom.disableCurrencyFromInput = document.getElementById('disableCurrencyFrom');
   this.#dom.disableCurrencyToInput = document.getElementById('disableCurrencyTo');
+  this.#dom.isAuthAgentInput = document.getElementById('isAuthAgent');
   this.#dom.disableCurrencyFromValue = document.getElementById('disableCurrencyFromValue');
   this.#dom.disableCurrencyToValue = document.getElementById('disableCurrencyToValue');
+  this.#dom.isAuthAgentValue = document.getElementById('isAuthAgentValue');
 
   this.#dom.updateSdkBtn = document.getElementById('updateSdk');
   this.#dom.sdkAgainBtn = document.getElementById('sdk-again');
@@ -184,6 +190,7 @@ class SdkDemo {
   this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
   this.#dom.disableCurrencyFromInput.checked = this.#config.disableCurrencyFrom;
   this.#dom.disableCurrencyToInput.checked = this.#config.disableCurrencyTo;
+  this.#dom.isAuthAgentInput.checked = this.#config.isAuthAgent;
  }
 
  // ----------------------------------------------------
@@ -237,6 +244,7 @@ class SdkDemo {
   this.#dom.disableCurrencyToInput?.addEventListener('change', e =>
    this.#setConfig('disableCurrencyTo', e.target.checked)
   );
+  this.#dom.isAuthAgentInput?.addEventListener('change', e => this.#setConfig('isAuthAgent', e.target.checked));
 
   // ----------------------------------------------------
 
@@ -266,6 +274,7 @@ class SdkDemo {
    this.#config.disableAddCardInit = this.#config.disableAddCard;
    this.#config.disableCurrencyFromInit = this.#config.disableCurrencyFrom;
    this.#config.disableCurrencyToInit = this.#config.disableCurrencyTo;
+   this.#config.isAuthAgentInit = this.#config.isAuthAgent;
 
    this.#cleanupSdkFn?.();
    this.#showAgainBtn(false);
@@ -330,6 +339,7 @@ class SdkDemo {
    disableAddCardInput,
    disableCurrencyFromValue,
    disableCurrencyToValue,
+   isAuthAgentValue,
   } = this.#dom;
 
   sdkMode.textContent = this.#config.mode;
@@ -455,6 +465,15 @@ class SdkDemo {
    this.#config.disableCurrencyToUpdate &&
     (disableCurrencyToValue.className = disableCurrencyToValue.className === 'prev' ? 'changed' : 'prev');
   this.#config.disableCurrencyToUpdate = false;
+
+  isAuthAgentValue.textContent = this.#config.isAuthAgent ? 'true' : 'false';
+  if (this.#config.isAuthAgent === this.#config.isAuthAgentInit) {
+   isAuthAgentValue.className = '';
+  } else {
+   this.#config.isAuthAgentUpdate &&
+    (isAuthAgentValue.className = isAuthAgentValue.className === 'prev' ? 'changed' : 'prev');
+  }
+  this.#config.isAuthAgentUpdate = false;
 
   const isDisableFrom = this.#config.disableCurrencyFrom;
   const isDisabledTo = this.#config.disableCurrencyTo;

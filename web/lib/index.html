@@ -118,6 +118,10 @@
        <input type="checkbox" id="disableAddCard" name="disableAddCard" />
        disableAddCard
       </label>
+      <label for="isAuthAgent">
+       <input type="checkbox" id="isAuthAgent" name="isAuthAgent" />
+       isAuthAgent
+      </label>
      </fieldset>
      <button type="submit" id="updateSdk">Пересоздать iframe</button>
     </form>
@@ -187,6 +191,7 @@
   <b>currencyTo</b>: <span id="currencyToValue"></span>,
   <b>disableCurrencyFrom</b>: <span id="disableCurrencyFromValue"></span>,
   <b>disableCurrencyTo</b>: <span id="disableCurrencyToValue"></span>,
+  <b>isAuthAgent</b>: <span id="isAuthAgentValue"></span>,
   <b>cryptoWallet</b>: <span id="cryptoWalletValue"></span>,
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>startAppPage</b>: <span id="startAppPageValue"></span>,
@@ -260,6 +265,7 @@
       redirectUrl: config.redirectUrl,
       showBackButtonOnHomePage: config.showBackButton,
       disableAddCard: config.disableAddCard,
+      isAuthAgent: config.isAuthAgent,
      };
 
      // Params only for TokensMode
