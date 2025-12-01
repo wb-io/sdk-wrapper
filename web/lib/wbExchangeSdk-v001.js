@@ -48,6 +48,7 @@
     currencyTo: "",
     disableCurrencyFrom: false,
     disableCurrencyTo: false,
+    isAuthAgent: false,
     cryptoWallet: "",
     redirectUrl: "",
     startAppPage: "",
@@ -107,6 +108,8 @@
       config.disableCurrencyFrom = params.disableCurrencyFrom;
     if (params.disableCurrencyTo !== undefined)
       config.disableCurrencyTo = params.disableCurrencyTo;
+    if (params.isAuthAgent !== undefined)
+      config.isAuthAgent = params.isAuthAgent;
     if (params.cryptoWallet !== undefined)
       config.cryptoWallet = params.cryptoWallet;
     if (params.redirectUrl !== undefined)
@@ -177,6 +180,7 @@
       currencyTo: config.currencyTo,
       disableCurrencyFrom: config.disableCurrencyFrom,
       disableCurrencyTo: config.disableCurrencyTo,
+      isAuthAgent: config.isAuthAgent,
       cryptoWallet: config.cryptoWallet,
       redirectUrl: config.redirectUrl,
       startAppPage: config.startAppPage,
@@ -189,7 +193,6 @@
       .filter(([_, value]) => value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join("&");
-
     return `${SDK_URL}/?${queryString}`;
   };
 

@@ -1,586 +1,497 @@
 class SdkDemo {
-  #config = {};
+ #config = {};
 
-  get config() {
-    return { ...this.#config };
-  }
+ get config() {
+  return { ...this.#config };
+ }
+
+ // ----------------------------------------------------
+
+ #initSdkFn;
+ #cleanupSdkFn;
+
+ #dom = {};
+
+ constructor({ initSdkFn, cleanupSdkFn }) {
+  this.#initSdkFn = initSdkFn;
+  this.#cleanupSdkFn = cleanupSdkFn;
+
+  let config = {
+   mode: localStorage.getItem('cnf_mode') || 'AuthMode',
+   merchantId: localStorage.getItem('cnf_merchantId') || '',
+
+   accessToken: localStorage.getItem('cnf_accessToken') || '',
+   refreshToken: localStorage.getItem('cnf_refreshToken') || '',
+
+   email: localStorage.getItem('cnf_email') || '',
+   merchantPass: localStorage.getItem('cnf_merchantPass') || '',
+   externalClientId: localStorage.getItem('cnf_externalClientId') || '',
+   currencyAmount: localStorage.getItem('cnf_currencyAmount') || '',
+   currencyFrom: localStorage.getItem('cnf_currencyFrom') || '',
+   currencyTo: localStorage.getItem('cnf_currencyTo') || '',
+   cryptoWallet: localStorage.getItem('cnf_cryptoWallet') || '',
+   redirectUrl: localStorage.getItem('cnf_redirectUrl') || '',
+   startAppPage: localStorage.getItem('cnf_startAppPage') || '',
+   showBackButton: localStorage.getItem('cnf_showBackButton') === 'true',
+   disableAddCard: localStorage.getItem('cnf_disableAddCard') === 'true',
+   disableCurrencyFrom: localStorage.getItem('cnf_disableCurrencyFrom') === 'true',
+   disableCurrencyTo: localStorage.getItem('cnf_disableCurrencyTo') === 'true',
+   isAuthAgent: localStorage.getItem('cnf_isAuthAgent') === 'true',
+  };
+
+  this.#config = {
+   ...config,
+
+   modeInit: config.mode,
+   modeUpdate: false,
+
+   merchantIdInit: config.merchantId,
+   merchantIdUpdate: false,
+
+   emailInit: config.email,
+   emailUpdate: false,
+
+   merchantPassInit: config.merchantPass,
+   merchantPassUpdate: false,
+
+   externalClientIdInit: config.externalClientId,
+   externalClientIdUpdate: false,
+
+   currencyAmountInit: config.currencyAmount,
+   currencyAmountUpdate: false,
+
+   currencyFromInit: config.currencyFrom,
+   currencyFromUpdate: false,
+
+   currencyToInit: config.currencyTo,
+   currencyToUpdate: false,
+
+   cryptoWalletInit: config.cryptoWallet,
+   cryptoWalletUpdate: false,
+
+   redirectUrlInit: config.redirectUrl,
+   redirectUrlUpdate: false,
+
+   startAppPageInit: config.startAppPage,
+   startAppPageUpdate: false,
+
+   showBackButtonInit: config.showBackButton,
+   showBackButtonUpdate: false,
+
+   disableAddCardInit: config.disableAddCard,
+   disableAddCardUpdate: false,
+
+   disableCurrencyFromInit: config.disableCurrencyFrom,
+   disableCurrencyFromUpdate: false,
+
+   disableCurrencyToInit: config.disableCurrencyTo,
+   disableCurrencyToUpdate: false,
+
+   isAuthAgentInit: config.isAuthAgent,
+   isAuthAgentUpdate: false,
+  };
+
+  this.#initDom();
+  this.#initValues();
+  this.#initHandlers();
+
+  this.#updateUI();
+
+  setTimeout(() => {
+   this.#initSdkFn?.();
+  });
+ }
+
+ // ----------------------------------------------------
+
+ #initDom() {
+  this.#dom.setupCodeWrapper = document.getElementById('setupCode');
+  this.#dom.copyTo = document.getElementById('copyTo');
+  this.#dom.copied = document.getElementById('copied');
+
+  this.#dom.sdkMode = document.getElementById('sdkMode');
+  this.#dom.sdkModeRadioBtns = document.querySelectorAll('input[name="sdkMode"]');
+
+  this.#dom.merchantIdInput = document.getElementById('merchantId');
+  this.#dom.merchantIdValue = document.getElementById('merchantIdValue');
+
+  this.#dom.tokensWrapper = document.getElementById('tokens');
+  this.#dom.userDataWrapper = document.getElementById('userData');
+  this.#dom.startAppPageWrapper = document.getElementById('startAppPageField');
+
+  this.#dom.accessTokenInput = document.getElementById('accessToken');
+  this.#dom.accessTokenValue = document.getElementById('accessTokenValue');
+  this.#dom.refreshTokenInput = document.getElementById('refreshToken');
+  this.#dom.refreshTokenValue = document.getElementById('refreshTokenValue');
+
+  this.#dom.emailInput = document.getElementById('email');
+  this.#dom.emailValue = document.getElementById('emailValue');
+
+  this.#dom.merchantPassInput = document.getElementById('merchantPass');
+  this.#dom.merchantPassValue = document.getElementById('merchantPassValue');
+
+  this.#dom.externalClientIdInput = document.getElementById('externalClientId');
+  this.#dom.externalClientIdValue = document.getElementById('externalClientIdValue');
+
+  this.#dom.currencyAmountInput = document.getElementById('currencyAmount');
+  this.#dom.currencyAmountValue = document.getElementById('currencyAmountValue');
+
+  this.#dom.currencyFromInput = document.getElementById('currencyFrom');
+  this.#dom.currencyFromValue = document.getElementById('currencyFromValue');
+
+  this.#dom.currencyToInput = document.getElementById('currencyTo');
+  this.#dom.currencyToValue = document.getElementById('currencyToValue');
+
+  this.#dom.cryptoWalletInput = document.getElementById('cryptoWallet');
+  this.#dom.cryptoWalletValue = document.getElementById('cryptoWalletValue');
+
+  this.#dom.redirectUrlInput = document.getElementById('redirectUrl');
+  this.#dom.redirectUrlValue = document.getElementById('redirectUrlValue');
+
+  this.#dom.startAppPageInput = document.getElementById('startAppPage');
+  this.#dom.startAppPageValue = document.getElementById('startAppPageValue');
+
+  this.#dom.showBackButtonInput = document.getElementById('showBackButton');
+  this.#dom.showBackButtonValue = document.getElementById('showBackButtonValue');
+
+  this.#dom.disableAddCardInput = document.getElementById('disableAddCard');
+  this.#dom.disableAddCardValue = document.getElementById('disableAddCardValue');
+
+  this.#dom.disableCurrencyFromInput = document.getElementById('disableCurrencyFrom');
+  this.#dom.disableCurrencyToInput = document.getElementById('disableCurrencyTo');
+  this.#dom.isAuthAgentInput = document.getElementById('isAuthAgent');
+  this.#dom.disableCurrencyFromValue = document.getElementById('disableCurrencyFromValue');
+  this.#dom.disableCurrencyToValue = document.getElementById('disableCurrencyToValue');
+  this.#dom.isAuthAgentValue = document.getElementById('isAuthAgentValue');
+
+  this.#dom.updateSdkBtn = document.getElementById('updateSdk');
+  this.#dom.sdkAgainBtn = document.getElementById('sdk-again');
+ }
+
+ // ----------------------------------------------------
+
+ #initValues() {
+  this.#dom.sdkModeRadioBtns.forEach(radioBtn => (radioBtn.checked = radioBtn.value === this.#config.mode));
+  this.#dom.merchantIdInput.innerHTML = this.#config.merchantId;
+
+  this.#dom.accessTokenInput.innerHTML = this.#config.accessToken;
+  this.#dom.refreshTokenInput.innerHTML = this.#config.refreshToken;
+
+  this.#dom.emailInput.value = this.#config.email;
+  this.#dom.merchantPassInput.innerHTML = this.#config.merchantPass;
+  this.#dom.externalClientIdInput.innerHTML = this.#config.externalClientId;
+  this.#dom.currencyAmountInput.value = this.#config.currencyAmount;
+  this.#dom.currencyFromInput.value = this.#config.currencyFrom;
+  this.#dom.currencyToInput.value = this.#config.currencyTo;
+  this.#dom.cryptoWalletInput.innerHTML = this.#config.cryptoWallet;
+  this.#dom.redirectUrlInput.innerHTML = this.#config.redirectUrl;
+  this.#dom.startAppPageInput.value = this.#config.startAppPage;
+  this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
+  this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
+  this.#dom.disableCurrencyFromInput.checked = this.#config.disableCurrencyFrom;
+  this.#dom.disableCurrencyToInput.checked = this.#config.disableCurrencyTo;
+  this.#dom.isAuthAgentInput.checked = this.#config.isAuthAgent;
+ }
+
+ // ----------------------------------------------------
+
+ #initHandlers() {
+  this.#dom.sdkModeRadioBtns.forEach(radioBtn =>
+   radioBtn.addEventListener('change', e => this.#setConfig('mode', e.target.value))
+  );
+
+  this.#dom.merchantIdInput?.addEventListener('input', e => this.#setConfig('merchantId', e.target.value.trim()));
+
+  const onChangeToken = token => e => this.#setConfig(token, e.target.value.trim());
+  this.#dom.accessTokenInput?.addEventListener('input', onChangeToken('accessToken'));
+  this.#dom.refreshTokenInput?.addEventListener('input', onChangeToken('refreshToken'));
+
+  this.#dom.emailInput?.addEventListener('input', e => this.#setConfig('email', e.target.value.trim()));
+
+  this.#dom.merchantPassInput?.addEventListener('input', e => this.#setConfig('merchantPass', e.target.value.trim()));
+
+  this.#dom.externalClientIdInput?.addEventListener('input', e =>
+   this.#setConfig('externalClientId', e.target.value.trim())
+  );
+
+  this.#dom.currencyAmountInput?.addEventListener('input', e =>
+   this.#setConfig('currencyAmount', e.target.value.trim())
+  );
+
+  this.#dom.currencyFromInput?.addEventListener('change', e => this.#setConfig('currencyFrom', e.target.value));
+
+  this.#dom.currencyToInput?.addEventListener('change', e => this.#setConfig('currencyTo', e.target.value));
+
+  this.#dom.cryptoWalletInput?.addEventListener('input', e => this.#setConfig('cryptoWallet', e.target.value.trim()));
+
+  this.#dom.redirectUrlInput?.addEventListener('input', e => this.#setConfig('redirectUrl', e.target.value.trim()));
+
+  this.#dom.startAppPageInput?.addEventListener('change', e => this.#setConfig('startAppPage', e.target.value));
+
+  this.#dom.showBackButtonInput?.addEventListener('change', e => this.#setConfig('showBackButton', e.target.checked));
+  this.#dom.showBackButtonValue?.addEventListener('click', () =>
+   this.#setConfig('showBackButton', !this.#config.showBackButton)
+  );
+
+  this.#dom.disableAddCardInput?.addEventListener('change', e => this.#setConfig('disableAddCard', e.target.checked));
+  this.#dom.disableAddCardValue?.addEventListener('click', () =>
+   this.#setConfig('disableAddCard', !this.#config.disableAddCard)
+  );
+
+  this.#dom.disableCurrencyFromInput?.addEventListener('change', e =>
+   this.#setConfig('disableCurrencyFrom', e.target.checked)
+  );
+  this.#dom.disableCurrencyToInput?.addEventListener('change', e =>
+   this.#setConfig('disableCurrencyTo', e.target.checked)
+  );
+  this.#dom.isAuthAgentInput?.addEventListener('change', e => this.#setConfig('isAuthAgent', e.target.checked));
 
   // ----------------------------------------------------
 
-  #initSdkFn;
-  #cleanupSdkFn;
-
-  #dom = {};
-
-  constructor({ initSdkFn, cleanupSdkFn }) {
-    this.#initSdkFn = initSdkFn;
-    this.#cleanupSdkFn = cleanupSdkFn;
-
-    let config = {
-      mode: localStorage.getItem("cnf_mode") || "AuthMode",
-      merchantId: localStorage.getItem("cnf_merchantId") || "",
-
-      accessToken: localStorage.getItem("cnf_accessToken") || "",
-      refreshToken: localStorage.getItem("cnf_refreshToken") || "",
-
-      email: localStorage.getItem("cnf_email") || "",
-      merchantPass: localStorage.getItem("cnf_merchantPass") || "",
-      externalClientId: localStorage.getItem("cnf_externalClientId") || "",
-      currencyAmount: localStorage.getItem("cnf_currencyAmount") || "",
-      currencyFrom: localStorage.getItem("cnf_currencyFrom") || "",
-      currencyTo: localStorage.getItem("cnf_currencyTo") || "",
-      cryptoWallet: localStorage.getItem("cnf_cryptoWallet") || "",
-      redirectUrl: localStorage.getItem("cnf_redirectUrl") || "",
-      startAppPage: localStorage.getItem("cnf_startAppPage") || "",
-      showBackButton: localStorage.getItem("cnf_showBackButton") === "true",
-      disableAddCard: localStorage.getItem("cnf_disableAddCard") === "true",
-      disableCurrencyFrom:
-        localStorage.getItem("cnf_disableCurrencyFrom") === "true",
-      disableCurrencyTo:
-        localStorage.getItem("cnf_disableCurrencyTo") === "true",
-    };
-
-    this.#config = {
-      ...config,
-
-      modeInit: config.mode,
-      modeUpdate: false,
-
-      merchantIdInit: config.merchantId,
-      merchantIdUpdate: false,
-
-      emailInit: config.email,
-      emailUpdate: false,
-
-      merchantPassInit: config.merchantPass,
-      merchantPassUpdate: false,
-
-      externalClientIdInit: config.externalClientId,
-      externalClientIdUpdate: false,
-
-      currencyAmountInit: config.currencyAmount,
-      currencyAmountUpdate: false,
-
-      currencyFromInit: config.currencyFrom,
-      currencyFromUpdate: false,
-
-      currencyToInit: config.currencyTo,
-      currencyToUpdate: false,
-
-      cryptoWalletInit: config.cryptoWallet,
-      cryptoWalletUpdate: false,
-
-      redirectUrlInit: config.redirectUrl,
-      redirectUrlUpdate: false,
-
-      startAppPageInit: config.startAppPage,
-      startAppPageUpdate: false,
-
-      showBackButtonInit: config.showBackButton,
-      showBackButtonUpdate: false,
-
-      disableAddCardInit: config.disableAddCard,
-      disableAddCardUpdate: false,
-
-      disableCurrencyFromInit: config.disableCurrencyFrom,
-      disableCurrencyFromUpdate: false,
-
-      disableCurrencyToInit: config.disableCurrencyTo,
-      disableCurrencyToUpdate: false,
-    };
-
-    this.#initDom();
-    this.#initValues();
-    this.#initHandlers();
-
-    this.#updateUI();
-
-    setTimeout(() => {
-      this.#initSdkFn?.();
-    });
-  }
+  this.#dom.sdkAgainBtn?.addEventListener('click', () => {
+   this.#dom.sdkAgainBtn.style.display = 'none';
+   console.log('%c MAIN_APP init SDK again =', 'background:#ff0;color:#000;');
+   this.#initSdkFn?.();
+  });
 
   // ----------------------------------------------------
 
-  #initDom() {
-    this.#dom.setupCodeWrapper = document.getElementById("setupCode");
-    this.#dom.copyTo = document.getElementById("copyTo");
-    this.#dom.copied = document.getElementById("copied");
+  this.#dom.updateSdkBtn?.addEventListener('click', e => {
+   e.preventDefault();
 
-    this.#dom.sdkMode = document.getElementById("sdkMode");
-    this.#dom.sdkModeRadioBtns = document.querySelectorAll(
-      'input[name="sdkMode"]',
-    );
+   this.#config.modeInit = this.#config.mode;
+   this.#config.merchantIdInit = this.#config.merchantId;
+   this.#config.emailInit = this.#config.email;
+   this.#config.merchantPassInit = this.#config.merchantPass;
+   this.#config.externalClientIdInit = this.#config.externalClientId;
+   this.#config.currencyAmountInput = this.#config.currencyAmount;
+   this.#config.currencyFromInput = this.#config.currencyFrom;
+   this.#config.currencyToInput = this.#config.currencyTo;
+   this.#config.cryptoWalletInput = this.#config.cryptoWallet;
+   this.#config.redirectUrlInit = this.#config.redirectUrl;
+   this.#config.startAppPageInit = this.#config.startAppPage;
+   this.#config.showBackButtonInit = this.#config.showBackButton;
+   this.#config.disableAddCardInit = this.#config.disableAddCard;
+   this.#config.disableCurrencyFromInit = this.#config.disableCurrencyFrom;
+   this.#config.disableCurrencyToInit = this.#config.disableCurrencyTo;
+   this.#config.isAuthAgentInit = this.#config.isAuthAgent;
 
-    this.#dom.merchantIdInput = document.getElementById("merchantId");
-    this.#dom.merchantIdValue = document.getElementById("merchantIdValue");
+   this.#cleanupSdkFn?.();
+   this.#showAgainBtn(false);
 
-    this.#dom.tokensWrapper = document.getElementById("tokens");
-    this.#dom.userDataWrapper = document.getElementById("userData");
-    this.#dom.startAppPageWrapper =
-      document.getElementById("startAppPageField");
-
-    this.#dom.accessTokenInput = document.getElementById("accessToken");
-    this.#dom.accessTokenValue = document.getElementById("accessTokenValue");
-    this.#dom.refreshTokenInput = document.getElementById("refreshToken");
-    this.#dom.refreshTokenValue = document.getElementById("refreshTokenValue");
-
-    this.#dom.emailInput = document.getElementById("email");
-    this.#dom.emailValue = document.getElementById("emailValue");
-
-    this.#dom.merchantPassInput = document.getElementById("merchantPass");
-    this.#dom.merchantPassValue = document.getElementById("merchantPassValue");
-
-    this.#dom.externalClientIdInput =
-      document.getElementById("externalClientId");
-    this.#dom.externalClientIdValue = document.getElementById(
-      "externalClientIdValue",
-    );
-
-    this.#dom.currencyAmountInput = document.getElementById("currencyAmount");
-    this.#dom.currencyAmountValue = document.getElementById(
-      "currencyAmountValue",
-    );
-
-    this.#dom.currencyFromInput = document.getElementById("currencyFrom");
-    this.#dom.currencyFromValue = document.getElementById("currencyFromValue");
-
-    this.#dom.currencyToInput = document.getElementById("currencyTo");
-    this.#dom.currencyToValue = document.getElementById("currencyToValue");
-
-    this.#dom.cryptoWalletInput = document.getElementById("cryptoWallet");
-    this.#dom.cryptoWalletValue = document.getElementById("cryptoWalletValue");
-
-    this.#dom.redirectUrlInput = document.getElementById("redirectUrl");
-    this.#dom.redirectUrlValue = document.getElementById("redirectUrlValue");
-
-    this.#dom.startAppPageInput = document.getElementById("startAppPage");
-    this.#dom.startAppPageValue = document.getElementById("startAppPageValue");
-
-    this.#dom.showBackButtonInput = document.getElementById("showBackButton");
-    this.#dom.showBackButtonValue = document.getElementById(
-      "showBackButtonValue",
-    );
-
-    this.#dom.disableAddCardInput = document.getElementById("disableAddCard");
-    this.#dom.disableAddCardValue = document.getElementById(
-      "disableAddCardValue",
-    );
-
-    this.#dom.disableCurrencyFromInput = document.getElementById(
-      "disableCurrencyFrom",
-    );
-    this.#dom.disableCurrencyToInput =
-      document.getElementById("disableCurrencyTo");
-    this.#dom.disableCurrencyFromValue = document.getElementById(
-      "disableCurrencyFromValue",
-    );
-    this.#dom.disableCurrencyToValue = document.getElementById(
-      "disableCurrencyToValue",
-    );
-
-    this.#dom.updateSdkBtn = document.getElementById("updateSdk");
-    this.#dom.sdkAgainBtn = document.getElementById("sdk-again");
-  }
+   this.#updateUI();
+   this.#initSdkFn?.();
+  });
 
   // ----------------------------------------------------
 
-  #initValues() {
-    this.#dom.sdkModeRadioBtns.forEach(
-      (radioBtn) => (radioBtn.checked = radioBtn.value === this.#config.mode),
-    );
-    this.#dom.merchantIdInput.innerHTML = this.#config.merchantId;
-
-    this.#dom.accessTokenInput.innerHTML = this.#config.accessToken;
-    this.#dom.refreshTokenInput.innerHTML = this.#config.refreshToken;
-
-    this.#dom.emailInput.value = this.#config.email;
-    this.#dom.merchantPassInput.innerHTML = this.#config.merchantPass;
-    this.#dom.externalClientIdInput.innerHTML = this.#config.externalClientId;
-    this.#dom.currencyAmountInput.value = this.#config.currencyAmount;
-    this.#dom.currencyFromInput.value = this.#config.currencyFrom;
-    this.#dom.currencyToInput.value = this.#config.currencyTo;
-    this.#dom.cryptoWalletInput.innerHTML = this.#config.cryptoWallet;
-    this.#dom.redirectUrlInput.innerHTML = this.#config.redirectUrl;
-    this.#dom.startAppPageInput.value = this.#config.startAppPage;
-    this.#dom.showBackButtonInput.checked = this.#config.showBackButton;
-    this.#dom.disableAddCardInput.checked = this.#config.disableAddCard;
-    this.#dom.disableCurrencyFromInput.checked =
-      this.#config.disableCurrencyFrom;
-    this.#dom.disableCurrencyToInput.checked = this.#config.disableCurrencyTo;
+  async function copyTextToClipboard(textToCopy) {
+   try {
+    await navigator.clipboard.writeText(textToCopy);
+    return true;
+   } catch (error) {
+    console.error('failed to copy to clipboard. error=' + error);
+   }
   }
 
-  // ----------------------------------------------------
+  this.#dom.copyTo?.addEventListener('click', async () => {
+   if (!(await copyTextToClipboard(this.#dom.setupCodeWrapper?.textContent))) return;
 
-  #initHandlers() {
-    this.#dom.sdkModeRadioBtns.forEach((radioBtn) =>
-      radioBtn.addEventListener("change", (e) =>
-        this.#setConfig("mode", e.target.value),
-      ),
-    );
+   this.#dom.copied && (this.#dom.copied.className = '');
+   setTimeout(() => {
+    this.#dom.copied && (this.#dom.copied.className = 'go');
+   }, 20);
+  });
+ }
 
-    this.#dom.merchantIdInput?.addEventListener("input", (e) =>
-      this.#setConfig("merchantId", e.target.value.trim()),
-    );
+ // ----------------------------------------------------
 
-    const onChangeToken = (token) => (e) =>
-      this.#setConfig(token, e.target.value.trim());
-    this.#dom.accessTokenInput?.addEventListener(
-      "input",
-      onChangeToken("accessToken"),
-    );
-    this.#dom.refreshTokenInput?.addEventListener(
-      "input",
-      onChangeToken("refreshToken"),
-    );
+ #setConfig(propName, value) {
+  this.#config[propName] = value;
+  this.#config[`${propName}Update`] = true;
+  localStorage.setItem(`cnf_${propName}`, value);
+  this.#updateUI();
+ }
 
-    this.#dom.emailInput?.addEventListener("input", (e) =>
-      this.#setConfig("email", e.target.value.trim()),
-    );
+ // ----------------------------------------------------
 
-    this.#dom.merchantPassInput?.addEventListener("input", (e) =>
-      this.#setConfig("merchantPass", e.target.value.trim()),
-    );
+ #updateUI() {
+  const {
+   sdkMode,
+   tokensWrapper,
+   userDataWrapper,
+   startAppPageWrapper,
+   accessTokenValue,
+   refreshTokenValue,
+   merchantIdValue,
+   merchantPassValue,
+   emailValue,
+   externalClientIdValue,
+   currencyAmountValue,
+   currencyFromValue,
+   currencyToValue,
+   cryptoWalletValue,
+   redirectUrlValue,
+   startAppPageValue,
+   showBackButtonValue,
+   showBackButtonInput,
+   disableAddCardValue,
+   disableAddCardInput,
+   disableCurrencyFromValue,
+   disableCurrencyToValue,
+   isAuthAgentValue,
+  } = this.#dom;
 
-    this.#dom.externalClientIdInput?.addEventListener("input", (e) =>
-      this.#setConfig("externalClientId", e.target.value.trim()),
-    );
+  sdkMode.textContent = this.#config.mode;
+  if (this.#config.mode === this.#config.modeInit) sdkMode.className = '';
+  else this.#config.modeUpdate && (sdkMode.className = sdkMode.className === 'prev' ? 'changed' : 'prev');
+  this.#config.modeUpdate = false;
 
-    this.#dom.currencyAmountInput?.addEventListener("input", (e) =>
-      this.#setConfig("currencyAmount", e.target.value.trim()),
-    );
+  merchantIdValue.textContent = this.#config.merchantId;
+  if (this.#config.merchantId === this.#config.merchantIdInit) merchantIdValue.className = '';
+  else
+   this.#config.merchantIdUpdate &&
+    (merchantIdValue.className = merchantIdValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.merchantIdUpdate = false;
 
-    this.#dom.currencyFromInput?.addEventListener("change", (e) =>
-      this.#setConfig("currencyFrom", e.target.value),
-    );
+  const isAuthMode = this.#config.mode === 'AuthMode';
+  const isLoginMode = this.#config.mode === 'LoginMode';
+  const isTokensMode = this.#config.mode === 'TokensMode';
+  tokensWrapper && (tokensWrapper.style.display = isTokensMode ? 'flex' : 'none');
+  userDataWrapper && (userDataWrapper.style.display = isLoginMode || isAuthMode ? 'flex' : 'none');
+  startAppPageWrapper && (startAppPageWrapper.style.display = isTokensMode || isLoginMode ? 'flex' : 'none');
 
-    this.#dom.currencyToInput?.addEventListener("change", (e) =>
-      this.#setConfig("currencyTo", e.target.value),
-    );
+  accessTokenValue.className = isTokensMode && this.#config.accessToken?.length ? 'hasValue' : '';
+  accessTokenValue.textContent =
+   isTokensMode && this.#config.accessToken
+    ? `${this.#config.accessToken.length > 10 ? '...' : ''}${this.#config.accessToken.substr(-10, 10)}`
+    : '';
 
-    this.#dom.cryptoWalletInput?.addEventListener("input", (e) =>
-      this.#setConfig("cryptoWallet", e.target.value.trim()),
-    );
+  refreshTokenValue.className = isTokensMode && this.#config.refreshToken?.length ? 'hasValue' : '';
+  refreshTokenValue.textContent =
+   isTokensMode && this.#config.refreshToken
+    ? `${this.#config.refreshToken.length > 10 ? '...' : ''}${this.#config.refreshToken.substr(-10, 10)}`
+    : '';
 
-    this.#dom.redirectUrlInput?.addEventListener("input", (e) =>
-      this.#setConfig("redirectUrl", e.target.value.trim()),
-    );
+  emailValue.textContent = this.#config.email;
+  if (this.#config.email === this.#config.emailInit) emailValue.className = '';
+  else this.#config.emailUpdate && (emailValue.className = emailValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.emailUpdate = false;
 
-    this.#dom.startAppPageInput?.addEventListener("change", (e) =>
-      this.#setConfig("startAppPage", e.target.value),
-    );
+  merchantPassValue.textContent = this.#config.merchantPass;
+  if (this.#config.merchantPass === this.#config.merchantPassInit) merchantPassValue.className = '';
+  else
+   this.#config.merchantPassUpdate &&
+    (merchantPassValue.className = merchantPassValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.merchantPassUpdate = false;
 
-    this.#dom.showBackButtonInput?.addEventListener("change", (e) =>
-      this.#setConfig("showBackButton", e.target.checked),
-    );
-    this.#dom.showBackButtonValue?.addEventListener("click", () =>
-      this.#setConfig("showBackButton", !this.#config.showBackButton),
-    );
+  externalClientIdValue.textContent = this.#config.externalClientId;
+  if (this.#config.externalClientId === this.#config.externalClientIdInit) externalClientIdValue.className = '';
+  else
+   this.#config.externalClientIdUpdate &&
+    (externalClientIdValue.className = externalClientIdValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.externalClientIdUpdate = false;
 
-    this.#dom.disableAddCardInput?.addEventListener("change", (e) =>
-      this.#setConfig("disableAddCard", e.target.checked),
-    );
-    this.#dom.disableAddCardValue?.addEventListener("click", () =>
-      this.#setConfig("disableAddCard", !this.#config.disableAddCard),
-    );
+  currencyAmountValue.textContent = this.#config.currencyAmount;
+  if (this.#config.currencyAmount === this.#config.currencyAmountInit) currencyAmountValue.className = '';
+  else
+   this.#config.currencyAmountUpdate &&
+    (currencyAmountValue.className = currencyAmountValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.currencyAmountUpdate = false;
 
-    this.#dom.disableCurrencyFromInput?.addEventListener("change", (e) =>
-      this.#setConfig("disableCurrencyFrom", e.target.checked),
-    );
-    this.#dom.disableCurrencyToInput?.addEventListener("change", (e) =>
-      this.#setConfig("disableCurrencyTo", e.target.checked),
-    );
+  currencyFromValue.textContent = this.#config.currencyFrom;
+  if (this.#config.currencyFrom === this.#config.currencyFromInit) currencyFromValue.className = '';
+  else
+   this.#config.currencyFromUpdate &&
+    (currencyFromValue.className = currencyFromValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.currencyFromUpdate = false;
 
-    // ----------------------------------------------------
+  currencyToValue.textContent = this.#config.currencyTo;
+  if (this.#config.currencyTo === this.#config.currencyToInit) currencyToValue.className = '';
+  else
+   this.#config.currencyToUpdate &&
+    (currencyToValue.className = currencyToValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.currencyToUpdate = false;
 
-    this.#dom.sdkAgainBtn?.addEventListener("click", () => {
-      this.#dom.sdkAgainBtn.style.display = "none";
-      console.log(
-        "%c MAIN_APP init SDK again =",
-        "background:#ff0;color:#000;",
-      );
-      this.#initSdkFn?.();
-    });
+  cryptoWalletValue.textContent = this.#config.cryptoWallet;
+  if (this.#config.cryptoWallet === this.#config.cryptoWalletInit) cryptoWalletValue.className = '';
+  else
+   this.#config.cryptoWalletUpdate &&
+    (cryptoWalletValue.className = cryptoWalletValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.cryptoWalletUpdate = false;
 
-    // ----------------------------------------------------
+  redirectUrlValue.textContent = this.#config.redirectUrl;
+  if (this.#config.redirectUrl === this.#config.redirectUrlInit) redirectUrlValue.className = '';
+  else
+   this.#config.redirectUrlUpdate &&
+    (redirectUrlValue.className = redirectUrlValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.redirectUrlUpdate = false;
 
-    this.#dom.updateSdkBtn?.addEventListener("click", (e) => {
-      e.preventDefault();
+  startAppPageValue.textContent =
+   (isTokensMode || isLoginMode) && this.#config.startAppPage ? this.#config.startAppPage : '';
+  if (this.#config.startAppPage === this.#config.startAppPageInit) startAppPageValue.className = '';
+  else
+   this.#config.startAppPageUpdate &&
+    (startAppPageValue.className = startAppPageValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.startAppPageUpdate = false;
 
-      this.#config.modeInit = this.#config.mode;
-      this.#config.merchantIdInit = this.#config.merchantId;
-      this.#config.emailInit = this.#config.email;
-      this.#config.merchantPassInit = this.#config.merchantPass;
-      this.#config.externalClientIdInit = this.#config.externalClientId;
-      this.#config.currencyAmountInput = this.#config.currencyAmount;
-      this.#config.currencyFromInput = this.#config.currencyFrom;
-      this.#config.currencyToInput = this.#config.currencyTo;
-      this.#config.cryptoWalletInput = this.#config.cryptoWallet;
-      this.#config.redirectUrlInit = this.#config.redirectUrl;
-      this.#config.startAppPageInit = this.#config.startAppPage;
-      this.#config.showBackButtonInit = this.#config.showBackButton;
-      this.#config.disableAddCardInit = this.#config.disableAddCard;
-      this.#config.disableCurrencyFromInit = this.#config.disableCurrencyFrom;
-      this.#config.disableCurrencyToInit = this.#config.disableCurrencyTo;
+  showBackButtonInput.checked = this.#config.showBackButton;
+  showBackButtonValue.textContent = this.#config.showBackButton ? 'true' : 'false';
+  if (this.#config.showBackButton === this.#config.showBackButtonInit) showBackButtonValue.className = '';
+  else
+   this.#config.showBackButtonUpdate &&
+    (showBackButtonValue.className = showBackButtonValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.showBackButtonUpdate = false;
 
-      this.#cleanupSdkFn?.();
-      this.#showAgainBtn(false);
+  disableAddCardInput.checked = this.#config.disableAddCard;
+  disableAddCardValue.textContent = this.#config.disableAddCard ? 'true' : 'false';
+  if (this.#config.disableAddCard === this.#config.disableAddCardInit) disableAddCardValue.className = '';
+  else
+   this.#config.disableAddCardUpdate &&
+    (disableAddCardValue.className = disableAddCardValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.disableAddCardUpdate = false;
 
-      this.#updateUI();
-      this.#initSdkFn?.();
-    });
+  disableCurrencyFromValue.textContent = this.#config.disableCurrencyFrom ? 'true' : 'false';
+  if (this.#config.disableCurrencyFrom === this.#config.disableCurrencyFromInit)
+   disableCurrencyFromValue.className = '';
+  else
+   this.#config.disableCurrencyFromUpdate &&
+    (disableCurrencyFromValue.className = disableCurrencyFromValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.disableCurrencyFromUpdate = false;
 
-    // ----------------------------------------------------
+  disableCurrencyToValue.textContent = this.#config.disableCurrencyTo ? 'true' : 'false';
+  if (this.#config.disableCurrencyTo === this.#config.disableCurrencyToInit) disableCurrencyToValue.className = '';
+  else
+   this.#config.disableCurrencyToUpdate &&
+    (disableCurrencyToValue.className = disableCurrencyToValue.className === 'prev' ? 'changed' : 'prev');
+  this.#config.disableCurrencyToUpdate = false;
 
-    async function copyTextToClipboard(textToCopy) {
-      try {
-        await navigator.clipboard.writeText(textToCopy);
-        return true;
-      } catch (error) {
-        console.error("failed to copy to clipboard. error=" + error);
-      }
-    }
-
-    this.#dom.copyTo?.addEventListener("click", async () => {
-      if (!(await copyTextToClipboard(this.#dom.setupCodeWrapper?.textContent)))
-        return;
-
-      this.#dom.copied && (this.#dom.copied.className = "");
-      setTimeout(() => {
-        this.#dom.copied && (this.#dom.copied.className = "go");
-      }, 20);
-    });
+  isAuthAgentValue.textContent = this.#config.isAuthAgent ? 'true' : 'false';
+  if (this.#config.isAuthAgent === this.#config.isAuthAgentInit) {
+   isAuthAgentValue.className = '';
+  } else {
+   this.#config.isAuthAgentUpdate &&
+    (isAuthAgentValue.className = isAuthAgentValue.className === 'prev' ? 'changed' : 'prev');
   }
+  this.#config.isAuthAgentUpdate = false;
 
-  // ----------------------------------------------------
+  const isDisableFrom = this.#config.disableCurrencyFrom;
+  const isDisabledTo = this.#config.disableCurrencyTo;
+  this.#dom.currencyFromInput.disabled = isDisableFrom;
+  this.#dom.currencyToInput.disabled = isDisabledTo;
+  this.#dom.currencyAmountInput.disabled = isDisableFrom;
+  this.#dom.cryptoWalletInput.disabled = isDisabledTo;
+ }
 
-  #setConfig(propName, value) {
-    this.#config[propName] = value;
-    this.#config[`${propName}Update`] = true;
-    localStorage.setItem(`cnf_${propName}`, value);
-    this.#updateUI();
-  }
+ // ----------------------------------------------------
 
-  // ----------------------------------------------------
+ showAgainBtn() {
+  this.#showAgainBtn(true);
+ }
 
-  #updateUI() {
-    const {
-      sdkMode,
-      tokensWrapper,
-      userDataWrapper,
-      startAppPageWrapper,
-      accessTokenValue,
-      refreshTokenValue,
-      merchantIdValue,
-      merchantPassValue,
-      emailValue,
-      externalClientIdValue,
-      currencyAmountValue,
-      currencyFromValue,
-      currencyToValue,
-      cryptoWalletValue,
-      redirectUrlValue,
-      startAppPageValue,
-      showBackButtonValue,
-      showBackButtonInput,
-      disableAddCardValue,
-      disableAddCardInput,
-      disableCurrencyFromValue,
-      disableCurrencyToValue,
-    } = this.#dom;
+ #showAgainBtn(isShow) {
+  this.#dom.sdkAgainBtn && (this.#dom.sdkAgainBtn.style.display = isShow ? 'flex' : 'none');
+ }
 
-    sdkMode.textContent = this.#config.mode;
-    if (this.#config.mode === this.#config.modeInit) sdkMode.className = "";
-    else
-      this.#config.modeUpdate &&
-        (sdkMode.className = sdkMode.className === "prev" ? "changed" : "prev");
-    this.#config.modeUpdate = false;
-
-    merchantIdValue.textContent = this.#config.merchantId;
-    if (this.#config.merchantId === this.#config.merchantIdInit)
-      merchantIdValue.className = "";
-    else
-      this.#config.merchantIdUpdate &&
-        (merchantIdValue.className =
-          merchantIdValue.className === "prev" ? "changed" : "prev");
-    this.#config.merchantIdUpdate = false;
-
-    const isAuthMode = this.#config.mode === "AuthMode";
-    const isLoginMode = this.#config.mode === "LoginMode";
-    const isTokensMode = this.#config.mode === "TokensMode";
-    tokensWrapper &&
-      (tokensWrapper.style.display = isTokensMode ? "flex" : "none");
-    userDataWrapper &&
-      (userDataWrapper.style.display =
-        isLoginMode || isAuthMode ? "flex" : "none");
-    startAppPageWrapper &&
-      (startAppPageWrapper.style.display =
-        isTokensMode || isLoginMode ? "flex" : "none");
-
-    accessTokenValue.className =
-      isTokensMode && this.#config.accessToken?.length ? "hasValue" : "";
-    accessTokenValue.textContent =
-      isTokensMode && this.#config.accessToken
-        ? `${this.#config.accessToken.length > 10 ? "..." : ""}${this.#config.accessToken.substr(-10, 10)}`
-        : "";
-
-    refreshTokenValue.className =
-      isTokensMode && this.#config.refreshToken?.length ? "hasValue" : "";
-    refreshTokenValue.textContent =
-      isTokensMode && this.#config.refreshToken
-        ? `${this.#config.refreshToken.length > 10 ? "..." : ""}${this.#config.refreshToken.substr(-10, 10)}`
-        : "";
-
-    emailValue.textContent = this.#config.email;
-    if (this.#config.email === this.#config.emailInit)
-      emailValue.className = "";
-    else
-      this.#config.emailUpdate &&
-        (emailValue.className =
-          emailValue.className === "prev" ? "changed" : "prev");
-    this.#config.emailUpdate = false;
-
-    merchantPassValue.textContent = this.#config.merchantPass;
-    if (this.#config.merchantPass === this.#config.merchantPassInit)
-      merchantPassValue.className = "";
-    else
-      this.#config.merchantPassUpdate &&
-        (merchantPassValue.className =
-          merchantPassValue.className === "prev" ? "changed" : "prev");
-    this.#config.merchantPassUpdate = false;
-
-    externalClientIdValue.textContent = this.#config.externalClientId;
-    if (this.#config.externalClientId === this.#config.externalClientIdInit)
-      externalClientIdValue.className = "";
-    else
-      this.#config.externalClientIdUpdate &&
-        (externalClientIdValue.className =
-          externalClientIdValue.className === "prev" ? "changed" : "prev");
-    this.#config.externalClientIdUpdate = false;
-
-    currencyAmountValue.textContent = this.#config.currencyAmount;
-    if (this.#config.currencyAmount === this.#config.currencyAmountInit)
-      currencyAmountValue.className = "";
-    else
-      this.#config.currencyAmountUpdate &&
-        (currencyAmountValue.className =
-          currencyAmountValue.className === "prev" ? "changed" : "prev");
-    this.#config.currencyAmountUpdate = false;
-
-    currencyFromValue.textContent = this.#config.currencyFrom;
-    if (this.#config.currencyFrom === this.#config.currencyFromInit)
-      currencyFromValue.className = "";
-    else
-      this.#config.currencyFromUpdate &&
-        (currencyFromValue.className =
-          currencyFromValue.className === "prev" ? "changed" : "prev");
-    this.#config.currencyFromUpdate = false;
-
-    currencyToValue.textContent = this.#config.currencyTo;
-    if (this.#config.currencyTo === this.#config.currencyToInit)
-      currencyToValue.className = "";
-    else
-      this.#config.currencyToUpdate &&
-        (currencyToValue.className =
-          currencyToValue.className === "prev" ? "changed" : "prev");
-    this.#config.currencyToUpdate = false;
-
-    cryptoWalletValue.textContent = this.#config.cryptoWallet;
-    if (this.#config.cryptoWallet === this.#config.cryptoWalletInit)
-      cryptoWalletValue.className = "";
-    else
-      this.#config.cryptoWalletUpdate &&
-        (cryptoWalletValue.className =
-          cryptoWalletValue.className === "prev" ? "changed" : "prev");
-    this.#config.cryptoWalletUpdate = false;
-
-    redirectUrlValue.textContent = this.#config.redirectUrl;
-    if (this.#config.redirectUrl === this.#config.redirectUrlInit)
-      redirectUrlValue.className = "";
-    else
-      this.#config.redirectUrlUpdate &&
-        (redirectUrlValue.className =
-          redirectUrlValue.className === "prev" ? "changed" : "prev");
-    this.#config.redirectUrlUpdate = false;
-
-    startAppPageValue.textContent =
-      (isTokensMode || isLoginMode) && this.#config.startAppPage
-        ? this.#config.startAppPage
-        : "";
-    if (this.#config.startAppPage === this.#config.startAppPageInit)
-      startAppPageValue.className = "";
-    else
-      this.#config.startAppPageUpdate &&
-        (startAppPageValue.className =
-          startAppPageValue.className === "prev" ? "changed" : "prev");
-    this.#config.startAppPageUpdate = false;
-
-    showBackButtonInput.checked = this.#config.showBackButton;
-    showBackButtonValue.textContent = this.#config.showBackButton
-      ? "true"
-      : "false";
-    if (this.#config.showBackButton === this.#config.showBackButtonInit)
-      showBackButtonValue.className = "";
-    else
-      this.#config.showBackButtonUpdate &&
-        (showBackButtonValue.className =
-          showBackButtonValue.className === "prev" ? "changed" : "prev");
-    this.#config.showBackButtonUpdate = false;
-
-    disableAddCardInput.checked = this.#config.disableAddCard;
-    disableAddCardValue.textContent = this.#config.disableAddCard
-      ? "true"
-      : "false";
-    if (this.#config.disableAddCard === this.#config.disableAddCardInit)
-      disableAddCardValue.className = "";
-    else
-      this.#config.disableAddCardUpdate &&
-        (disableAddCardValue.className =
-          disableAddCardValue.className === "prev" ? "changed" : "prev");
-    this.#config.disableAddCardUpdate = false;
-
-    disableCurrencyFromValue.textContent = this.#config.disableCurrencyFrom
-      ? "true"
-      : "false";
-    if (
-      this.#config.disableCurrencyFrom === this.#config.disableCurrencyFromInit
-    )
-      disableCurrencyFromValue.className = "";
-    else
-      this.#config.disableCurrencyFromUpdate &&
-        (disableCurrencyFromValue.className =
-          disableCurrencyFromValue.className === "prev" ? "changed" : "prev");
-    this.#config.disableCurrencyFromUpdate = false;
-
-    disableCurrencyToValue.textContent = this.#config.disableCurrencyTo
-      ? "true"
-      : "false";
-    if (this.#config.disableCurrencyTo === this.#config.disableCurrencyToInit)
-      disableCurrencyToValue.className = "";
-    else
-      this.#config.disableCurrencyToUpdate &&
-        (disableCurrencyToValue.className =
-          disableCurrencyToValue.className === "prev" ? "changed" : "prev");
-    this.#config.disableCurrencyToUpdate = false;
-
-    const isDisableFrom = this.#config.disableCurrencyFrom;
-    const isDisabledTo = this.#config.disableCurrencyTo;
-    this.#dom.currencyFromInput.disabled = isDisableFrom;
-    this.#dom.currencyToInput.disabled = isDisabledTo;
-    this.#dom.currencyAmountInput.disabled = isDisableFrom;
-    this.#dom.cryptoWalletInput.disabled = isDisabledTo;
-  }
-
-  // ----------------------------------------------------
-
-  showAgainBtn() {
-    this.#showAgainBtn(true);
-  }
-
-  #showAgainBtn(isShow) {
-    this.#dom.sdkAgainBtn &&
-      (this.#dom.sdkAgainBtn.style.display = isShow ? "flex" : "none");
-  }
-
-  // ----------------------------------------------------
+ // ----------------------------------------------------
 }
