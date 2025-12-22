@@ -160,7 +160,7 @@
     config.sdkIframe.style.width = "100%";
     config.sdkIframe.style.height = "100%";
     config.sdkIframe.style.display = "block";
-    config.sdkIframe.allow = "camera";
+    config.sdkIframe.allow = 'camera; clipboard-read; clipboard-write';
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
