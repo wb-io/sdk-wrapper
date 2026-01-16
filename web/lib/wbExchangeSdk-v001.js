@@ -160,11 +160,27 @@
     config.sdkIframe.style.width = "100%";
     config.sdkIframe.style.height = "100%";
     config.sdkIframe.style.display = "block";
-    config.sdkIframe.allow = 'camera; clipboard-read; clipboard-write';
+    config.sdkIframe.allow = "camera; clipboard-read; clipboard-write";
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
     window.addEventListener("message", onPostMessageHandler);
+
+    function openFromTelegramTop(url) {
+      const tg = window.Telegram?.WebApp;
+      if (tg?.openLink) {
+        tg.openLink(url);
+        return true;
+      }
+      window.location.href = url;
+      return true;
+    }
+
+   window.addEventListener('message', e => {
+    if (e.data?.type === 'TG_OPEN_LINK' && typeof e.data.url === 'string') {
+     openFromTelegramTop(e.data.url);
+    }
+   });
   };
 
   // ----------------------------------------------------
