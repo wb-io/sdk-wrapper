@@ -15,7 +15,7 @@
   // ----------------------------------------------------
   const version = "/v2.0";
 
-  const SDK_ORIGIN = "https://sdk.whitebird.io";
+  const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
   const SDK_URL = SDK_ORIGIN + version;
 
   //Only local test
