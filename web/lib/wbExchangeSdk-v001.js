@@ -162,7 +162,13 @@
     config.el.appendChild(config.sdkIframe);
 
     function openFromTelegramTop(url) {
-      window.open(url, "_blank", "noopener,noreferrer");
+      const tg = window.Telegram?.WebApp;
+
+      if (tg?.openLink) {
+        tg.openLink(url, { try_instant_view: false });
+      } else {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
     }
 
     window.addEventListener("message", (e) => {
