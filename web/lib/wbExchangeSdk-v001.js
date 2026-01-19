@@ -162,7 +162,7 @@
     config.el.appendChild(config.sdkIframe);
 
     function openFromTelegramTop(url) {
-      window.location.href = url;
+      window.open(url, "_blank", "noopener,noreferrer");
     }
 
     window.addEventListener("message", (e) => {
