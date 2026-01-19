@@ -167,20 +167,24 @@
     window.addEventListener("message", onPostMessageHandler);
 
     function openFromTelegramTop(url) {
+      console.info({ url });
       const tg = window.Telegram?.WebApp;
       if (tg?.openLink) {
+        console.info("Telegram", window.Telegram);
         tg.openLink(url);
         return true;
       }
+      console.info("else");
       window.location.href = url;
       return true;
     }
 
-   window.addEventListener('message', e => {
-    if (e.data?.type === 'TG_OPEN_LINK' && typeof e.data.url === 'string') {
-     openFromTelegramTop(e.data.url);
-    }
-   });
+    console.info("makeIframe");
+    window.addEventListener("message", (e) => {
+      if (e.data?.type === "TG_OPEN_LINK" && typeof e.data.url === "string") {
+        openFromTelegramTop(e.data.url);
+      }
+    });
   };
 
   // ----------------------------------------------------
