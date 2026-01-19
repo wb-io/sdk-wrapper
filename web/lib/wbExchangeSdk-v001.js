@@ -18,11 +18,8 @@
   const SDK_ORIGIN = "https://sdk.whitebird.io";
   const SDK_URL = SDK_ORIGIN + version;
 
-  // const SDK_ORIGIN = "https://sdk.whitebird.io";
-  // const SDK_URL = SDK_ORIGIN + version;
-
   //Only local test
-  // const SDK_ORIGIN =  'http://localhost:3000';
+  // const SDK_ORIGIN = "http://localhost:3000";
   // const SDK_URL = SDK_ORIGIN;
 
   const defaultConfig = {
@@ -164,18 +161,17 @@
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
-    window.addEventListener("message", onPostMessageHandler);
-
     function openFromTelegramTop(url) {
-      localStorage.setItem("url", url);
       window.location.href = url;
     }
 
     window.addEventListener("message", (e) => {
-      if (e.data?.type === "TG_OPEN_LINK" && typeof e.data.url === "string") {
-        openFromTelegramTop(e.data.url);
+      if (e.data?.type === "TG_OPEN_LINK") {
+        openFromTelegramTop(e.data.link);
       }
     });
+
+    window.addEventListener("message", onPostMessageHandler);
   };
 
   // ----------------------------------------------------
