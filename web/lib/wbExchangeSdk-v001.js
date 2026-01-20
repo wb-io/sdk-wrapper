@@ -165,7 +165,7 @@
       const tg = window.Telegram?.WebApp;
 
       if (tg?.openLink) {
-        tg.openLink(url, { tryInstantView: true, tryBrowser: "chrome" });
+        tg.openLink(url, { tryInstantView: false, tryBrowser: "chrome" });
       } else {
         window.location.href = url;
       }
