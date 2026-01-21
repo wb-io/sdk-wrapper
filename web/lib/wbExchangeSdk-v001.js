@@ -162,13 +162,14 @@
     config.el.appendChild(config.sdkIframe);
 
     function openFromTelegramTop(url) {
-      const tg = window.Telegram?.WebApp;
-
-      if (tg?.openLink) {
-        tg.openLink(url, { tryInstantView: false, tryBrowser: "chrome" });
-      } else {
-        window.location.href = url;
-      }
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
     }
 
     window.addEventListener("message", (e) => {
