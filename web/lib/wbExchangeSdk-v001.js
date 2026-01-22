@@ -10,6 +10,24 @@
     OnBackButton: "OnBackButton",
     OnUserData: "OnUserData",
     OnOrderCreated: "OnOrderCreated",
+    OnOpenLink: "OnOpenLink",
+  };
+
+  const openFromTelegramTop = (url) => {
+    const tg = window.Telegram?.WebApp;
+
+    try {
+      if (tg) {
+        tg.showConfirm("Перейти к оплате", (ok) => {
+          if (!ok) return;
+          tg.openLink(url);
+        });
+      } else {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+    } catch (e) {
+      window.location.href = url;
+    }
   };
 
   // ----------------------------------------------------
@@ -161,21 +179,6 @@
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
-    function openFromTelegramTop(url) {
-      const tg = window.Telegram.WebApp;
-
-      tg.showConfirm("Перейти к оплате", (ok) => {
-        if (!ok) return;
-        tg.openLink(url);
-      });
-    }
-
-    window.addEventListener("message", (e) => {
-      if (e.data?.type === "TG_OPEN_LINK") {
-        openFromTelegramTop(e.data.link);
-      }
-    });
-
     window.addEventListener("message", onPostMessageHandler);
   };
 
@@ -226,6 +229,10 @@
       );
       return;
     }
+    if (event.data?.type === PostMessageType.OnOpenLink) {
+      openFromTelegramTop(event.data.link);
+    }
+
     if (
       data?.type === PostMessageType.OnChangeTokens &&
       config.mode === SdkMode.AuthMode
