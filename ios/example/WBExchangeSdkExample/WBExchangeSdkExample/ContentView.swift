@@ -4,29 +4,24 @@ import WBExchangeSdk
 struct ContentView: View {
 
     @State var isShowWB = false
-    @State var wbExchangeView:WBExchangeView? = nil
+    @State var wbExchangeView: WBExchangeView? = nil
     
     @StateObject var wbExchangeSdkConfig = WBExchangeSdkConfig(
 
-//        mode: WBExchangeSdkMode.LoginMode,
-        mode: WBExchangeSdkMode.AuthMode,
-//        mode: WBExchangeSdkMode.TokensMode,
-
-        merchantId: "TEST",
-        merchantPass: "test",
-        externalClientId: "TEST",
+        mode: WBExchangeSdkMode.LoginMode,
+        merchantId: "11111111-1111-1111-1111-111111111111",
+        merchantPass: "==",
         
-        currencyAmount: 100,
-        currencyFrom: .EUR,
+        currencyAmount: 1000,
+        currencyFrom: .RUB,
 
         // TokensMode
-        accessToken: "..",
+        accessToken: "...",
         refreshToken: "...",
-                
         showBackButtonOnHomePage: true,
         email: "test@gmail.com",
-        startAppPage: .transactionHistory,
-        env: .dev
+        startAppPage: .home,
+        env: .dev,
     )
         
     var body: some View {
