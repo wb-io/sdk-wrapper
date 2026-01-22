@@ -162,14 +162,12 @@
     config.el.appendChild(config.sdkIframe);
 
     function openFromTelegramTop(url) {
-      const a = document.createElement("a");
-      a.href = url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
+      const tg = window.Telegram.WebApp;
+
+      tg.showConfirm("Перейти к оплате", (ok) => {
+        if (!ok) return;
+        tg.openLink(url);
+      });
     }
 
     window.addEventListener("message", (e) => {
