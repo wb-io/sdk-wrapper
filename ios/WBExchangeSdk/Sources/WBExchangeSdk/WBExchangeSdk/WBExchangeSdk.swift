@@ -37,6 +37,11 @@ public enum WBCurrency {
     case USDC
 }
 
+public typealias WBLoginHandler = (_ accessToken: String, _ refreshToken: String, _ isUserVerified: Bool) -> Void
+public typealias WBUserDataHandler = (_ email: String, _ accessToken: String, _ refreshToken: String) -> Void
+public typealias WBExitHandler = () -> Void
+public typealias WBOrderCreatedHandler = (_ orderId: String, _ internalCryptoAddress: String?) -> Void
+
 public class WBExchangeSdkConfig: ObservableObject {
     public var webView: WKWebView?
     
@@ -45,28 +50,37 @@ public class WBExchangeSdkConfig: ObservableObject {
     @Published private var merchantId: String
     @Published private var merchantPass: String
     @Published private var externalClientId: String?
+    @Published private var isAuthAgent: Bool
     
     // Exchange config
     @Published private var currencyAmount: Int?
     @Published private var currencyFrom: WBCurrency?
     @Published private var currencyTo: WBCurrency?
     @Published private var cryptoWallet: String?
+    @Published private var disableCurrencyFrom: Bool
+    @Published private var disableCurrencyTo: Bool
     
     // TokensMode
     @Published private var accessToken: String
     @Published private var refreshToken: String
     
     // AuthMode
-    private var onLoginHandler:((String, String, Bool) -> Void)?
+    private var onLoginHandler: WBLoginHandler?
     
     // extra configurations:
+    @Published private var redirectUrl: String?
     @Published private var email: String?
     @Published private var refId: String?
     @Published private var startAppPage: WBExchangeSdkStartPage = .home
     
-    // Back button config
+    // Back button config, Any mode
     @Published private var showBackButtonOnHomePage: Bool
-    private var onExitHandler:(() -> Void)?
+    private var onExitHandler: WBExitHandler?
+    
+    // LoginMode
+    private var onUserDataHandler: WBUserDataHandler?
+    // Any mode
+    private var onOrderCreatedHandler: WBOrderCreatedHandler?
     
     private var env: WBSdkEnv
 
@@ -97,16 +111,20 @@ public class WBExchangeSdkConfig: ObservableObject {
         merchantId: String,
         merchantPass: String,
         externalClientId: String? = nil,
+        isAuthAgent: Bool = false,
         
         currencyAmount: Int? = nil,
         currencyFrom: WBCurrency? = nil,
         currencyTo: WBCurrency? = nil,
         cryptoWallet: String? = nil,
+        disableCurrencyFrom: Bool = false,
+        disableCurrencyTo: Bool = false,
         
         accessToken: String = "",
         refreshToken: String = "",
         
         showBackButtonOnHomePage: Bool = false,
+        redirectUrl: String? = nil,
         email: String? = nil,
         refId: String? = nil,
         startAppPage: WBExchangeSdkStartPage = .home,
@@ -116,16 +134,20 @@ public class WBExchangeSdkConfig: ObservableObject {
         self.merchantId = merchantId
         self.merchantPass = merchantPass
         self.externalClientId = externalClientId
+        self.isAuthAgent = isAuthAgent
         
         self.currencyAmount = currencyAmount
         self.currencyFrom = currencyFrom
         self.currencyTo = currencyTo
         self.cryptoWallet = cryptoWallet
+        self.disableCurrencyFrom = disableCurrencyFrom
+        self.disableCurrencyTo = disableCurrencyTo
         
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         
         self.showBackButtonOnHomePage = showBackButtonOnHomePage
+        self.redirectUrl = redirectUrl
         self.email = email
         self.refId = refId
         self.startAppPage = startAppPage
@@ -133,20 +155,18 @@ public class WBExchangeSdkConfig: ObservableObject {
     }
     
     public func initHandlers(
-        onLogin: ((String, String, Bool) -> Void)? = nil,
-        onExit: (() -> Void)? = nil
+        onLogin: WBLoginHandler? = nil,
+        onExit: WBExitHandler? = nil,
+        onUserData: WBUserDataHandler? = nil,
+        onOrderCreated: WBOrderCreatedHandler? = nil,
     ) {
         self.onLoginHandler = onLogin
         self.onExitHandler = onExit
+        self.onUserDataHandler = onUserData
+        self.onOrderCreatedHandler = onOrderCreated
     }
 
     // --------------------
-
-    public func invokeOnLoginHandler(accessToken:String, refreshToken:String, isUserVerified:Bool)
-    {
-        sdklog("-> invokeOnLoginHandler...")
-        onLoginHandler?(accessToken, refreshToken, isUserVerified)
-    }
 
     public func invokeOnExitHandler()
     {
@@ -164,13 +184,17 @@ public class WBExchangeSdkConfig: ObservableObject {
             "merchantId=\(merchantId)",
             "merchantPass=\(merchantPass)",
             "externalClientId=\(getNullableParam(externalClientId))",
+            "isAuthAgent=\(isAuthAgent)",
             
             "currencyAmount=\(getNullableParam(currencyAmount))",
             "currencyFrom=\(getNullableParam(currencyFrom))",
             "currencyTo=\(getNullableParam(currencyTo))",
             "cryptoWallet=\(getNullableParam(cryptoWallet))",
+            "disableCurrencyFrom=\(disableCurrencyFrom)",
+            "disableCurrencyTo=\(disableCurrencyTo)",
             
             "showBackButtonOnHomePage=\(showBackButton)",
+            "redirectUrl=\(getNullableParam(redirectUrl))",
             "email=\(getNullableParam(email))",
             "refId=\(getNullableParam(refId))",
             "startAppPage=\(startAppPage.rawValue)"
@@ -182,6 +206,44 @@ public class WBExchangeSdkConfig: ObservableObject {
         }
 
         return "\(url)?\(params.joined(separator: "&"))"
+    }
+    
+    func invokeMessageHandler(_ message: PostMessageValue) {
+        guard let type = message.type as? String else {
+            sdklog("Unrecognized message type")
+            return
+        }
+            
+        sdklog("...type = \(type)")
+        
+        if type == PostMessageType.OnBackButton.rawValue {
+            invokeOnExitHandler()
+        }
+        
+        if type == PostMessageType.OnOrderCreated.rawValue {
+            let orderId = message.orderId ?? ""
+            sdklog("-> onOrderCreatedHandler... \(orderId)")
+            onOrderCreatedHandler?(orderId, message.internalCryptoAddress)
+        }
+        
+        if type == PostMessageType.OnChangeTokens.rawValue && mode == .AuthMode {
+            let accessToken = message.accessToken ?? ""
+            let refreshToken = message.refreshToken ?? ""
+            let isUserVerified = message.isUserVerified ?? false
+            sdklog("...accessToken = \(accessToken.suffix(20))")
+            sdklog("...refreshToken = \(refreshToken.suffix(20))")
+            sdklog("...isUserVerified = \(isUserVerified)")
+            sdklog("-> invokeOnLoginHandler...")
+            onLoginHandler?(accessToken, refreshToken, isUserVerified)
+        }
+        
+        if type == PostMessageType.OnUserData.rawValue && mode == .LoginMode {
+            let accessToken = message.accessToken ?? ""
+            let refreshToken = message.refreshToken ?? ""
+            let email = message.email ?? ""
+            sdklog("-> onUserDataHandler... \(email)")
+            onUserDataHandler?(email, accessToken, refreshToken)
+        }
     }
     
     private func getNullableParam<T>(_ param: T?) -> String {

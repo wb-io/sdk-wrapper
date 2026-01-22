@@ -10,15 +10,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		+U5sLBRaRfT1AZLf1pvFzWBQG6c=
+		NnQTKLhDMHth4OxBG7d4Uo2TH/w=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		keRO5uSXn7HCGNELgDi6MevT9y4=
+		Y3JsuJjsRH8wEwx9eAtwo+c7SBA=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		hngVa5H0p3cmbdvKwaWDwnd6HX0=
+		bctt3kg7Bp4N5A/UwnXfpTt969Q=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		hngVa5H0p3cmbdvKwaWDwnd6HX0=
+		bctt3kg7Bp4N5A/UwnXfpTt969Q=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		pM/oRBUu+bE3zW3A2GadFuFrKYc=
+		aXTzhBMlV18MsbBGHzOcxgOmugU=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		keRO5uSXn7HCGNELgDi6MevT9y4=
+		Y3JsuJjsRH8wEwx9eAtwo+c7SBA=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		4EK4x0optNSAIG6GBboSG+DyHhw=
+		lih/g4QT1zhbrEo55cNnBU1S+Zs=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		4EK4x0optNSAIG6GBboSG+DyHhw=
+		lih/g4QT1zhbrEo55cNnBU1S+Zs=
 		</data>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		R9rtVXQu72UP99S3qsb/VYv0np0=
+		7ki7EZgyHIPrTaOYrRoidtkYYQI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,14 +70,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4k4V+gTMmqW6Sc7jSGe0kDLgvhuoUUef0tXcE3qB7Hk=
+			0mZOD5ICrCtOymieP6P7ey38kky8QBJckoFZw2EFzzQ=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			D0CEoAxAtYtiYa5aMDfahLjP1I7p4hH5VeJyRRcuuV0=
+			9L/WKNCfRMgZTuQuTAjmEFAPWp0a8grDrId1bOzuRB0=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -91,28 +91,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			D0CEoAxAtYtiYa5aMDfahLjP1I7p4hH5VeJyRRcuuV0=
+			9L/WKNCfRMgZTuQuTAjmEFAPWp0a8grDrId1bOzuRB0=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lqlELO9dQd7gX/rk7ap9xHVkUqcMlaQti98n9UZ6Dww=
+			5HDgIdo3Ic+jt8e6dEdS7po35GsER3Xyz+cTkhalzrU=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4k4V+gTMmqW6Sc7jSGe0kDLgvhuoUUef0tXcE3qB7Hk=
+			0mZOD5ICrCtOymieP6P7ey38kky8QBJckoFZw2EFzzQ=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ULuI07HDZJQkmJU4Tg4+kKEQyUQfduinPeUX/9JX2gA=
+			1UjPUs1eGAGIvDq3p8gcVPvuW4RZiSK+5aYja6G/6Us=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -126,14 +126,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ULuI07HDZJQkmJU4Tg4+kKEQyUQfduinPeUX/9JX2gA=
+			1UjPUs1eGAGIvDq3p8gcVPvuW4RZiSK+5aYja6G/6Us=
 			</data>
 		</dict>
 		<key>Modules/WBExchangeSdk.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5fQQOxgN/LT6GQFaZOktY2shYR+BiFbIKUWcP+RqO3s=
+			EhTUo4O7Q6zF7YoG+MJ+ov9nZUIY3LnXGL5r+pqruNc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

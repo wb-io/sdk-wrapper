@@ -62,15 +62,18 @@ public enum WBCurrency {
     get
   }
 }
+public typealias WBLoginHandler = (_ accessToken: Swift.String, _ refreshToken: Swift.String, _ isUserVerified: Swift.Bool) -> Swift.Void
+public typealias WBUserDataHandler = (_ email: Swift.String, _ accessToken: Swift.String, _ refreshToken: Swift.String) -> Swift.Void
+public typealias WBExitHandler = () -> Swift.Void
+public typealias WBOrderCreatedHandler = (_ orderId: Swift.String, _ internalCryptoAddress: Swift.String?) -> Swift.Void
 public class WBExchangeSdkConfig : Combine.ObservableObject {
   public var webView: WebKit.WKWebView?
   public var showWebView: Swift.Bool {
     get
   }
   public func sdklog(_ msg: Swift.String)
-  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, merchantPass: Swift.String, externalClientId: Swift.String? = nil, currencyAmount: Swift.Int? = nil, currencyFrom: WBExchangeSdk.WBCurrency? = nil, currencyTo: WBExchangeSdk.WBCurrency? = nil, cryptoWallet: Swift.String? = nil, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, email: Swift.String? = nil, refId: Swift.String? = nil, startAppPage: WBExchangeSdk.WBExchangeSdkStartPage = .home, env: WBExchangeSdk.WBSdkEnv = .dev)
-  public func initHandlers(onLogin: ((Swift.String, Swift.String, Swift.Bool) -> Swift.Void)? = nil, onExit: (() -> Swift.Void)? = nil)
-  public func invokeOnLoginHandler(accessToken: Swift.String, refreshToken: Swift.String, isUserVerified: Swift.Bool)
+  public init(mode: WBExchangeSdk.WBExchangeSdkMode, merchantId: Swift.String, merchantPass: Swift.String, externalClientId: Swift.String? = nil, isAuthAgent: Swift.Bool = false, currencyAmount: Swift.Int? = nil, currencyFrom: WBExchangeSdk.WBCurrency? = nil, currencyTo: WBExchangeSdk.WBCurrency? = nil, cryptoWallet: Swift.String? = nil, disableCurrencyFrom: Swift.Bool = false, disableCurrencyTo: Swift.Bool = false, accessToken: Swift.String = "", refreshToken: Swift.String = "", showBackButtonOnHomePage: Swift.Bool = false, redirectUrl: Swift.String? = nil, email: Swift.String? = nil, refId: Swift.String? = nil, startAppPage: WBExchangeSdk.WBExchangeSdkStartPage = .home, env: WBExchangeSdk.WBSdkEnv = .dev)
+  public func initHandlers(onLogin: WBExchangeSdk.WBLoginHandler? = nil, onExit: WBExchangeSdk.WBExitHandler? = nil, onUserData: WBExchangeSdk.WBUserDataHandler? = nil, onOrderCreated: WBExchangeSdk.WBOrderCreatedHandler? = nil)
   public func invokeOnExitHandler()
   public func getUrl() -> Swift.String
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
