@@ -5,6 +5,8 @@ import Foundation
 enum PostMessageType: String {
     case OnChangeTokens = "OnChangeTokens"
     case OnBackButton = "OnBackButton"
+    case OnUserData = "OnUserData"
+    case OnOrderCreated = "OnOrderCreated"
 }
 
 struct PostMessageValue: Codable {
@@ -13,7 +15,14 @@ struct PostMessageValue: Codable {
     let accessToken: String?
     let refreshToken: String?
     let isUserVerified: Bool?
+    
+    let email: String?
+    
+    let orderId: String?
+    let internalCryptoAddress: String?
 }
+
+private let WBJsApiName = "WBSdkJsApi"
 
 public struct WBExchangeView: View {
     
@@ -68,7 +77,7 @@ struct WhiteBirdWebView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let coordinator = makeCoordinator()
         let userContentController = WKUserContentController()
-        userContentController.add(coordinator, name: "WBSdkJsApi")
+        userContentController.add(coordinator, name: WBJsApiName)
         // in javascript -> webkit.messageHandlers.WBSdkJsApi.postMessage("jsonString")
         
         let configuration = WKWebViewConfiguration()
@@ -123,10 +132,9 @@ struct WhiteBirdWebView: UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-            
             if let url = navigationAction.request.url {
                 let ext = url.pathExtension.lowercased()
-            
+                            
                 // список типов файлов, которые нужно открывать отдельно
                 if ["pdf", "doc", "docx", "xls", "xlsx", "zip"].contains(ext) {
                     UIApplication.shared.open(url)   // открываем через Safari / Files
@@ -157,33 +165,14 @@ struct WhiteBirdWebView: UIViewRepresentable {
             _ userContentController: WKUserContentController,
             didReceive message: WKScriptMessage
         ) {
+            guard message.name == WBJsApiName else { return }
+            
             self.sdkConfig.sdklog("------------------------------")
-            self.sdkConfig.sdklog("message.name = \(message.name)")
-            if message.name == "WBSdkJsApi" {
-                sdkConfig.sdklog("message.body = \(message.body as! String)")
-                
-                jsonParse(message.body) { (postMessageValue: PostMessageValue) in
-                    self.sdkConfig.sdklog("postMessageValue = \(postMessageValue)")
-                    
-                    if let type = postMessageValue.type as? String {
-                        self.sdkConfig.sdklog("...type = \(type)")
-                        
-                        if type == PostMessageType.OnChangeTokens.rawValue {
-                            let accessToken = postMessageValue.accessToken ?? ""
-                            let refreshToken = postMessageValue.refreshToken ?? ""
-                            let isUserVerified = postMessageValue.isUserVerified ?? false
-                            self.sdkConfig.sdklog("...accessToken = \(accessToken.suffix(20))")
-                            self.sdkConfig.sdklog("...refreshToken = \(refreshToken.suffix(20))")
-                            self.sdkConfig.sdklog("...isUserVerified = \(isUserVerified)")
-                            
-                            self.sdkConfig.invokeOnLoginHandler(accessToken: accessToken, refreshToken: refreshToken, isUserVerified: isUserVerified)
-                        }
-                        
-                        if type == PostMessageType.OnBackButton.rawValue {
-                            self.sdkConfig.invokeOnExitHandler()
-                        }
-                    }
-                }
+            self.sdkConfig.sdklog("message.body = \(message.body as! String)")
+            
+            jsonParse(message.body) { (postMessageValue: PostMessageValue) in
+                self.sdkConfig.sdklog("postMessageValue = \(postMessageValue)")
+                self.sdkConfig.invokeMessageHandler(postMessageValue)
             }
         }
         
