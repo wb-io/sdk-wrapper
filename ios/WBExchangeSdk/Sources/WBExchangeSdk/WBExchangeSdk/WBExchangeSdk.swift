@@ -42,6 +42,14 @@ public typealias WBUserDataHandler = (_ email: String, _ accessToken: String, _ 
 public typealias WBExitHandler = () -> Void
 public typealias WBOrderCreatedHandler = (_ orderId: String, _ internalCryptoAddress: String?) -> Void
 
+enum PostMessageType: String {
+    case OnChangeTokens = "OnChangeTokens"
+    case OnBackButton = "OnBackButton"
+    case OnUserData = "OnUserData"
+    case OnOrderCreated = "OnOrderCreated"
+    case OnOpenLink = "OnOpenLink"
+}
+
 public class WBExchangeSdkConfig: ObservableObject {
     public var webView: WKWebView?
     
@@ -243,6 +251,15 @@ public class WBExchangeSdkConfig: ObservableObject {
             let email = message.email ?? ""
             sdklog("-> onUserDataHandler... \(email)")
             onUserDataHandler?(email, accessToken, refreshToken)
+        }
+        
+        if type == PostMessageType.OnOpenLink.rawValue {
+            if let link = message.link {
+                UIApplication.shared.open(URL(string: link)!, options: [:], completionHandler: { _ in
+                    self.sdklog("-> OnOpenLink opened...")
+                })
+            }
+            sdklog("-> OnOpenLink fired...")
         }
     }
     
