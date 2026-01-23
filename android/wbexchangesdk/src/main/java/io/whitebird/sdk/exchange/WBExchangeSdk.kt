@@ -52,6 +52,9 @@ class WBExchangeSdk private constructor()
         // mode = WBExchangeSdkMode.AuthMode
         onLogin: ((accessToken: String, refreshToken: String, isUserVerified: Boolean) -> Unit)? = null,
 
+        // mode = WBExchangeSdkMode.LoginMode
+        onUserData: ((email: String?, accessToken: String, refreshToken: String) -> Unit)? = null,
+
         showBackButtonOnHomePage: Boolean = false,
         onExit: (() -> Unit)? = null,
 
@@ -63,9 +66,15 @@ class WBExchangeSdk private constructor()
         currencyAmount: BigDecimal? = null,
         currencyFrom: WBCurrency? = null,
         currencyTo: WBCurrency? = null,
+        disableCurrencyFrom: Boolean = false,
+        disableCurrencyTo: Boolean = false,
+        isAuthAgent: Boolean = false,
         cryptoWallet: String? = null,
+        redirectUrl: String? = null,
         refId: String? = null,
-        startAppPage: WBStartAppPage = WBStartAppPage.HOMEPAGE
+        startAppPage: WBStartAppPage = WBStartAppPage.HOMEPAGE,
+
+        onOrderCreated: ((orderId: String, internalCryptoAddress: String?) -> Unit)? = null
     )
     {
         setLogEnabled(logEnabled)
@@ -96,6 +105,12 @@ class WBExchangeSdk private constructor()
             config.onLoginHandler = onLogin
         }
 
+        if (config.isLoginMode)
+        {
+            sdklog("-> ... onUserData", if (onUserData != null) "true" else "false")
+            config.onUserDataHandler = onUserData
+        }
+
         config.showBackButtonOnHomePage = showBackButtonOnHomePage
 //        if (showBackButtonOnHomePage)
 //        {
@@ -110,9 +125,16 @@ class WBExchangeSdk private constructor()
         config.currencyAmount = currencyAmount
         config.currencyFrom = currencyFrom
         config.currencyTo = currencyTo
+        config.disableCurrencyFrom = disableCurrencyFrom
+        config.disableCurrencyTo = disableCurrencyTo
+        config.isAuthAgent = isAuthAgent
         config.cryptoWallet = cryptoWallet
+        config.redirectUrl = redirectUrl
         config.refId = refId
         config.startAppPage = startAppPage
+
+        sdklog("-> ... onOrderCreated", if (onOrderCreated != null) "true" else "false")
+        config.onOrderCreatedHandler = onOrderCreated
 
         config.updateWebViewUrl?.invoke()
     }
@@ -126,6 +148,28 @@ class WBExchangeSdk private constructor()
             "accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}, isUserVerified = $isUserVerified"
         )
         config.onLoginHandler?.invoke(accessToken, refreshToken, isUserVerified)
+    }
+
+    // -----------------------------------------
+
+    fun invokeOnUserDataHandler(email: String?, accessToken: String, refreshToken: String)
+    {
+        sdklog(
+            "-> WB/sdk: invokeOnUserDataHandler",
+            "email = ${email ?: ""}, accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}"
+        )
+        config.onUserDataHandler?.invoke(email, accessToken, refreshToken)
+    }
+
+    // -----------------------------------------
+
+    fun invokeOnOrderCreatedHandler(orderId: String, internalCryptoAddress: String?)
+    {
+        sdklog(
+            "-> WB/sdk: invokeOnOrderCreatedHandler",
+            "orderId = $orderId, internalCryptoAddress = ${internalCryptoAddress ?: ""}"
+        )
+        config.onOrderCreatedHandler?.invoke(orderId, internalCryptoAddress)
     }
 
     // -----------------------------------------

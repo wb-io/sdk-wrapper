@@ -3,6 +3,7 @@ package io.whitebird.sdk.example_with_aar
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import android.webkit.WebView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+
+        WebView.setWebContentsDebuggingEnabled(true)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -41,6 +44,13 @@ class MainActivity : AppCompatActivity()
 
             // LoginMode
 //            mode = WBExchangeSdkMode.LoginMode,
+//            onUserData = { email, accessToken, refreshToken ->
+//                Log.d(
+//                    "-> MAIN_APP: onUserData",
+//                    "email = $email, accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}"
+//                )
+//                Toast.makeText(applicationContext, "MAIN_APP: onUserData", Toast.LENGTH_SHORT).show()
+//            },
 
             // TokensMode
 //            mode = WBExchangeSdkMode.TokensMode,
@@ -70,17 +80,29 @@ class MainActivity : AppCompatActivity()
                 }
             },
 
+//            onOrderCreated = { orderId, internalCryptoAddress ->
+//                Log.d(
+//                    "-> MAIN_APP: onOrderCreated",
+//                    "orderId = $orderId, internalCryptoAddress = ${internalCryptoAddress ?: ""}"
+//                )
+//                Toast.makeText(applicationContext, "MAIN_APP: onOrderCreated", Toast.LENGTH_SHORT).show()
+//            },
+
             disableAddCard = true,
 
             // Other optional parameters
 //            email = "user@example.com",
 //            externalClientId = "012abc...",
+//            isAuthAgent = true,
 //            cryptoWallet = "0xabc...",
+//            redirectUrl = "https://example.com",
 //            refId = "ref-id-...",
 //
 //            currencyAmount = BigDecimal("100.00"),
 //            currencyFrom = WBCurrency.USD,
 //            currencyTo = WBCurrency.USDT,
+//            disableCurrencyFrom = true,
+//            disableCurrencyTo = true,
 //            startAppPage = WBStartAppPage.PAYMENTS,
         )
     }

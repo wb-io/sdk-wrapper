@@ -2,6 +2,7 @@ package io.whitebird.sdk.exchange
 
 import java.math.BigDecimal
 import io.whitebird.sdk.exchange.WBExchangeSdk.Companion.sdklog
+import java.net.URLEncoder
 
 enum class WBExchangeSdkMode
 {
@@ -79,7 +80,11 @@ class WBExchangeConfig
     var currencyAmount: BigDecimal? = null
     var currencyFrom: WBCurrency? = null
     var currencyTo: WBCurrency? = null
+    var disableCurrencyFrom: Boolean = false
+    var disableCurrencyTo: Boolean = false
+    var isAuthAgent: Boolean = false
     var cryptoWallet: String? = null
+    var redirectUrl: String? = null
     var refId: String? = null
     var startAppPage: WBStartAppPage = WBStartAppPage.HOMEPAGE
 
@@ -93,6 +98,12 @@ class WBExchangeConfig
 
     // AuthMode
     var onLoginHandler: ((accessToken: String, refreshToken: String, isUserVerified: Boolean) -> Unit)? = null
+
+    // LoginMode
+    var onUserDataHandler: ((email: String?, accessToken: String, refreshToken: String) -> Unit)? = null
+
+    // Not tied to specific mode
+    var onOrderCreatedHandler: ((orderId: String, internalCryptoAddress: String?) -> Unit)? = null
 
     // -----------------------------------------
 
@@ -147,10 +158,14 @@ class WBExchangeConfig
         val currencyAmountQuery = if (currencyAmount != null) "&currencyAmount=${currencyAmount!!.toPlainString()}" else ""
         val currencyFromQuery = if (currencyFrom != null) "&currencyFrom=${currencyFrom}" else ""
         val currencyToQuery = if (currencyTo != null) "&currencyTo=${currencyTo}" else ""
+        val disableCurrencyFromQuery = if (disableCurrencyFrom) "&disableCurrencyFrom=true" else ""
+        val disableCurrencyToQuery = if (disableCurrencyTo) "&disableCurrencyTo=true" else ""
+        val isAuthAgentQuery = if (isAuthAgent) "&isAuthAgent=true" else ""
         val cryptoWalletQuery = if (!cryptoWallet.isNullOrBlank()) "&cryptoWallet=${cryptoWallet}" else ""
+        val redirectUrlQuery = if (!redirectUrl.isNullOrBlank()) "&redirectUrl=${URLEncoder.encode(redirectUrl!!, Charsets.UTF_8.name())}" else ""
         val refIdQuery = if (!refId.isNullOrBlank()) "&refId=${refId}" else ""
         val startAppPageQuery = startAppPage.urlPath?.let { "&startAppPage=$it" } ?: ""
 
-        return "${server}${modeQuery}${merchantIdQuery}${merchantPassQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}${emailQuery}${externalClientIdQuery}${currencyAmountQuery}${currencyFromQuery}${currencyToQuery}${cryptoWalletQuery}${refIdQuery}${startAppPageQuery}"
+        return "${server}${modeQuery}${merchantIdQuery}${merchantPassQuery}${showBackButtonQuery}${tokensQuery}${disableAddCardQuery}${emailQuery}${externalClientIdQuery}${currencyAmountQuery}${currencyFromQuery}${currencyToQuery}${disableCurrencyFromQuery}${disableCurrencyToQuery}${isAuthAgentQuery}${cryptoWalletQuery}${redirectUrlQuery}${refIdQuery}${startAppPageQuery}"
     }
 }

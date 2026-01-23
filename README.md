@@ -58,7 +58,7 @@ After building, rename the file to match your version, e.g., `wbexchangesdk-0.2.
        android:layout_height="match_parent" />
    ```
 
-4. Initialize the SDK in your activity:
+ 4. Initialize the SDK in your activity:
    ```kotlin
    class SomeActivity : AppCompatActivity() {
        private val wbExchangeSdk by lazy { WBExchangeSdk.getInstance() }
@@ -74,7 +74,10 @@ After building, rename the file to match your version, e.g., `wbexchangesdk-0.2.
                // Choose one mode:
                
                // LoginMode
-               mode = WBExchangeSdkMode.LoginMode,
+               // mode = WBExchangeSdkMode.LoginMode,
+               // onUserData = { email, accessToken, refreshToken ->
+               //     // App code to handle user data
+               // },
                
                // OR TokensMode
                // mode = WBExchangeSdkMode.TokensMode,
@@ -82,7 +85,7 @@ After building, rename the file to match your version, e.g., `wbexchangesdk-0.2.
                // refreshToken = "...",                // default = ""
                
                // OR AuthMode
-               // mode = WBExchangeSdkMode.AuthMode,
+               mode = WBExchangeSdkMode.AuthMode,
                onLogin = { accessToken, refreshToken, isUserVerified ->
                    // App code to handle login
                },
@@ -102,13 +105,21 @@ After building, rename the file to match your version, e.g., `wbexchangesdk-0.2.
                // Other optional parameters
                email = "user@example.com",
                externalClientId = "client-123",
-               cryptoWallet = "0xabc...",
-               refId = "ref-42",
-
                currencyAmount = BigDecimal("123.45"),
                currencyFrom = WBCurrency.USD,
                currencyTo = WBCurrency.USDT,
+               isAuthAgent = true,
+               cryptoWallet = "0xabc...",
+               redirectUrl = "https://example.com",
+               refId = "ref-42",
+               disableCurrencyFrom = true,
+               disableCurrencyTo = true,
                startAppPage = WBStartAppPage.PAYMENTS,
+
+               // Not tied to specific mode
+               // onOrderCreated = { orderId, internalCryptoAddress ->
+               //     // App code to handle order created
+               // },
            )
        }
        
