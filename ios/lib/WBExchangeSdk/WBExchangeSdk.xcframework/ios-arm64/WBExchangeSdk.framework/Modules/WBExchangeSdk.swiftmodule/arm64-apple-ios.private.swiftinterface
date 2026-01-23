@@ -12,6 +12,15 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+@_Concurrency.MainActor @preconcurrency public struct WBExchangeView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(config: WBExchangeSdk.WBExchangeSdkConfig)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public func goBack()
+  public typealias Body = @_opaqueReturnTypeOf("$s13WBExchangeSdk0A4ViewV4bodyQrvp", 0) __
+}
+
 public enum WBExchangeSdkMode : Swift.String {
   case AuthMode
   case LoginMode
@@ -79,15 +88,7 @@ public class WBExchangeSdkConfig : Combine.ObservableObject {
   public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
   @objc deinit
 }
-@_Concurrency.MainActor @preconcurrency public struct WBExchangeView : SwiftUICore.View {
-  @_Concurrency.MainActor @preconcurrency public init(config: WBExchangeSdk.WBExchangeSdkConfig)
-  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
-    get
-  }
-  @_Concurrency.MainActor @preconcurrency public func goBack()
-  public typealias Body = @_opaqueReturnTypeOf("$s13WBExchangeSdk0A4ViewV4bodyQrvp", 0) __
-}
-
+extension WBExchangeSdk.WBExchangeView : Swift.Sendable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.Equatable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.Hashable {}
 extension WBExchangeSdk.WBExchangeSdkMode : Swift.RawRepresentable {}
@@ -99,4 +100,3 @@ extension WBExchangeSdk.WBSdkEnv : Swift.Hashable {}
 extension WBExchangeSdk.WBSdkEnv : Swift.RawRepresentable {}
 extension WBExchangeSdk.WBCurrency : Swift.Equatable {}
 extension WBExchangeSdk.WBCurrency : Swift.Hashable {}
-extension WBExchangeSdk.WBExchangeView : Swift.Sendable {}

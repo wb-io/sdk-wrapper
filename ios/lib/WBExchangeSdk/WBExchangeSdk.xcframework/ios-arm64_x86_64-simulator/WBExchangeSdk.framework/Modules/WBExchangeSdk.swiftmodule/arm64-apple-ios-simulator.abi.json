@@ -2334,119 +2334,126 @@
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 2870,
+      "offset": 1113,
+      "length": 16,
+      "value": "\"OnChangeTokens\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1154,
+      "length": 14,
+      "value": "\"OnBackButton\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1191,
+      "length": 12,
+      "value": "\"OnUserData\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1230,
+      "length": 16,
+      "value": "\"OnOrderCreated\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1269,
+      "length": 12,
+      "value": "\"OnOpenLink\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 3099,
       "length": 27,
       "value": "\"io.whitebird.sdk.exchange\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 2970,
+      "offset": 3199,
       "length": 8,
       "value": "\"System\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3324,
+      "offset": 3553,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3529,
+      "offset": 3758,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3570,
+      "offset": 3799,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 3616,
+      "offset": 3845,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 3651,
+      "offset": 3880,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3705,
+      "offset": 3934,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
-      "offset": 105,
-      "length": 16,
-      "value": "\"OnChangeTokens\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 146,
-      "length": 14,
-      "value": "\"OnBackButton\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 183,
-      "length": 12,
-      "value": "\"OnUserData\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 222,
-      "length": 16,
-      "value": "\"OnOrderCreated\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 539,
+      "offset": 372,
       "length": 12,
       "value": "\"WBSdkJsApi\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
-      "offset": 1459,
+      "offset": 1292,
       "length": 17,
       "value": "\"merchantId_TEST\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
-      "offset": 1500,
+      "offset": 1333,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "StringLiteral",
-      "offset": 1530,
+      "offset": 1363,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
       "kind": "Array",
-      "offset": 1629,
+      "offset": 1462,
       "length": 16,
       "value": "[\"wbitcash.com\"]"
     }
