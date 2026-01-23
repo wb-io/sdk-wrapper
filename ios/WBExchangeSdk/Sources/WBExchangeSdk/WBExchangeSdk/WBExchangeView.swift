@@ -2,13 +2,6 @@ import SwiftUI
 import WebKit
 import Foundation
 
-enum PostMessageType: String {
-    case OnChangeTokens = "OnChangeTokens"
-    case OnBackButton = "OnBackButton"
-    case OnUserData = "OnUserData"
-    case OnOrderCreated = "OnOrderCreated"
-}
-
 struct PostMessageValue: Codable {
     let type: String // <- PostMessageType ??
 
@@ -20,6 +13,8 @@ struct PostMessageValue: Codable {
     
     let orderId: String?
     let internalCryptoAddress: String?
+    
+    let link: String?
 }
 
 private let WBJsApiName = "WBSdkJsApi"

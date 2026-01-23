@@ -6,6 +6,202 @@
     "children": [
       {
         "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "WBExchangeSdk"
+      },
+      {
+        "kind": "Import",
+        "name": "WebKit",
+        "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "WBExchangeSdk"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "WBExchangeSdk"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "WBExchangeView",
+        "printedName": "WBExchangeView",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(config:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WBExchangeView",
+                "printedName": "WBExchangeSdk.WBExchangeView",
+                "usr": "s:13WBExchangeSdk0A4ViewV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WBExchangeSdkConfig",
+                "printedName": "WBExchangeSdk.WBExchangeSdkConfig",
+                "usr": "s:13WBExchangeSdk0aB6ConfigC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:13WBExchangeSdk0A4ViewV6configAcA0aB6ConfigC_tcfc",
+            "mangledName": "$s13WBExchangeSdk0A4ViewV6configAcA0aB6ConfigC_tcfc",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "body",
+            "printedName": "body",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpaqueTypeArchetype",
+                "printedName": "some SwiftUI.View",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "View",
+                    "printedName": "SwiftUI.View",
+                    "usr": "s:7SwiftUI4ViewP"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:13WBExchangeSdk0A4ViewV4bodyQrvp",
+            "mangledName": "$s13WBExchangeSdk0A4ViewV4bodyQrvp",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:13WBExchangeSdk0A4ViewV4bodyQrvg",
+                "mangledName": "$s13WBExchangeSdk0A4ViewV4bodyQrvg",
+                "moduleName": "WBExchangeSdk",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "goBack",
+            "printedName": "goBack()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13WBExchangeSdk0A4ViewV6goBackyyF",
+            "mangledName": "$s13WBExchangeSdk0A4ViewV6goBackyyF",
+            "moduleName": "WBExchangeSdk",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:13WBExchangeSdk0A4ViewV",
+        "mangledName": "$s13WBExchangeSdk0A4ViewV",
+        "moduleName": "WBExchangeSdk",
+        "declAttributes": [
+          "Preconcurrency",
+          "Custom",
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "View",
+            "printedName": "View",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "Body",
+                "printedName": "Body",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpaqueTypeArchetype",
+                    "printedName": "some SwiftUI.View",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "View",
+                        "printedName": "SwiftUI.View",
+                        "usr": "s:7SwiftUI4ViewP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7SwiftUI4ViewP",
+            "mangledName": "$s7SwiftUI4ViewP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Combine",
         "printedName": "Combine",
         "declKind": "Import",
@@ -2088,207 +2284,46 @@
             "mangledName": "$s7Combine16ObservableObjectP"
           }
         ]
-      },
-      {
-        "kind": "Import",
-        "name": "SwiftUI",
-        "printedName": "SwiftUI",
-        "declKind": "Import",
-        "moduleName": "WBExchangeSdk"
-      },
-      {
-        "kind": "Import",
-        "name": "WebKit",
-        "printedName": "WebKit",
-        "declKind": "Import",
-        "moduleName": "WBExchangeSdk"
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "WBExchangeSdk"
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "WBExchangeView",
-        "printedName": "WBExchangeView",
-        "children": [
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(config:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "WBExchangeView",
-                "printedName": "WBExchangeSdk.WBExchangeView",
-                "usr": "s:13WBExchangeSdk0A4ViewV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "WBExchangeSdkConfig",
-                "printedName": "WBExchangeSdk.WBExchangeSdkConfig",
-                "usr": "s:13WBExchangeSdk0aB6ConfigC"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:13WBExchangeSdk0A4ViewV6configAcA0aB6ConfigC_tcfc",
-            "mangledName": "$s13WBExchangeSdk0A4ViewV6configAcA0aB6ConfigC_tcfc",
-            "moduleName": "WBExchangeSdk",
-            "declAttributes": [
-              "Preconcurrency",
-              "Custom",
-              "AccessControl"
-            ],
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Var",
-            "name": "body",
-            "printedName": "body",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "OpaqueTypeArchetype",
-                "printedName": "some SwiftUI.View",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "View",
-                    "printedName": "SwiftUI.View",
-                    "usr": "s:7SwiftUI4ViewP"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:13WBExchangeSdk0A4ViewV4bodyQrvp",
-            "mangledName": "$s13WBExchangeSdk0A4ViewV4bodyQrvp",
-            "moduleName": "WBExchangeSdk",
-            "declAttributes": [
-              "Preconcurrency",
-              "Custom",
-              "AccessControl"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "OpaqueTypeArchetype",
-                    "printedName": "some SwiftUI.View",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "View",
-                        "printedName": "SwiftUI.View",
-                        "usr": "s:7SwiftUI4ViewP"
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:13WBExchangeSdk0A4ViewV4bodyQrvg",
-                "mangledName": "$s13WBExchangeSdk0A4ViewV4bodyQrvg",
-                "moduleName": "WBExchangeSdk",
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "goBack",
-            "printedName": "goBack()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:13WBExchangeSdk0A4ViewV6goBackyyF",
-            "mangledName": "$s13WBExchangeSdk0A4ViewV6goBackyyF",
-            "moduleName": "WBExchangeSdk",
-            "declAttributes": [
-              "Preconcurrency",
-              "Custom",
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:13WBExchangeSdk0A4ViewV",
-        "mangledName": "$s13WBExchangeSdk0A4ViewV",
-        "moduleName": "WBExchangeSdk",
-        "declAttributes": [
-          "Preconcurrency",
-          "Custom",
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "View",
-            "printedName": "View",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "Body",
-                "printedName": "Body",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "OpaqueTypeArchetype",
-                    "printedName": "some SwiftUI.View",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "View",
-                        "printedName": "SwiftUI.View",
-                        "usr": "s:7SwiftUI4ViewP"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "usr": "s:7SwiftUI4ViewP",
-            "mangledName": "$s7SwiftUI4ViewP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          }
-        ]
       }
     ],
     "json_format_version": 8
   },
   "ConstValues": [
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 372,
+      "length": 12,
+      "value": "\"WBSdkJsApi\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 1292,
+      "length": 17,
+      "value": "\"merchantId_TEST\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 1333,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "StringLiteral",
+      "offset": 1363,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
+      "kind": "Array",
+      "offset": 1462,
+      "length": 16,
+      "value": "[\"wbitcash.com\"]"
+    },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
@@ -2334,121 +2369,93 @@
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 2870,
+      "offset": 1113,
+      "length": 16,
+      "value": "\"OnChangeTokens\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1154,
+      "length": 14,
+      "value": "\"OnBackButton\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1191,
+      "length": 12,
+      "value": "\"OnUserData\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1230,
+      "length": 16,
+      "value": "\"OnOrderCreated\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1269,
+      "length": 12,
+      "value": "\"OnOpenLink\""
+    },
+    {
+      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 3099,
       "length": 27,
       "value": "\"io.whitebird.sdk.exchange\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 2970,
+      "offset": 3199,
       "length": 8,
       "value": "\"System\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3324,
+      "offset": 3553,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3529,
+      "offset": 3758,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3570,
+      "offset": 3799,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 3616,
+      "offset": 3845,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "StringLiteral",
-      "offset": 3651,
+      "offset": 3880,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeSdk.swift",
       "kind": "BooleanLiteral",
-      "offset": 3705,
+      "offset": 3934,
       "length": 5,
       "value": "false"
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 105,
-      "length": 16,
-      "value": "\"OnChangeTokens\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 146,
-      "length": 14,
-      "value": "\"OnBackButton\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 183,
-      "length": 12,
-      "value": "\"OnUserData\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 222,
-      "length": 16,
-      "value": "\"OnOrderCreated\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 539,
-      "length": 12,
-      "value": "\"WBSdkJsApi\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 1459,
-      "length": 17,
-      "value": "\"merchantId_TEST\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 1500,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "StringLiteral",
-      "offset": 1530,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/romangruzd\/Downloads\/sdk-wrapper-ef3b3419a38c691e9acb99b876200ff39fcb7659\/ios\/WBExchangeSdk\/Sources\/WBExchangeSdk\/WBExchangeSdk\/WBExchangeView.swift",
-      "kind": "Array",
-      "offset": 1629,
-      "length": 16,
-      "value": "[\"wbitcash.com\"]"
     }
   ]
 }
