@@ -107,7 +107,7 @@ class WBExchangeView @JvmOverloads constructor(
             }
 
             // binding.wbWebView.
-            addJavascriptInterface(WBExchangeJsApi(), WBExchangeJsApi.API_NAME)
+            addJavascriptInterface(WBExchangeJsApi(context), WBExchangeJsApi.API_NAME)
 
             // До завершения загрузки страницы работает WebViewClient,
             // а после — WebChromeClient.

@@ -48,7 +48,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(files("libs/wbexchangesdk-0.2.0.aar"))
+    implementation(files("libs/wbexchangesdk-0.3.0.aar"))
     implementation("androidx.databinding:viewbinding:8.7.3")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }

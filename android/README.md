@@ -38,7 +38,7 @@ You can build the AAR module in two ways:
 **Debug version** - allows loading from local server via HTTP  
 **Release version** - only allows HTTPS connections
 
-After building, rename the file to match your version, e.g., `wbexchangesdk-0.2.0.aar`
+After building, rename the file to match your version, e.g., `wbexchangesdk-0.x.0.aar`
 
 ## Environment Configuration
 
@@ -67,7 +67,7 @@ The `example_with_aar` project demonstrates how to use the SDK as a pre-built AA
 
 To test with this project:
 1. Build the SDK as described above
-2. Copy the AAR file to `example_with_aar/libs/wbexchangesdk-0.2.0.aar`
+2. Copy the AAR file to `example_with_aar/libs/wbexchangesdk-0.x.0.aar`
 3. Run the `example_with_aar` project
 
 ## Minimum Platform Version
