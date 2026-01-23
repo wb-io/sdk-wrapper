@@ -7,6 +7,7 @@ import android.view.ViewGroup.LayoutParams
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.Button
 import android.widget.LinearLayout
+import android.webkit.WebView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+
+        WebView.setWebContentsDebuggingEnabled(true)
 
         Log.d("-> MAIN_APP: onCreate", "")
         enableEdgeToEdge()
@@ -53,6 +56,13 @@ class MainActivity : AppCompatActivity()
 
             // LoginMode
 //            mode = WBExchangeSdkMode.LoginMode,
+//            onUserData = { email, accessToken, refreshToken ->
+//                Log.d(
+//                    "-> MAIN_APP: onUserData",
+//                    "email = $email, accessToken = ${accessToken.takeLast(10)}, refreshToken = ${refreshToken.takeLast(10)}"
+//                )
+//                Toast.makeText(applicationContext, "MAIN_APP: onUserData", Toast.LENGTH_SHORT).show()
+//            },
 
             // TokensMode
 //            mode = WBExchangeSdkMode.TokensMode,
@@ -80,17 +90,28 @@ class MainActivity : AppCompatActivity()
                 }
             },
 
+//            onOrderCreated = { orderId, internalCryptoAddress ->
+//                Log.d(
+//                    "-> MAIN_APP: onOrderCreated",
+//                    "orderId = $orderId, internalCryptoAddress = ${internalCryptoAddress ?: ""}"
+//                )
+//            },
+
             disableAddCard = true,
 
             // Other optional parameters
 //            email = "user@example.com",
 //            externalClientId = "012abc...",
+//            isAuthAgent = true,
 //            cryptoWallet = "0xabc...",
+//            redirectUrl = "https://example.com",
 //            refId = "ref-id-...",
 //
 //            currencyAmount = BigDecimal("100.00"),
 //            currencyFrom = WBCurrency.USD,
 //            currencyTo = WBCurrency.USDT,
+//            disableCurrencyFrom = true,
+//            disableCurrencyTo = true,
 //            startAppPage = WBStartAppPage.PAYMENTS,
         )
 
