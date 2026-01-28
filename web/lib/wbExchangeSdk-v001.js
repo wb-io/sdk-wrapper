@@ -229,8 +229,8 @@
       );
       return;
     }
-    if (event.data?.type === PostMessageType.OnOpenLink) {
-      openFromTelegramTop(event.data.link);
+    if (data?.type === PostMessageType.OnOpenLink) {
+      openFromTelegramTop(data.link);
     }
 
     if (
