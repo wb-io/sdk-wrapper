@@ -11,6 +11,7 @@
     OnUserData: "OnUserData",
     OnOrderCreated: "OnOrderCreated",
     OnOpenLink: "OnOpenLink",
+    OnOrderCompleted: "OnOrderCompleted",
   };
 
   const openFromTelegramTop = (url) => {
@@ -33,7 +34,7 @@
   // ----------------------------------------------------
   const version = "/v2.0";
 
-  const SDK_ORIGIN = "https://sdk.whitebird.io";
+  const SDK_ORIGIN = "https://sdk.qa.wbdevel.net";
   const SDK_URL = SDK_ORIGIN + version;
 
   //Only local test
@@ -64,8 +65,10 @@
     currencyAmount: "",
     currencyFrom: "",
     currencyTo: "",
+    currencyToAmount: "",
     disableCurrencyFrom: false,
     disableCurrencyTo: false,
+    disableAmount: false,
     isAuthAgent: false,
     cryptoWallet: "",
     redirectUrl: "",
@@ -122,10 +125,14 @@
     if (params.currencyFrom !== undefined)
       config.currencyFrom = params.currencyFrom;
     if (params.currencyTo !== undefined) config.currencyTo = params.currencyTo;
+    if (params.currencyToAmount !== undefined)
+      config.currencyToAmount = params.currencyToAmount;
     if (params.disableCurrencyFrom !== undefined)
       config.disableCurrencyFrom = params.disableCurrencyFrom;
     if (params.disableCurrencyTo !== undefined)
       config.disableCurrencyTo = params.disableCurrencyTo;
+    if (params.disableAmount !== undefined)
+      config.disableAmount = params.disableAmount;
     if (params.isAuthAgent !== undefined)
       config.isAuthAgent = params.isAuthAgent;
     if (params.cryptoWallet !== undefined)
@@ -136,14 +143,21 @@
       config.startAppPage = params.startAppPage;
     if (params.refId !== undefined) config.refId = params.refId;
     if (params.showBackButtonOnHomePage !== undefined) {
-      // true | false
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
     }
-    if (params.disableAddCard !== undefined)
+    if (params.disableAddCard !== undefined) {
       config.disableAddCard = params.disableAddCard;
-    if (params.onOrderCreated !== undefined)
+    }
+    if (params.onOrderCreated !== undefined) {
       config.onOrderCreatedHandler = params.onOrderCreated;
-    if (params.onExit !== undefined) config.onExitHandler = params.onExit;
+    }
+    if (params.onExit !== undefined) {
+      config.onExitHandler = params.onExit;
+    }
+    if (params.onOrderCompleted !== undefined) {
+      config.onOrderCompletedHandler = params.onOrderCompleted;
+    }
+
     makeIframe();
   };
 
@@ -196,8 +210,10 @@
       currencyAmount: config.currencyAmount,
       currencyFrom: config.currencyFrom,
       currencyTo: config.currencyTo,
+      currencyToAmount: config.currencyToAmount,
       disableCurrencyFrom: config.disableCurrencyFrom,
       disableCurrencyTo: config.disableCurrencyTo,
+      disableAmount: config.disableAmount,
       isAuthAgent: config.isAuthAgent,
       cryptoWallet: config.cryptoWallet,
       redirectUrl: config.redirectUrl,
@@ -258,6 +274,12 @@
       config.onOrderCreatedHandler?.({
         orderId: data?.orderId,
         internalCryptoAddress: data?.internalCryptoAddress,
+      });
+    }
+    if (data?.type === PostMessageType.OnOrderCompleted) {
+      config.onOrderCompletedHandler?.({
+        orderId: data?.orderId,
+        status: data?.status,
       });
     }
     if (data?.type === PostMessageType.OnBackButton) {
