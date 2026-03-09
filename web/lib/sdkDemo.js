@@ -189,8 +189,6 @@ const FIELD_DEFS = [
   },
 ];
 
-const FIELD_MAP = Object.fromEntries(FIELD_DEFS.map((d) => [d.prop, d]));
-
 // ---------- main ----------
 class SdkDemo {
   #config = clone(DEFAULT_CONFIG);

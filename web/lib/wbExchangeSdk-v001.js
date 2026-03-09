@@ -227,6 +227,7 @@
       .filter(([_, value]) => value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join("&");
+
     return `${SDK_URL}/?${queryString}`;
   };
 
