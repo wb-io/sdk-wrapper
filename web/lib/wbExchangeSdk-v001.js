@@ -78,6 +78,7 @@
     disableAddCard: false,
     onOrderCreatedHandler: undefined,
     onExitHandler: undefined,
+    isTgBot: false,
   };
 
   let config = Object.assign({}, defaultConfig);
@@ -89,6 +90,8 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
+
+    config.isTgBot = params.isTgBot;
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
