@@ -90,8 +90,8 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
-
-    config.isTgBot = params.isTgBot;
+    
+    config.isTgBot = params.isTgBot ?? false;
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
@@ -224,6 +224,7 @@
       refId: config.refId,
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
+      isTgBot: config.isTgBot,
     };
 
     const queryString = Object.entries(params)
