@@ -34,7 +34,7 @@
   // ----------------------------------------------------
   const version = "/v2.0";
 
-  const SDK_ORIGIN = "https://sdk.qa.wbdevel.net";
+  const SDK_ORIGIN = "https://sdk.whitebird.io";
   const SDK_URL = SDK_ORIGIN + version;
 
   //Only local test
@@ -90,7 +90,7 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
-    
+
     config.isTgBot = params.isTgBot ?? false;
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
