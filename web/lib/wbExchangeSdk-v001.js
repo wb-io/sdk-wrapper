@@ -78,6 +78,7 @@
     disableAddCard: false,
     onOrderCreatedHandler: undefined,
     onExitHandler: undefined,
+    isTgBot: false,
   };
 
   let config = Object.assign({}, defaultConfig);
@@ -89,6 +90,8 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
+
+    config.isTgBot = params.isTgBot ?? false;
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
@@ -221,12 +224,14 @@
       refId: config.refId,
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
+      isTgBot: config.isTgBot,
     };
 
     const queryString = Object.entries(params)
       .filter(([_, value]) => value)
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join("&");
+
     return `${SDK_URL}/?${queryString}`;
   };
 

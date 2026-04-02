@@ -362,12 +362,13 @@
             showBackButtonOnHomePage: config.showBackButton,
             disableAddCard: config.disableAddCard,
             isAuthAgent: config.isAuthAgent,
+            accessToken: config.accessToken,
+            refreshToken:config.refreshToken,
+            isTgBot:config.isTgBot,
           };
 
           // Params only for TokensMode
           if (config.mode === "TokensMode") {
-            baseParams.accessToken = config.accessToken;
-            baseParams.refreshToken = config.refreshToken;
             baseParams.startAppPage = config.startAppPage;
           }
 
