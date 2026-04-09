@@ -28,9 +28,10 @@
       }
 
       if (tg) {
+        tg.ready();
         tg.showConfirm("Перейти к оплате", (ok) => {
           if (!ok) return;
-          tg.openLink(url);
+          tg.openLink(url, { try_browser: "external" });
         });
       } else {
         window.open(url, "_blank", "noopener,noreferrer");
