@@ -9,6 +9,11 @@ declare global {
 
   interface TelegramWebApp {
     showConfirm(message: string, callback: (ok: boolean) => void): void;
-    openLink(url: string, options?: { try_instant_view?: boolean }): void;
+    showPopup(message: string, callback: (ok: boolean) => void): void;
+    openLink(
+      url: string,
+      options?: { try_instant_view?: boolean; try_browser: "external" },
+    ): void;
+    ready: () => void;
   }
 }
