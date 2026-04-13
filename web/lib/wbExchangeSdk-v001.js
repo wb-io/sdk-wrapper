@@ -224,6 +224,7 @@
       refId: config.refId,
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
+      isTgBot: config.isTgBot,
     };
 
     const queryString = Object.entries(params)
