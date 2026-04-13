@@ -34,7 +34,7 @@
   // ----------------------------------------------------
   const version = "/v2.0";
 
-  const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
+  const SDK_ORIGIN = "https://sdk.qa.wbdevel.net";
   const SDK_URL = SDK_ORIGIN + version;
 
   //Only local test
@@ -91,7 +91,7 @@
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
 
-    config.isTgBot = params.isTgBot;
+    config.isTgBot = params.isTgBot ?? Boolean(window.Telegram?.WebApp);
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
