@@ -92,7 +92,7 @@
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
 
-    config.isTgBot = params.isTgBot ?? false;
+    config.isTgBot = params.isTgBot ?? Boolean(window.Telegram?.WebApp);
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
       config.sdkIframe?.parentElement?.removeChild(config.sdkIframe);
