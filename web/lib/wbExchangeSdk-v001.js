@@ -16,8 +16,14 @@
 
   const openFromTelegramTop = (url) => {
     const tg = window.Telegram?.WebApp;
+    const isPinLivenessLink = url.includes('biometric.spatium.io') || url.includes('verification.svort.io');
 
     try {
+      if (isPinLivenessLink) {
+        window.location.replace(url);
+        return;
+      }
+
       if (tg) {
         tg.showConfirm("Перейти к оплате", (ok) => {
           if (!ok) return;
