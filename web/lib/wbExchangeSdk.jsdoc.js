@@ -38,6 +38,7 @@
  * @property {boolean} [disableCurrencyTo] - Отключить валюту to
  * @property {boolean} [isAuthAgent] - Отключить кнопку logout
  * @property {string} [cryptoWallet] - Крипто-кошелек
+ * @property {string} [hostUrl] - URL хоста для возврата из внешних flow
  * @property {string} [redirectUrl] - URL перенаправления
  * @property {string} [startAppPage] - Стартовая страница
  * @property {boolean} [showBackButtonOnHomePage] - Кнопка назад
