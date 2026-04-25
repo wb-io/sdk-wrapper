@@ -16,7 +16,10 @@
 
   const openFromTelegramTop = (url) => {
     const tg = window.Telegram?.WebApp;
-    const isPinLivenessLink = url.includes('biometric.spatium.io') || url.includes('verification.svort.io');
+    const isPinLivenessLink = url.includes('biometric.spatium.io') 
+    || url.includes('verification.svort.io')
+    || url.includes('dev.spatium.io')
+    || url.includes('api.pin.by');
 
     try {
       if (isPinLivenessLink) {
@@ -77,6 +80,7 @@
     disableAmount: false,
     isAuthAgent: false,
     cryptoWallet: "",
+    hostUrl: "",
     redirectUrl: "",
     startAppPage: "",
     refId: "",
@@ -146,6 +150,8 @@
       config.isAuthAgent = params.isAuthAgent;
     if (params.cryptoWallet !== undefined)
       config.cryptoWallet = params.cryptoWallet;
+    if (params.hostUrl !== undefined)
+      config.hostUrl = params.hostUrl;
     if (params.redirectUrl !== undefined)
       config.redirectUrl = params.redirectUrl;
     if (params.startAppPage !== undefined)
@@ -198,7 +204,7 @@
     config.sdkIframe.style.width = "100%";
     config.sdkIframe.style.height = "100%";
     config.sdkIframe.style.display = "block";
-    config.sdkIframe.allow = "camera; clipboard-read; clipboard-write";
+    config.sdkIframe.allow = "camera *; clipboard-read; clipboard-write; fullscreen *";
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
@@ -225,6 +231,7 @@
       disableAmount: config.disableAmount,
       isAuthAgent: config.isAuthAgent,
       cryptoWallet: config.cryptoWallet,
+      hostUrl: config.hostUrl,
       redirectUrl: config.redirectUrl,
       startAppPage: config.startAppPage,
       refId: config.refId,
