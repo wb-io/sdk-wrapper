@@ -46,7 +46,7 @@
   // ----------------------------------------------------
   const version = "/v2.0";
 
-  const SDK_ORIGIN = "https://sdk.dev.wbdevel.net";
+  const SDK_ORIGIN = "https://sdk.qa.wbdevel.net";
   const SDK_URL = SDK_ORIGIN + version;
 
   //Only local test
@@ -154,7 +154,8 @@
       config.isAuthAgent = params.isAuthAgent;
     if (params.cryptoWallet !== undefined)
       config.cryptoWallet = params.cryptoWallet;
-    if (params.hostUrl !== undefined) config.hostUrl = params.hostUrl;
+    if (params.hostUrl !== undefined)
+      config.hostUrl = params.hostUrl;
     if (params.redirectUrl !== undefined)
       config.redirectUrl = params.redirectUrl;
     if (params.startAppPage !== undefined)
@@ -210,8 +211,7 @@
     config.sdkIframe.style.width = "100%";
     config.sdkIframe.style.height = "100%";
     config.sdkIframe.style.display = "block";
-    config.sdkIframe.allow =
-      "camera *; clipboard-read; clipboard-write; fullscreen *";
+    config.sdkIframe.allow = "camera *; clipboard-read; clipboard-write; fullscreen *";
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
