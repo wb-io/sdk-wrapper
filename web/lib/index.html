@@ -293,6 +293,7 @@
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
   <b>onOrderCreated</b>: ({ orderId, internalCryptoAddress }) => {},
   <b>onOrderCompleted</b>: ({ orderId, status }) => {},
+  <b>onPayment</b>: ({ orderId, transactionId }) => {},
   <b>onExit</b>: () => {},
   <b>debug</b>: boolean,
 })</pre>
@@ -415,6 +416,12 @@
             log("MAIN_APP   onOrderCompleted =");
             log("...  orderId =", orderId);
             log("...  status =", status);
+          },
+
+          onPayment: ({ orderId, transactionId }) => {
+            log("MAIN_APP   onPayment =");
+            log("...  orderId =", orderId);
+            log("...  transactionId =", transactionId);
           },
 
           onExit: () => {
