@@ -47,6 +47,7 @@
  * @property {function(LoginCallbackParams):void} [onLogin] - Колбэк логина
  * @property {function} [onUserData] - Колбэк данных пользователя
  * @property {function} [onOrderCreated] - Колбэк создания заказа
+ * @property {function} [onPayment] - Колбэк ({transactionId, orderId}) => void
  * @property {function} [onExit] - Колбэк выхода
  */
 

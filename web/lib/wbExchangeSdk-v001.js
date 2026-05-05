@@ -12,14 +12,16 @@
     OnOrderCreated: "OnOrderCreated",
     OnOpenLink: "OnOpenLink",
     OnOrderCompleted: "OnOrderCompleted",
+    OnPayment: "OnPayment",
   };
 
   const openFromTelegramTop = (url) => {
     const tg = window.Telegram?.WebApp;
-    const isPinLivenessLink = url.includes('biometric.spatium.io') 
-    || url.includes('verification.svort.io')
-    || url.includes('dev.spatium.io')
-    || url.includes('api.pin.by');
+    const isPinLivenessLink =
+      url.includes("biometric.spatium.io") ||
+      url.includes("verification.svort.io") ||
+      url.includes("dev.spatium.io") ||
+      url.includes("api.pin.by");
 
     try {
       if (isPinLivenessLink) {
@@ -28,9 +30,10 @@
       }
 
       if (tg) {
+        tg.ready();
         tg.showConfirm("Перейти к оплате", (ok) => {
           if (!ok) return;
-          tg.openLink(url);
+          tg.openLink(url, { try_browser: "external" });
         });
       } else {
         window.open(url, "_blank", "noopener,noreferrer");
@@ -88,6 +91,7 @@
     disableAddCard: false,
     onOrderCreatedHandler: undefined,
     onExitHandler: undefined,
+    onPayment: undefined,
     isTgBot: false,
   };
 
@@ -150,8 +154,7 @@
       config.isAuthAgent = params.isAuthAgent;
     if (params.cryptoWallet !== undefined)
       config.cryptoWallet = params.cryptoWallet;
-    if (params.hostUrl !== undefined)
-      config.hostUrl = params.hostUrl;
+    if (params.hostUrl !== undefined) config.hostUrl = params.hostUrl;
     if (params.redirectUrl !== undefined)
       config.redirectUrl = params.redirectUrl;
     if (params.startAppPage !== undefined)
@@ -171,6 +174,9 @@
     }
     if (params.onOrderCompleted !== undefined) {
       config.onOrderCompletedHandler = params.onOrderCompleted;
+    }
+    if (params.onPayment !== undefined) {
+      config.onPayment = params.onPayment;
     }
 
     makeIframe();
@@ -204,7 +210,8 @@
     config.sdkIframe.style.width = "100%";
     config.sdkIframe.style.height = "100%";
     config.sdkIframe.style.display = "block";
-    config.sdkIframe.allow = "camera *; clipboard-read; clipboard-write; fullscreen *";
+    config.sdkIframe.allow =
+      "camera *; clipboard-read; clipboard-write; fullscreen *";
     config.sdkIframe.src = getUrl();
     config.el.appendChild(config.sdkIframe);
 
@@ -298,6 +305,12 @@
       config.onOrderCompletedHandler?.({
         orderId: data?.orderId,
         status: data?.status,
+      });
+    }
+    if (data?.type === PostMessageType.OnPayment) {
+      config.onPayment?.({
+        transactionId: data.transactionId,
+        orderId: data.orderId,
       });
     }
     if (data?.type === PostMessageType.OnBackButton) {
