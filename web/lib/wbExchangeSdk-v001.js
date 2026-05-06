@@ -87,6 +87,7 @@
     redirectUrl: "",
     startAppPage: "",
     refId: "",
+    providerType: "",
     showBackButtonOnHomePage: false,
     disableAddCard: false,
     onOrderCreatedHandler: undefined,
@@ -162,6 +163,9 @@
     if (params.refId !== undefined) config.refId = params.refId;
     if (params.showBackButtonOnHomePage !== undefined) {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
+    }
+    if (params.providerType !== undefined) {
+      config.providerType = params.providerType;
     }
     if (params.disableAddCard !== undefined) {
       config.disableAddCard = params.disableAddCard;
@@ -245,6 +249,7 @@
       showBackButtonOnHomePage: config.showBackButtonOnHomePage,
       disableAddCard: config.disableAddCard,
       isTgBot: config.isTgBot,
+      providerType: config.providerType,
     };
 
     const queryString = Object.entries(params)
