@@ -24,6 +24,7 @@ const DEFAULT_CONFIG = {
   cryptoWallet: "",
   redirectUrl: "",
   hostUrl: "",
+  providerType: "",
   startAppPage: "",
 
   showBackButton: false,
@@ -145,6 +146,13 @@ const FIELD_DEFS = [
     prop: "hostUrl",
     inputId: "hostUrl",
     valueId: "hostUrlValue",
+    kind: "text",
+    trim: true,
+  },
+  {
+    prop: "providerType",
+    inputId: "providerType",
+    valueId: "providerTypeValue",
     kind: "text",
     trim: true,
   },
