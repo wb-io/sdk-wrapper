@@ -16,12 +16,18 @@
   };
 
   const openFromTelegramTop = (url) => {
+    const isDebug = localStorage.getItem("debug");
+
     const tg = window.Telegram?.WebApp;
     const isPinLivenessLink =
       url.includes("biometric.spatium.io") ||
       url.includes("verification.svort.io") ||
       url.includes("dev.spatium.io") ||
       url.includes("api.pin.by");
+
+    if (isDebug) {
+      console.info({ isPinLivenessLink, url });
+    }
 
     try {
       if (isPinLivenessLink) {
@@ -30,15 +36,25 @@
       }
 
       if (tg) {
+        if (isDebug) {
+          console.info({ tg, url });
+        }
         tg.ready();
         tg.showConfirm("Перейти к оплате", (ok) => {
           if (!ok) return;
-          tg.openLink(url, { try_browser: "external" });
+          if (isDebug) {
+            console.info("openLink work");
+          }
+          tg.openLink(url);
         });
       } else {
+        if (isDebug) {
+          console.info("window.open");
+        }
         window.open(url, "_blank", "noopener,noreferrer");
       }
     } catch (e) {
+      console.error({ e });
       window.location.href = url;
     }
   };
