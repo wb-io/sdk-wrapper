@@ -62,7 +62,7 @@
   // ----------------------------------------------------
   const version = "/v2.0";
 
-  const SDK_ORIGIN = "https://sdknew.dev.wbdevel.net";
+  const SDK_ORIGIN = "https://sdknew.qa.wbdevel.net";
   const SDK_URL = SDK_ORIGIN + version;
 
   //Only local test
