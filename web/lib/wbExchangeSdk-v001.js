@@ -136,6 +136,7 @@
     refId: "",
     providerType: "",
     showBackButtonOnHomePage: false,
+    app: "",
     disableAddCard: false,
     onOrderCreatedHandler: undefined,
     onExitHandler: undefined,
@@ -212,6 +213,9 @@
     if (params.refId !== undefined) config.refId = params.refId;
     if (params.showBackButtonOnHomePage !== undefined) {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
+    }
+    if (params.isBitcash) {
+      config.app = "bitcash";
     }
     if (params.providerType !== undefined) {
       config.providerType = params.providerType;
@@ -300,6 +304,7 @@
       disableAddCard: config.disableAddCard,
       isTgBot: config.isTgBot,
       providerType: config.providerType,
+      app: config.app,
     };
 
     const queryString = Object.entries(params)

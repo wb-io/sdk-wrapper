@@ -218,6 +218,12 @@ const FIELD_DEFS = [
     valueId: "isAuthAgentValue",
     kind: "checkbox",
   },
+  {
+    prop: "isBitcash",
+    inputId: "isBitcash",
+    valueId: "isBitcashValue",
+    kind: "checkbox",
+  },
 ];
 
 // ---------- main ----------
