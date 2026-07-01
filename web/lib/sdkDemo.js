@@ -12,6 +12,9 @@ const DEFAULT_CONFIG = {
   accessToken: "",
   refreshToken: "",
 
+  themePrimary: "#0169ff",
+  themeFontFamily: "Inter",
+
   email: "",
   merchantPass: "",
   externalClientId: "",
@@ -78,7 +81,19 @@ const FIELD_DEFS = [
     valueClass: (v) => (v?.length ? "hasValue" : ""),
     diff: false,
   },
-
+  {
+    prop: "themePrimary",
+    inputId: "themePrimary",
+    valueId: "themePrimaryValue",
+    kind: "text",
+    trim: true,
+  },
+  {
+    prop: "themeFontFamily",
+    inputId: "themeFontFamily",
+    valueId: "themeFontFamilyValue",
+    kind: "select",
+  },
   {
     prop: "email",
     inputId: "email",
@@ -201,6 +216,12 @@ const FIELD_DEFS = [
     prop: "isAuthAgent",
     inputId: "isAuthAgent",
     valueId: "isAuthAgentValue",
+    kind: "checkbox",
+  },
+  {
+    prop: "isBitcash",
+    inputId: "isBitcash",
+    valueId: "isBitcashValue",
     kind: "checkbox",
   },
 ];

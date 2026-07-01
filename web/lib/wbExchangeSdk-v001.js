@@ -13,6 +13,37 @@
     OnOpenLink: "OnOpenLink",
     OnOrderCompleted: "OnOrderCompleted",
     OnPayment: "OnPayment",
+    SDK_READY: "SDK_READY",
+  };
+
+  const FONT_WEIGHTS = [400, 700];
+
+  const postThemeToSdk = () => {
+    if (!config.isSdkReady) return;
+    if (!config.sdkIframe?.contentWindow) return;
+    const color = document.getElementById("themePrimary").value;
+    const font = document.getElementById("themeFontFamily").value;
+
+    const cssVars = {};
+    if (color) {
+      cssVars["--base-primary"] = color;
+    }
+
+    const payload = {};
+    if (Object.keys(cssVars).length) payload.cssVars = cssVars;
+
+    if (font) {
+      payload.font = {
+        provider: "google",
+        family: font,
+        weights: FONT_WEIGHTS,
+      };
+    }
+
+    config.sdkIframe.contentWindow.postMessage(
+      { type: "SetTheme", payload },
+      "*",
+    );
   };
 
   const openFromTelegramTop = (url) => {
@@ -105,11 +136,15 @@
     refId: "",
     providerType: "",
     showBackButtonOnHomePage: false,
+    app: "",
     disableAddCard: false,
     onOrderCreatedHandler: undefined,
     onExitHandler: undefined,
     onPayment: undefined,
     isTgBot: false,
+    themePrimary: "",
+    themeFontFamily: "",
+    isSdkReady: false,
   };
 
   let config = Object.assign({}, defaultConfig);
@@ -121,7 +156,6 @@
       const logColor = "background:#ff0;color:#000;";
       console.info(`%c wbExchangeSdkConfig`, logColor, params);
     }
-
     config.isTgBot = params.isTgBot ?? Boolean(window.Telegram?.WebApp);
 
     if (params.el && config.el !== params.el && config.sdkIframe) {
@@ -180,6 +214,9 @@
     if (params.showBackButtonOnHomePage !== undefined) {
       config.showBackButtonOnHomePage = !!params.showBackButtonOnHomePage;
     }
+    if (params.isBitcash) {
+      config.app = "bitcash";
+    }
     if (params.providerType !== undefined) {
       config.providerType = params.providerType;
     }
@@ -200,6 +237,7 @@
     }
 
     makeIframe();
+    postThemeToSdk();
   };
 
   // ----------------------------------------------------
@@ -266,6 +304,7 @@
       disableAddCard: config.disableAddCard,
       isTgBot: config.isTgBot,
       providerType: config.providerType,
+      app: config.app,
     };
 
     const queryString = Object.entries(params)
@@ -336,6 +375,10 @@
     }
     if (data?.type === PostMessageType.OnBackButton) {
       config.onExitHandler?.();
+    }
+    if (data?.type === PostMessageType.SDK_READY) {
+      config.isSdkReady = true;
+      postThemeToSdk();
     }
   };
 
