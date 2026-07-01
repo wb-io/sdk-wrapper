@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>WBExchangeSDK Demo</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css" fetchpriority="high" />
+    <link rel="modulepreload" fetchpriority="high" href="wbExchangeSdk-v001.js">
+    <link rel="modulepreload" fetchpriority="high" href="sdkDemo.js">
   </head>
   <body>
     <header>Demo App</header>
@@ -38,6 +40,30 @@
               />
               TokensMode
             </label>
+            <div class="field">
+              <label for="themePrimary">Base color</label>
+              <input type="color" id="themePrimary" name="themePrimary" />
+            </div>
+
+            <div class="field">
+              <label for="themeFontFamily">Шрифт</label>
+              <select id="themeFontFamily" class="dropdown" autocomplete="off">
+                <option value="">— Не выбрано —</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Inter">Inter</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Noto Sans">Noto Sans</option>
+                <option value="Ubuntu">Ubuntu</option>
+                <option value="PT Sans">PT Sans</option>
+                <option value="Rubik">Rubik</option>
+                <option value="Manrope">Manrope</option>
+                <option value="Nunito Sans">Nunito Sans</option>
+                <option value="Oswald">Oswald</option>
+                <option value="Caveat">Caveat</option>
+                <option value="Roboto Slab">Roboto Slab</option>
+              </select>
+            </div>
             <div class="field">
               <label for="accessToken">accessToken</label>
               <textarea
@@ -208,6 +234,10 @@
               <input type="checkbox" id="isAuthAgent" name="isAuthAgent" />
               isAuthAgent
             </label>
+            <label for="isBitcash">
+              <input type="checkbox" id="isBitcash" name="isBitcash" />
+              Bitcash App
+            </label>
           </fieldset>
           <button type="submit" id="updateSdk">Пересоздать iframe</button>
         </form>
@@ -278,6 +308,8 @@
   <b>refreshToken</b>: '<span id="refreshTokenValue"></span>',
 
   <span>// optional params:</span>
+  <b>Цвет</b>: '<span id="themePrimaryValue"></span>',
+  <b>Шрифт</b>: '<span id="themeFontFamilyValue"></span>',
   <b>email</b>: <span id="emailValue"></span>,
   <b>merchantPass</b>: <span id="merchantPassValue"></span>,
   <b>externalClientId</b>: <span id="externalClientIdValue"></span>,
@@ -295,6 +327,7 @@
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>startAppPage</b>: <span id="startAppPageValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
+  <b>isBitcash</b>: <span id="isBitcashValue"></span>,
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
   <b>onOrderCreated</b>: ({ orderId, internalCryptoAddress }) => {},
   <b>onOrderCompleted</b>: ({ orderId, status }) => {},
@@ -378,6 +411,7 @@
             accessToken: config.accessToken,
             refreshToken:config.refreshToken,
             isTgBot:config.isTgBot,
+            isBitcash: config.isBitcash,
           };
 
           // Params only for TokensMode
