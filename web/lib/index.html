@@ -234,6 +234,10 @@
               <input type="checkbox" id="isAuthAgent" name="isAuthAgent" />
               isAuthAgent
             </label>
+            <label for="isBitcash">
+              <input type="checkbox" id="isBitcash" name="isBitcash" />
+              Bitcash App
+            </label>
           </fieldset>
           <button type="submit" id="updateSdk">Пересоздать iframe</button>
         </form>
@@ -323,6 +327,7 @@
   <b>redirectUrl</b>: <span id="redirectUrlValue"></span>,
   <b>startAppPage</b>: <span id="startAppPageValue"></span>,
   <b>showBackButtonOnHomePage</b>: <span id="showBackButtonValue"></span>,
+  <b>isBitcash</b>: <span id="isBitcashValue"></span>,
   <b>disableAddCard</b>: <span id="disableAddCardValue"></span>,
   <b>onOrderCreated</b>: ({ orderId, internalCryptoAddress }) => {},
   <b>onOrderCompleted</b>: ({ orderId, status }) => {},
@@ -406,6 +411,7 @@
             accessToken: config.accessToken,
             refreshToken:config.refreshToken,
             isTgBot:config.isTgBot,
+            isBitcash: config.isBitcash,
           };
 
           // Params only for TokensMode
