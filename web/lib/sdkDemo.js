@@ -38,6 +38,18 @@ const DEFAULT_CONFIG = {
   isAuthAgent: false,
 };
 
+const getEffectiveDisableState = (config) => {
+  const hasFrom = Boolean(config.currencyFrom);
+  const hasTo = Boolean(config.currencyTo);
+  const hasAmount = Boolean(config.currencyAmount || config.currencyToAmount);
+
+  return {
+    lockCurrencyFrom: config.disableCurrencyFrom && hasFrom,
+    lockCurrencyTo: config.disableCurrencyTo && hasTo,
+    lockAmount: config.disableAmount && hasAmount,
+  };
+};
+
 const tail10 = (s) => {
   if (!s) return "";
   return `${s.length > 10 ? "..." : ""}${s.slice(-10)}`;
@@ -482,9 +494,8 @@ class SdkDemo {
       }
     }
 
-    const isDisableFrom = this.#config.disableCurrencyFrom;
-    const isDisableTo = this.#config.disableCurrencyTo;
-    const isDisableAmount = this.#config.disableAmount;
+    const { lockCurrencyFrom, lockCurrencyTo, lockAmount } =
+      getEffectiveDisableState(this.#config);
 
     const fromInput = this.#dom.fields.currencyFrom?.input;
     const toInput = this.#dom.fields.currencyTo?.input;
@@ -492,11 +503,11 @@ class SdkDemo {
     const toAmountInput = this.#dom.fields.currencyToAmount?.input;
     const walletInput = this.#dom.fields.cryptoWallet?.input;
 
-    if (fromInput) fromInput.disabled = isDisableFrom;
-    if (toInput) toInput.disabled = isDisableTo;
-    if (amountInput) amountInput.disabled = isDisableFrom || isDisableAmount;
-    if (toAmountInput) toAmountInput.disabled = isDisableAmount;
-    if (walletInput) walletInput.disabled = isDisableTo;
+    if (fromInput) fromInput.disabled = lockCurrencyFrom;
+    if (toInput) toInput.disabled = lockCurrencyTo;
+    if (amountInput) amountInput.disabled = lockAmount;
+    if (toAmountInput) toAmountInput.disabled = lockAmount;
+    if (walletInput) walletInput.disabled = lockCurrencyTo;
   }
 
   showAgainBtn() {
