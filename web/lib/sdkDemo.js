@@ -50,6 +50,56 @@ const getEffectiveDisableState = (config) => {
   };
 };
 
+const CURRENCY_OPTIONS = [
+  { value: "", label: "— Не выбрано —" },
+  { value: "BYN", label: "BYN" },
+  { value: "RUB", label: "RUB" },
+  { value: "USD", label: "USD" },
+  { value: "EUR", label: "EUR" },
+  { value: "AED", label: "AED" },
+  { value: "BNB", label: "BNB" },
+  { value: "USDC_BNB", label: "USDC (BEP-20)" },
+  { value: "USDT_BNB", label: "USDT (BEP-20)" },
+  { value: "SPYON", label: "SPYON" },
+  { value: "QQQON", label: "QQQON" },
+  { value: "IEFAON", label: "IEFAON" },
+  { value: "USDT_SOL", label: "USDT (SOL)" },
+  { value: "USDC_SOL", label: "USDC (SOL)" },
+  { value: "SOL", label: "SOL" },
+  { value: "BTC", label: "BTC" },
+  { value: "ETH", label: "ETH" },
+  { value: "USDT", label: "USDT (ERC-20)" },
+  { value: "USDC", label: "USDC (ERC-20)" },
+  { value: "TRX", label: "TRX" },
+  { value: "USDT_TRC", label: "USDT (TRC-20)" },
+  { value: "TON", label: "TON" },
+  { value: "USDT_TON", label: "USDT (TON)" },
+  { value: "AEDEX", label: "AEDEX" },
+  { value: "AAVE", label: "AAVE" },
+  { value: "LINK", label: "LINK" },
+  { value: "PAXG", label: "PAXG" },
+  { value: "UNI", label: "UNI" },
+  { value: "XAUT", label: "XAUT" },
+  { value: "WBP", label: "WBP (TRC-20)" },
+];
+
+const populateCurrencySelect = (selectEl, selectedValue = "") => {
+  if (!selectEl) return;
+
+  selectEl.replaceChildren(
+    ...CURRENCY_OPTIONS.map(({ value, label }) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = label;
+      return option;
+    }),
+  );
+
+  if (selectedValue) {
+    selectEl.value = selectedValue;
+  }
+};
+
 const tail10 = (s) => {
   if (!s) return "";
   return `${s.length > 10 ? "..." : ""}${s.slice(-10)}`;
@@ -358,6 +408,15 @@ class SdkDemo {
         value: document.getElementById(def.valueId),
       };
     }
+
+    populateCurrencySelect(
+      this.#dom.fields.currencyFrom?.input,
+      this.#config.currencyFrom,
+    );
+    populateCurrencySelect(
+      this.#dom.fields.currencyTo?.input,
+      this.#config.currencyTo,
+    );
   }
 
   #initValues() {
