@@ -80,7 +80,6 @@ const CURRENCY_OPTIONS = [
   { value: "PAXG", label: "PAXG" },
   { value: "UNI", label: "UNI" },
   { value: "XAUT", label: "XAUT" },
-  { value: "WBP", label: "WBP (TRC-20)" },
 ];
 
 const populateCurrencySelect = (selectEl, selectedValue = "") => {
