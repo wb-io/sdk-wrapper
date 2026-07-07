@@ -38,6 +38,67 @@ const DEFAULT_CONFIG = {
   isAuthAgent: false,
 };
 
+const getEffectiveDisableState = (config) => {
+  const hasFrom = Boolean(config.currencyFrom);
+  const hasTo = Boolean(config.currencyTo);
+  const hasAmount = Boolean(config.currencyAmount || config.currencyToAmount);
+
+  return {
+    lockCurrencyFrom: config.disableCurrencyFrom && hasFrom,
+    lockCurrencyTo: config.disableCurrencyTo && hasTo,
+    lockAmount: config.disableAmount && hasAmount,
+  };
+};
+
+const CURRENCY_OPTIONS = [
+  { value: "", label: "— Не выбрано —" },
+  { value: "BYN", label: "BYN" },
+  { value: "RUB", label: "RUB" },
+  { value: "USD", label: "USD" },
+  { value: "EUR", label: "EUR" },
+  { value: "AED", label: "AED" },
+  { value: "BNB", label: "BNB" },
+  { value: "USDC_BNB", label: "USDC (BEP-20)" },
+  { value: "USDT_BNB", label: "USDT (BEP-20)" },
+  { value: "SPYON", label: "SPYON" },
+  { value: "QQQON", label: "QQQON" },
+  { value: "IEFAON", label: "IEFAON" },
+  { value: "USDT_SOL", label: "USDT (SOL)" },
+  { value: "USDC_SOL", label: "USDC (SOL)" },
+  { value: "SOL", label: "SOL" },
+  { value: "BTC", label: "BTC" },
+  { value: "ETH", label: "ETH" },
+  { value: "USDT", label: "USDT (ERC-20)" },
+  { value: "USDC", label: "USDC (ERC-20)" },
+  { value: "TRX", label: "TRX" },
+  { value: "USDT_TRC", label: "USDT (TRC-20)" },
+  { value: "TON", label: "TON" },
+  { value: "USDT_TON", label: "USDT (TON)" },
+  { value: "AEDEX", label: "AEDEX" },
+  { value: "AAVE", label: "AAVE" },
+  { value: "LINK", label: "LINK" },
+  { value: "PAXG", label: "PAXG" },
+  { value: "UNI", label: "UNI" },
+  { value: "XAUT", label: "XAUT" },
+];
+
+const populateCurrencySelect = (selectEl, selectedValue = "") => {
+  if (!selectEl) return;
+
+  selectEl.replaceChildren(
+    ...CURRENCY_OPTIONS.map(({ value, label }) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = label;
+      return option;
+    }),
+  );
+
+  if (selectedValue) {
+    selectEl.value = selectedValue;
+  }
+};
+
 const tail10 = (s) => {
   if (!s) return "";
   return `${s.length > 10 ? "..." : ""}${s.slice(-10)}`;
@@ -346,6 +407,15 @@ class SdkDemo {
         value: document.getElementById(def.valueId),
       };
     }
+
+    populateCurrencySelect(
+      this.#dom.fields.currencyFrom?.input,
+      this.#config.currencyFrom,
+    );
+    populateCurrencySelect(
+      this.#dom.fields.currencyTo?.input,
+      this.#config.currencyTo,
+    );
   }
 
   #initValues() {
@@ -482,9 +552,8 @@ class SdkDemo {
       }
     }
 
-    const isDisableFrom = this.#config.disableCurrencyFrom;
-    const isDisableTo = this.#config.disableCurrencyTo;
-    const isDisableAmount = this.#config.disableAmount;
+    const { lockCurrencyFrom, lockCurrencyTo, lockAmount } =
+      getEffectiveDisableState(this.#config);
 
     const fromInput = this.#dom.fields.currencyFrom?.input;
     const toInput = this.#dom.fields.currencyTo?.input;
@@ -492,11 +561,11 @@ class SdkDemo {
     const toAmountInput = this.#dom.fields.currencyToAmount?.input;
     const walletInput = this.#dom.fields.cryptoWallet?.input;
 
-    if (fromInput) fromInput.disabled = isDisableFrom;
-    if (toInput) toInput.disabled = isDisableTo;
-    if (amountInput) amountInput.disabled = isDisableFrom || isDisableAmount;
-    if (toAmountInput) toAmountInput.disabled = isDisableAmount;
-    if (walletInput) walletInput.disabled = isDisableTo;
+    if (fromInput) fromInput.disabled = lockCurrencyFrom;
+    if (toInput) toInput.disabled = lockCurrencyTo;
+    if (amountInput) amountInput.disabled = lockAmount;
+    if (toAmountInput) toAmountInput.disabled = lockAmount;
+    if (walletInput) walletInput.disabled = lockCurrencyTo;
   }
 
   showAgainBtn() {
