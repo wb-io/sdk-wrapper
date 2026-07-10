@@ -31,6 +31,8 @@ declare namespace wbExchangeSdk {
     isAuthAgent?: boolean;
     isBitcash?: boolean;
     isTgBot?: boolean;
+    color?: string;
+    themeMode: "light" | "dark";
     debug?: boolean;
     onLogin?: (params: {
       email: string;
