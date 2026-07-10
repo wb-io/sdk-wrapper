@@ -16,36 +16,6 @@
     SDK_READY: "SDK_READY",
   };
 
-  const FONT_WEIGHTS = [400, 700];
-
-  const postThemeToSdk = () => {
-    if (!config.isSdkReady) return;
-    if (!config.sdkIframe?.contentWindow) return;
-    const color = document.getElementById("themePrimary").value;
-    const font = document.getElementById("themeFontFamily").value;
-
-    const cssVars = {};
-    if (color) {
-      cssVars["--base-primary"] = color;
-    }
-
-    const payload = {};
-    if (Object.keys(cssVars).length) payload.cssVars = cssVars;
-
-    if (font) {
-      payload.font = {
-        provider: "google",
-        family: font,
-        weights: FONT_WEIGHTS,
-      };
-    }
-
-    config.sdkIframe.contentWindow.postMessage(
-      { type: "SetTheme", payload },
-      "*",
-    );
-  };
-
   const openFromTelegramTop = (url) => {
     const isDebug = localStorage.getItem("debug");
 
@@ -142,8 +112,7 @@
     onExitHandler: undefined,
     onPayment: undefined,
     isTgBot: false,
-    themePrimary: "",
-    themeFontFamily: "",
+    color: "",
     isSdkReady: false,
   };
 
@@ -217,12 +186,23 @@
     if (params.isBitcash) {
       config.app = "bitcash";
     }
+
+    if (params.color !== undefined) {
+      config.color = params.color;
+    }
+
+    if (params.themeMode !== undefined) {
+      config.themeMode = params.themeMode;
+    }
+
     if (params.providerType !== undefined) {
       config.providerType = params.providerType;
     }
+
     if (params.disableAddCard !== undefined) {
       config.disableAddCard = params.disableAddCard;
     }
+
     if (params.onOrderCreated !== undefined) {
       config.onOrderCreatedHandler = params.onOrderCreated;
     }
@@ -237,7 +217,7 @@
     }
 
     makeIframe();
-    postThemeToSdk();
+    // postThemeToSdk();
   };
 
   // ----------------------------------------------------
@@ -305,6 +285,8 @@
       isTgBot: config.isTgBot,
       providerType: config.providerType,
       app: config.app,
+      color: config.color,
+      themeMode: config.themeMode,
     };
 
     const queryString = Object.entries(params)
@@ -378,7 +360,6 @@
     }
     if (data?.type === PostMessageType.SDK_READY) {
       config.isSdkReady = true;
-      postThemeToSdk();
     }
   };
 
