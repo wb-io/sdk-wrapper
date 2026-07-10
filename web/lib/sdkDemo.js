@@ -12,8 +12,8 @@ const DEFAULT_CONFIG = {
   accessToken: "",
   refreshToken: "",
 
-  themePrimary: "#0169ff",
-  themeFontFamily: "Inter",
+  color: "#0169ff",
+  themeMode: "light",
 
   email: "",
   merchantPass: "",
@@ -143,17 +143,11 @@ const FIELD_DEFS = [
     diff: false,
   },
   {
-    prop: "themePrimary",
-    inputId: "themePrimary",
-    valueId: "themePrimaryValue",
+    prop: "color",
+    inputId: "color",
+    valueId: "colorValue",
     kind: "text",
     trim: true,
-  },
-  {
-    prop: "themeFontFamily",
-    inputId: "themeFontFamily",
-    valueId: "themeFontFamilyValue",
-    kind: "select",
   },
   {
     prop: "email",
@@ -303,7 +297,7 @@ class SdkDemo {
 
     sdkMode: null,
     sdkModeRadioBtns: [],
-
+    themeModeRadioBtns: [],
     userDataWrapper: null,
 
     updateSdkBtn: null,
@@ -392,6 +386,11 @@ class SdkDemo {
     this.#dom.copied = document.getElementById("copied");
 
     this.#dom.sdkMode = document.getElementById("sdkMode");
+
+    this.#dom.themeModeRadioBtns = Array.from(
+      document.querySelectorAll('input[name="themeMode"]'),
+    );
+
     this.#dom.sdkModeRadioBtns = Array.from(
       document.querySelectorAll('input[name="sdkMode"]'),
     );
@@ -423,6 +422,10 @@ class SdkDemo {
       rb.checked = rb.value === this.#config.mode;
     });
 
+    this.#dom.themeModeRadioBtns.forEach((rb) => {
+      rb.checked = rb.value === this.#config.themeMode;
+    });
+
     for (const def of FIELD_DEFS) {
       const { input } = this.#dom.fields[def.prop] || {};
       this.#writeInput(def, input, this.#config[def.prop]);
@@ -433,6 +436,12 @@ class SdkDemo {
     this.#dom.sdkModeRadioBtns.forEach((rb) => {
       rb.addEventListener("change", (e) => {
         this.#setConfig("mode", e.target.value);
+      });
+    });
+
+    this.#dom.themeModeRadioBtns.forEach((rb) => {
+      rb.addEventListener("change", (e) => {
+        this.#setConfig("themeMode", e.target.value);
       });
     });
 
@@ -521,6 +530,13 @@ class SdkDemo {
       this.#dom.sdkMode.textContent = this.#config.mode;
       const dirty = this.#config.mode !== this.#appliedConfig.mode;
       this.#setDiffClass(this.#dom.sdkMode, dirty, pulseProp === "mode");
+    }
+
+    const themeModeValueEl = document.getElementById("themeModeValue");
+    if (themeModeValueEl) {
+      themeModeValueEl.textContent = this.#config.themeMode;
+      const dirty = this.#config.themeMode !== this.#appliedConfig.themeMode;
+      this.#setDiffClass(themeModeValueEl, dirty, pulseProp === "themeMode");
     }
 
     if (this.#dom.userDataWrapper) {
