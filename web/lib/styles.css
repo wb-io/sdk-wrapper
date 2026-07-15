@@ -140,6 +140,8 @@ code {
   word-break: break-word;
 }
 
+
+
 #sdk-again {
   display: none;
   position: absolute;
@@ -269,6 +271,7 @@ button:disabled {
 #disableCurrencyFrom,
 #disableAmount,
 #isAuthAgent,
+#colorValue,
 #sdkMode {
   display: inline-block;
   padding: 0 5px;
